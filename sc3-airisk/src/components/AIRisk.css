@@ -1,0 +1,177 @@
+/* SC3 AI Risk Form Styles */
+
+/* SC3.com.au theme colors and variables */
+:root {
+  --sc3-primary: #036;
+  --sc3-primary-shadow: #0362;
+  --sc3-secondary: #09c;
+  --sc3-accent: #fbc02d;
+  --sc3-bg: #f4f8fb;
+  --sc3-green: #388e3c;
+  --sc3-table-bg: #fff;
+  --sc3-table-header-bg: #e5eef5;
+  --sc3-purple: #7b1fa2;
+  --sc3-purple-light: #ede7f6;
+  --sc3-yellow-light: #fffbea;
+  --sc3-green-light: #f8fff5;
+  --sc3-blue-light: #f5faff;
+  --sc3-error: #d32f2f;
+  --sc3-gray: #757575;
+  --sc3-delete: #c00;
+  --sc3-brown: #8B4513;
+  --sc3-red-text: #dc3545;
+
+  /* Colours used by sc3.com.au */
+  --sc3-background-blue: #08283e;
+  --sc3-text-orange: #eb7325;
+  --sc3-heading-yellow: #ffe8b5;
+  --sc3-text-yellow: #ffe8b5;
+  --sc3-heading-orange: #eb7325;
+  --sc3-menu-current: #5c868e;
+  --sc3-menu-other: #e2a027;
+  --sc3-white: #fff;  
+  
+  /* Layout constants */
+  --sc3-border-radius: 6px;  
+  --sc3-form-padding: 12px;
+  --sc3-section-margin: 16px;
+  --sc3-btn-radius: 6px;
+  --sc3-btn-font-weight: bold;
+  --sc3-btn-font-size: 1rem;
+  --sc3-btn-padding: 0.6em 1.5em;
+  --sc3-table-border-radius: 8px;
+  --sc3-table-header-font-size: 1.05em;
+  --sc3-table-header-font-weight: bold;
+  --sc3-input-border-radius: 4px;
+  --sc3-input-padding: 0.4em 0.6em;
+  --sc3-table-transition: background 0.2s;
+}
+
+/* Global responsive wrapper styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: auto;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+  
+/* Main container styles */
+.air-main-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: var(--sc3-bg);
+  border-radius: var(--sc3-table-border-radius);
+  box-shadow: 0 2px 12px var(--sc3-primary-shadow);
+  padding: 24px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--sc3-primary);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 320px;
+}
+
+/* Responsive main container fixes */
+@media (max-width: 768px) {
+  .air-main-container {
+    margin: 1rem;
+    padding: 16px;
+    max-width: none;
+    width: calc(100% - 2rem);
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .air-main-container {
+    margin: 0.5rem;
+    padding: 12px;
+    width: calc(100% - 1rem);
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+}
+
+.air-main-heading {
+  color: var(--sc3-primary);
+  border-bottom: 3px solid var(--sc3-accent);
+  padding-bottom: 8px;
+  margin: 0 0 1rem;
+}
+
+/* Version footer */
+.air-version-footer {
+  width: 100%;
+  text-align: center;
+  color: #888;
+  font-size: 0.95em;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+
+.air-back-to-top-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 1rem 0;
+}
+
+.air-back-to-top-btn {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  border-radius: var(--sc3-btn-radius);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: var(--sc3-btn-font-weight);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.air-back-to-top-btn:hover {
+  background: #e9ecef;
+  color: #495057;
+  border-color: #adb5bd;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (width <= 768px) {
+  .rar-back-to-top-container {
+    margin: 1.5rem 0;
+    padding: 0.75rem 0;
+  }
+  
+  .rar-back-to-top-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  .rar-back-to-top-btn:hover {
+    background: #e9ecef;
+    color: #495057;
+    border-color: #adb5bd;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+/* Intro Styles */
+.air-intro-details {
+  margin-bottom: 1rem;
+}
+
+.air-intro-summary {
+  cursor: pointer;
+  font-weight: var(--sc3-btn-font-weight);
+  color: var(--sc3-secondary);
+}
