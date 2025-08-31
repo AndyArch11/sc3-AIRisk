@@ -3,9 +3,14 @@ import "./AIRisk.css";
 
 const AIRiskReport = () => {
   return (
-    <div className="air-risk-report">
-      <h3>AI Risk Assessment Report</h3>
-      {/* Render report content here */}
+    <div className="air-report-container">
+      <details className="air-report-details">
+        <summary className="air-report-summary">
+          📊 AI Risk Assessment Report
+        </summary>
+        {/* Render report content here */}
+        <p>Report details</p>
+      </details>
     </div>
   );
 };

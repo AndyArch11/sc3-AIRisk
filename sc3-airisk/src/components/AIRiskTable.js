@@ -3,8 +3,10 @@ import "./AIRisk.css";
 
 const AIRiskTable = () => {
   return (
-    <>
-      <h3>Risk Table:</h3>
+    <details className="air-table-section">
+      <summary className="air-table-summary">
+        🗃️ AI Risk Table
+      </summary>
       <table className="air-risk-table">
         <thead>
           <tr>
@@ -14,9 +16,13 @@ const AIRiskTable = () => {
       </thead>
       <tbody>
         {/* Render risk data rows here */}
+        <tr>
+          <td>Example Risk Description</td>
+          <td>High</td>
+        </tr>
       </tbody>
     </table>
-    </>
+    </details>
   );
 };
 

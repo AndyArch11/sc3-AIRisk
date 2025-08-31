@@ -175,3 +175,60 @@ body {
   font-weight: var(--sc3-btn-font-weight);
   color: var(--sc3-secondary);
 }
+
+/* Input component styles */
+.air-inputform-details {
+  margin-bottom: 1rem;
+}
+
+.air-inputform-summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--sc3-secondary);
+}
+
+.air-table-section {
+  margin-bottom: 1rem;
+}
+
+.air-table-summary {
+  cursor: pointer;
+  font-weight: var(--sc3-btn-font-weight);
+  color: var(--sc3-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  transition: color 0.2s;
+}
+
+.air-risk-table {
+  /* width: 95vw; */
+  /* min-width: 1200px; */
+  border-collapse: collapse;
+  background: var(--sc3-table-bg);
+  border-radius: var(--sc3-table-border-radius);
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.air-report-container {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: var(--sc3-border-radius);
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px var(--sc3-primary-shadow);
+}
+
+.air-report-details {
+  margin-bottom: 1rem;
+}
+
+/* Report Styles */
+.air-report-summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--sc3-secondary);
+}

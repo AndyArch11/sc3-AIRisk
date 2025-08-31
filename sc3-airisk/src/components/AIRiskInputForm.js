@@ -3,8 +3,10 @@ import "./AIRisk.css";
 
 const AIRiskInputForm = () => {
   return (
-    <>
-      <h3>Risk Input Form:</h3>
+    <details className="air-inputform-details">
+      <summary className="air-inputform-summary">
+        ✏️ AI Risk Input Form
+      </summary>
       <ul>
         <li>Project Details</li>
         <ul>
@@ -130,7 +132,7 @@ const AIRiskInputForm = () => {
         <li>Risk Mitigation</li>
         <li>Procurement - Specific Controls</li>
     </ul>
-    </>
+    </details>
   );
 };
 

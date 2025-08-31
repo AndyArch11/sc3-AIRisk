@@ -26,12 +26,7 @@ function Breadcrumbs() {
 function App() {
   
   return (
-    <Router>
-      {/* <Breadcrumbs /> */}
-      <Routes>
-        <Route path="/" element={<WrappedAIRiskForm />} />
-      </Routes>
-    </Router>
+    <WrappedAIRiskForm />
   );
 }
 
