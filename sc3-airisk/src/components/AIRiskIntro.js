@@ -78,7 +78,7 @@ const AIRiskIntro = () => {
             <ul>
                 <li><strong>Valid and Reliable:</strong> The system should perform as intended across a range of conditions, with minimal failure or inconsistency. This includes rigorous testing and validation during development and ongoing monitoring post-deployment.</li>
                 <ul>
-                    <li><strong>Safe:</strong> AI systems must operate without causing unintentional harm. This involves anticipating and preventing behaviors that could lead to accidents or system failures.</li>
+                    <li><strong>Safe:</strong> AI systems must operate without causing unintentional harm. This involves anticipating and preventing behaviours that could lead to accidents or system failures.</li>
                     <li><strong>Secure and Resilient:</strong> Systems should be robust against adversarial threats, tampering, and cyberattacks. This includes protections against data poisoning, model inversion, or unauthorized model manipulation.</li>
                     <li><strong>Explainable and Interpretable:</strong> Users and decision-makers must be able to interpret AI outputs and the rationale behind them. This is especially important in regulated industries or high-risk decision contexts.</li>
                     <li><strong>Privacy Enhanced:</strong> AI must respect data privacy throughout its lifecycle, incorporating methods like differential privacy, data minimization, and secure data handling practices.</li>
@@ -99,7 +99,17 @@ const AIRiskIntro = () => {
                 <li><strong>Contestability:</strong> When an AI system significantly impacts a person, community, group or environment, there should be a timely process to allow people to challenge the use or outcomes of the AI system.</li>
                 <li><strong>Accountability:</strong> People responsible for the different phases of the AI system lifecycle should be identifiable and accountable for the outcomes of the AI systems, and human oversight of AI systems should be enabled.</li>
             </ul>
-            <p>Some of these characteristics may require tradeoffs (e.g., between privacy and explainability), and organisations must carefully consider these tradeoffs when designing and deploying AI systems.</p>
+            <p>Some of these characteristics may require trade-offs (e.g., between privacy and explainability), and organisations must carefully consider these trade-offs when designing and deploying AI systems.</p>
+
+            <p>The NSW Ethical Principles for the use of AI is similar to the national one:</p>
+            <ul>
+                <li><strong>Community Benefit:</strong> AI must prioritise community outcomes, ensuring alignment with laws, minimising harm, and maximising benefit</li>
+                <li><strong>Fairness:</strong> Use of AI will be fair, ensuring not to perpetuate bias and inequality by leveraging diverse representative datasets, monitoring performance, and using rigorous data governance</li>
+                <li><strong>Privacy and Security:</strong> Ensure secure, transparent, compliant data use, and adhere to PPIP ACT preserving public trust</li>
+                <li><strong>Transparency:</strong> The use of AI will be transparent, allowing concerns to be raised and addressed. GIPA Act compliant, cyber secure and ethical</li>
+                <li><strong>Accountability:</strong> Decision-making remains the responsibility of organisations and Responsible Offices</li>
+            </ul>
+            
             <p>Multiple Australian jurisdictions advise undertaking a Privacy Impact Assessment (PIA) when developing or deploying AI systems to identify and mitigate potential privacy risks.</p>
 
             <h4>EU AI Act</h4>
