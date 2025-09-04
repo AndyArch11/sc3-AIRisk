@@ -5,7 +5,7 @@ import AIRiskInputForm from "./AIRiskInputForm";
 import AIRiskTable from "./AIRiskTable";
 import AIRiskReport from "./AIRiskReport";
 
-const VERSION = "v0.1.0"; // Update as needed
+const VERSION = "v0.1.1"; // Update as needed
 
 // Helper to get today's date in YYYY-MM-DD format
 const getToday = () => {

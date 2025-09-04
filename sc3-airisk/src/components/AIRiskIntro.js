@@ -67,7 +67,7 @@ const AIRiskIntro = () => {
                 <li><em><a href="https://atlas.mitre.org/" target="_blank" rel="noopener noreferrer" className="air-link">MITRE Atlas</a></em>{" "} Adversarial Threat Landscape for Artificial Intelligence Systems</li>
             </ul>
             
-            <h4>NIST AI RMF: Four Core Functions</h4>
+            <h4>🧭 NIST AI RMF: Four Core Functions</h4>
             <ul>
                 <li><strong>Govern:</strong> A culture of risk management is cultivated and present</li>
                 <li><strong>Map:</strong> Context is recognised and risks related to context are identified</li>
@@ -81,14 +81,14 @@ const AIRiskIntro = () => {
                     <li><strong>Safe:</strong> AI systems must operate without causing unintentional harm. This involves anticipating and preventing behaviours that could lead to accidents or system failures.</li>
                     <li><strong>Secure and Resilient:</strong> Systems should be robust against adversarial threats, tampering, and cyberattacks. This includes protections against data poisoning, model inversion, or unauthorized model manipulation.</li>
                     <li><strong>Explainable and Interpretable:</strong> Users and decision-makers must be able to interpret AI outputs and the rationale behind them. This is especially important in regulated industries or high-risk decision contexts.</li>
-                    <li><strong>Privacy Enhanced:</strong> AI must respect data privacy throughout its lifecycle, incorporating methods like differential privacy, data minimization, and secure data handling practices.</li>
+                    <li><strong>Privacy Enhanced:</strong> AI must respect data privacy throughout its lifecycle, incorporating methods like differential privacy, data minimisation, and secure data handling practices.</li>
                     <li><strong>Fair with Harmful Bias Managed:</strong> The system should avoid discriminatory outcomes by being tested and tuned to reduce bias across data, algorithms, and outputs.</li>
                 </ul>
                 <li><strong>Accountable and Transparent:</strong> Stakeholders should understand how decisions are made and be able to audit the system's design and outcomes. Transparency fosters accountability across the AI supply chain.</li>
             </ul>
             <p><em>Note:</em> Risk management should be continuous, timely, and performed throughout the AI system lifecycle dimensions. AI RMF Core functions should be carried out in a way that reflects diverse and multidisciplinary perspectives, potentially including the views of AI actors outside the organization.</p>
 
-            <h4>Australia's AI Ethics Principles</h4>
+            <h4>🇦🇺 Australia's AI Ethics Principles</h4>
             <ul>
                 <li><strong>Human, social and environmental wellbeing:</strong> AI systems should benefit individuals, society and the environment.</li>
                 <li><strong>Human-centred values:</strong> AI systems should respect human rights, diversity, and the autonomy of individuals.</li>
@@ -112,7 +112,7 @@ const AIRiskIntro = () => {
             
             <p>Multiple Australian jurisdictions advise undertaking a Privacy Impact Assessment (PIA) when developing or deploying AI systems to identify and mitigate potential privacy risks.</p>
 
-            <h4>EU AI Act</h4>
+            <h4>🇪🇺 EU AI Act</h4>
             <p>Key features:</p>
             <ul>
                 <li>Risk based classification of AI systems:</li>
@@ -128,82 +128,91 @@ const AIRiskIntro = () => {
                 <li>Creation of a European AI Board to facilitate implementation and enforcement of the regulation and to drive standards.</li>
             </ul>
 
-            <h4>Core Risks Associated with AI</h4>
-            <ul>
-                <li><strong>Bias and Discrimination:</strong> AI systems can inadvertently perpetuate or amplify biases present in training data, leading to unfair treatment of individuals or groups.
+            <BackToTopButton />
+            <details>
+                <summary className="air-intro-summary">
+                ⚠️ AI Risk Considerations
+                </summary>
+                <div className="air-intro-card-container">
+                    <h4>⚠️ Core Risks Associated with AI</h4>
                     <ul>
-                        <li><strong>Mitigation:</strong> Bias detection/correction, diverse datasets, inclusive design, monitor metrics and feedback for drift/bias.</li>
+                        <li><strong>Bias and Discrimination:</strong> AI systems can inadvertently perpetuate or amplify biases present in training data, leading to unfair treatment of individuals or groups.
+                            <ul>
+                                <li><strong>Mitigation:</strong> Bias detection/correction, diverse datasets, inclusive design, monitor metrics and feedback for drift/bias.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Lack of Transparency:</strong> Many AI models operate as "black boxes," making it difficult to understand their decision-making processes and increasing the risk of unintended consequences.
+                            <ul>
+                                <li><strong>Mitigation:</strong> Explainable AI, interpretable models, visualization tools, clear documentation, stakeholder communication.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Data Privacy:</strong> AI systems often require large amounts of data, raising concerns about the privacy and security of sensitive information.
+                            <ul>
+                                <li><strong>Mitigation:</strong> Data minimisation, encryption, access controls, monitoring/logging, privacy audits, differential privacy, federated learning, filtering/obfuscation of PII, data masking, access controls, clear data rules, retention/deletion policies.</li>
+                                <li><strong>Accountability:</strong> Clear frameworks, defined roles, staff training on ethics/risk/compliance.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Accountability:</strong> Determining who is responsible for the actions and decisions made by AI systems can be challenging, particularly in cases of harm or legal disputes.
+                            <ul>
+                                <li><strong>Mitigation:</strong> Clear lines of accountability, defined roles for developers/operators/users, tracking/reporting performance, remediation processes, user feedback/grievance mechanisms.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Regulatory Compliance:</strong> Ensuring AI systems comply with relevant laws, regulations, and industry standards is essential for mitigating legal and reputational risks.
+                            <ul>
+                                <li><strong>Mitigation:</strong> Stay informed on legal/regulatory developments, regular audits/assessments, reporting/handling violations, note EU AI Act fines.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Security Threats:</strong> AI systems can be vulnerable to various security threats, including adversarial attacks, data poisoning, and model inversion.
+                            <ul>
+                                <li><strong>Mitigation:</strong> Treat as critical systems, robust security (encryption, access controls, assessments), monitor access/logs, stay informed on threats, incident response plans.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ethical Use:</strong> Ensuring AI systems are used ethically and responsibly is critical for maintaining trust and accountability.
+                            <ul>
+                                <li><strong>Mitigation:</strong> Clear ethical guidelines/principles, monitor/evaluate ethical implications, stakeholder engagement, human-in-the-loop accountability.</li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-                <li><strong>Lack of Transparency:</strong> Many AI models operate as "black boxes," making it difficult to understand their decision-making processes and increasing the risk of unintended consequences.
-                    <ul>
-                        <li><strong>Mitigation:</strong> Explainable AI, interpretable models, visualization tools, clear documentation, stakeholder communication.</li>
-                    </ul>
-                </li>
-                <li><strong>Data Privacy:</strong> AI systems often require large amounts of data, raising concerns about the privacy and security of sensitive information.
-                    <ul>
-                        <li><strong>Mitigation:</strong> Data minimization, encryption, access controls, monitoring/logging, privacy audits, differential privacy, federated learning, filtering/obfuscation of PII, data masking, access controls, clear data rules, retention/deletion policies.</li>
-                        <li><strong>Accountability:</strong> Clear frameworks, defined roles, staff training on ethics/risk/compliance.</li>
-                    </ul>
-                </li>
-                <li><strong>Accountability:</strong> Determining who is responsible for the actions and decisions made by AI systems can be challenging, particularly in cases of harm or legal disputes.
-                    <ul>
-                        <li><strong>Mitigation:</strong> Clear lines of accountability, defined roles for developers/operators/users, tracking/reporting performance, remediation processes, user feedback/grievance mechanisms.</li>
-                    </ul>
-                </li>
-                <li><strong>Regulatory Compliance:</strong> Ensuring AI systems comply with relevant laws, regulations, and industry standards is essential for mitigating legal and reputational risks.
-                    <ul>
-                        <li><strong>Mitigation:</strong> Stay informed on legal/regulatory developments, regular audits/assessments, reporting/handling violations, note EU AI Act fines.</li>
-                    </ul>
-                </li>
-                <li><strong>Security Threats:</strong> AI systems can be vulnerable to various security threats, including adversarial attacks, data poisoning, and model inversion.
-                    <ul>
-                        <li><strong>Mitigation:</strong> Treat as critical systems, robust security (encryption, access controls, assessments), monitor access/logs, stay informed on threats, incident response plans.</li>
-                    </ul>
-                </li>
-                <li><strong>Ethical Use:</strong> Ensuring AI systems are used ethically and responsibly is critical for maintaining trust and accountability.
-                    <ul>
-                        <li><strong>Mitigation:</strong> Clear ethical guidelines/principles, monitor/evaluate ethical implications, stakeholder engagement, human-in-the-loop accountability.</li>
-                    </ul>
-                </li>
-            </ul>
 
-            <h4>Additional AI Risk Assessment Considerations</h4>
-            <ul>
-                <li><strong>Environmental Impact:</strong> Assess energy consumption and carbon footprint of AI systems, especially large models.</li>
-                <li><strong>Supply Chain Risks:</strong> Consider risks from third-party vendors, open-source components, and dependencies in the AI supply chain.</li>
-                <li><strong>Resilience & Business Continuity:</strong> Plan for AI system failures, disaster recovery, and maintaining operations during outages.</li>
-                <li><strong>Human Factors & Change Management:</strong> Address user adoption, training, resistance to change, and workforce impact.</li>
-                <li><strong>Explainability for Non-Technical Stakeholders:</strong> Ensure AI decisions can be explained to business users, regulators, and the public.</li>
-                <li><strong>Adversarial Robustness:</strong> Evaluate how AI systems handle adversarial inputs and attacks.</li>
-                <li><strong>Monitoring for Unintended Consequences:</strong> Track for emergent behaviours, misuse, or negative societal impacts over time.</li>
-                <li><strong>Interoperability & Integration:</strong> Consider how AI systems interact with existing IT infrastructure and other AI systems.</li>
-                <li><strong>End-of-Life Planning:</strong> Define processes for decommissioning AI systems, data retention, and knowledge transfer.</li>
-                <li><strong>User Consent & Awareness:</strong> Ensure users are informed when interacting with AI and consent to data usage.</li>
-                <li><strong>Localization & Cultural Sensitivity:</strong> Adapt AI systems for different languages, regions, and cultural contexts.</li>
-                <li><strong>Accessibility:</strong> Ensure AI systems are usable by people with disabilities.</li>
-                <li><strong>Reproducibility:</strong> Ensure AI models and results can be consistently reproduced.</li>
-                <li><strong>Stochasticity:</strong> Address the inherent randomness in AI model outputs and its implications for reliability and trust.</li>
-                <li><strong>Litigation Risks:</strong> Consider potential legal challenges and liabilities arising from AI system decisions and actions.</li>
-                <li><strong>Intellectual Property Risks:</strong> Assess risks related to copyright, patent infringement, and trade secrets in AI development and deployment.</li>
-                <li><strong>Vendor Risks:</strong> Evaluate risks associated with third-party vendors providing AI tools, data, or services.</li>
-                <li><strong>Embedded Risks:</strong> Consider risks related to using AI embedded within other applications or services.</li>
-                <li><strong>Trust Risks:</strong> Assess risks related to user trust in AI systems, including transparency, reliability, and ethical considerations.</li>
-                <li><strong>Capability Risks:</strong> Evaluate risks related to the expectations vs the limitations and capabilities of AI systems, including performance, scalability, and adaptability.</li>
-            </ul>
+                    <h4>💡Additional AI Risk Assessment Considerations</h4>
+                    <ul>
+                        <li><strong>Environmental Impact:</strong> Assess energy consumption and carbon footprint of AI systems, especially large models.</li>
+                        <li><strong>Supply Chain Risks:</strong> Consider risks from third-party vendors, open-source components, and dependencies in the AI supply chain.</li>
+                        <li><strong>Resilience & Business Continuity:</strong> Plan for AI system failures, disaster recovery, and maintaining operations during outages.</li>
+                        <li><strong>Human Factors & Change Management:</strong> Address user adoption, training, resistance to change, and workforce impact.</li>
+                        <li><strong>Explainability for Non-Technical Stakeholders:</strong> Ensure AI decisions can be explained to business users, regulators, and the public.</li>
+                        <li><strong>Adversarial Robustness:</strong> Evaluate how AI systems handle adversarial inputs and attacks.</li>
+                        <li><strong>Monitoring for Unintended Consequences:</strong> Track for emergent behaviours, misuse, or negative societal impacts over time.</li>
+                        <li><strong>Interoperability & Integration:</strong> Consider how AI systems interact with existing IT infrastructure and other AI systems.</li>
+                        <li><strong>End-of-Life Planning:</strong> Define processes for decommissioning AI systems, data retention, and knowledge transfer.</li>
+                        <li><strong>User Consent & Awareness:</strong> Ensure users are informed when interacting with AI and consent to data usage.</li>
+                        <li><strong>Localization & Cultural Sensitivity:</strong> Adapt AI systems for different languages, regions, and cultural contexts.</li>
+                        <li><strong>Accessibility:</strong> Ensure AI systems are usable by people with disabilities.</li>
+                        <li><strong>Reproducibility:</strong> Ensure AI models and results can be consistently reproduced.</li>
+                        <li><strong>Stochasticity:</strong> Address the inherent randomness in AI model outputs and its implications for reliability and trust.</li>
+                        <li><strong>Litigation Risks:</strong> Consider potential legal challenges and liabilities arising from AI system decisions and actions.</li>
+                        <li><strong>Intellectual Property Risks:</strong> Assess risks related to copyright, patent infringement, and trade secrets in AI development and deployment.</li>
+                        <li><strong>Vendor Risks:</strong> Evaluate risks associated with third-party vendors providing AI tools, data, or services.</li>
+                        <li><strong>Embedded Risks:</strong> Consider risks related to using AI embedded within other applications or services.</li>
+                        <li><strong>Trust Risks:</strong> Assess risks related to user trust in AI systems, including transparency, reliability, and ethical considerations.</li>
+                        <li><strong>Capability Risks:</strong> Evaluate risks related to the expectations vs the limitations and capabilities of AI systems, including performance, scalability, and adaptability.</li>
+                    </ul>
 
-            <h4>Most Common AI Risk Management Challenges</h4>
-            <ul>
-                <li><strong>Shadow AI:</strong> Unmanaged and uncontrolled AI systems operating outside official channels, bypassing corporate security and monitoring tools.</li>
-                <li><strong>Model Sprawl:</strong> Proliferation of multiple AI models without proper governance, leading to inconsistencies and increased risk. Each update may change behaviour or introduce new biases.</li>
-                <li><strong>Observability Gaps:</strong> Lack of visibility into AI decision-making and outcomes, plus the challenge of managing massive data volumes, making it hard to identify and address issues.</li>
-                <li><strong>Compliance Tracking Across Jurisdictions:</strong> Difficulty ensuring AI systems comply with varying regulations and standards across global markets and regions.</li>
-                <li><strong>Rate of Change:</strong> The rapid pace of AI development and deployment can outstrip an organization's ability to manage risks effectively.</li>
-            </ul>
+                    <h4>🕵️‍♂️ Most Common AI Risk Management Challenges</h4>
+                    <ul>
+                        <li><strong>Shadow AI:</strong> Unmanaged and uncontrolled AI systems operating outside official channels, bypassing corporate security and monitoring tools.</li>
+                        <li><strong>Model Sprawl:</strong> Proliferation of multiple AI models without proper governance, leading to inconsistencies and increased risk. Each update may change behaviour or introduce new biases.</li>
+                        <li><strong>Observability Gaps:</strong> Lack of visibility into AI decision-making and outcomes, plus the challenge of managing massive data volumes, making it hard to identify and address issues.</li>
+                        <li><strong>Compliance Tracking Across Jurisdictions:</strong> Difficulty ensuring AI systems comply with varying regulations and standards across global markets and regions.</li>
+                        <li><strong>Rate of Change:</strong> The rapid pace of AI development and deployment can outstrip an organization's ability to manage risks effectively.</li>
+                    </ul>
+                    <BackToTopButton />
+                </div>
+            </details>
 
-            <h4>Steps to Operationalise an AI Risk Framework</h4>
+            <h4>🛠️ Steps to Operationalise an AI Risk Framework</h4>
             <ol>
-                <li><strong>Establish Governance</strong>
+                <li><strong>🏛️ Establish Governance</strong>
                     <ul>
                         <li>Create a cross-functional AI governance group (executive sponsorship, IT, security, legal, compliance, ethics, privacy, business units)</li>
                         <li>Define roles and responsibilities for AI risk management</li>
@@ -219,7 +228,7 @@ const AIRiskIntro = () => {
                         <li>Establish citation rules for AI-generated content</li>
                     </ul>
                 </li>
-                <li><strong>Inventory AI Systems and Assets</strong>
+                <li><strong>📦 Inventory AI Systems and Assets</strong>
                     <ul>
                         <li>Create an AI model registry or Bill of Materials (BOM)</li>
                         <li>Track version, change history, approvals</li>
@@ -228,7 +237,7 @@ const AIRiskIntro = () => {
                         <li>Note vulnerabilities, limitations, security concerns, regulatory/compliance requirements</li>
                     </ul>
                 </li>
-                <li><strong>Map and Prioritise Risks</strong>
+                <li><strong>🗺️ Map and Prioritise Risks</strong>
                     <ul>
                         <li>Select AI risk framework (e.g., NIST AI RMF, ISO/IEC 31000/23894)</li>
                         <li>Build standardised AI risk assessment template</li>
@@ -253,7 +262,7 @@ const AIRiskIntro = () => {
                         <li>Mitigate risks with controls and safeguards</li>
                     </ul>
                 </li>
-                <li><strong>Determine Maturity Level</strong>
+                <li><strong>📈 Determine Maturity Level</strong>
                     <ul>
                         <li>Assess current state of AI risk management practices</li>
                         <li>Define target maturity levels</li>
@@ -311,7 +320,7 @@ const AIRiskIntro = () => {
                         </ul>
                     </ul>
                 </li>
-                <li><strong>Align Framework Across AI Lifecycle</strong>
+                <li><strong>🔄 Align Framework Across AI Lifecycle</strong>
                     <ul>
                         <li>Integrate risk management into AI development/deployment</li>
                         <li>Ensure stakeholder role clarity</li>
@@ -323,7 +332,7 @@ const AIRiskIntro = () => {
                         <li>Keep interventions lightweight to avoid circumvention</li>
                     </ul>
                 </li>
-                <li><strong>Monitor, Update, and Improve</strong>
+                <li><strong>🔍 Monitor, Update, and Improve</strong>
                     <ul>
                         <li>Objective, repeatable, scalable test, evaluation, verification, and validation (TEVV) processes are established</li>
                         <li>Metrics and measurement methodologies should adhere to scientific, legal, and ethical norms and be carried out in an open and transparent process</li>
@@ -338,62 +347,71 @@ const AIRiskIntro = () => {
                 </li>
             </ol>
 
-            <h4>Cautionary tales - some real-world AI use-cases:</h4>
-            <p>Also see: <a href="https://incidentdatabase.ai/" target="_blank" rel="noopener noreferrer" className="air-link">AI Incident Database, with over 3,000 reports of harmful AI incidents</a></p>
-            <ul>
-                <li><strong>Data Privacy & Security</strong>
+            <BackToTopButton />
+
+            <details>
+                <summary className="air-intro-summary">
+                📚 Cautionary tales - some real-world AI use-cases:
+                </summary>                
+                <div className="air-intro-card-container">
+                    <p>Also see: <a href="https://incidentdatabase.ai/" target="_blank" rel="noopener noreferrer" className="air-link">AI Incident Database, with over 3,000 reports of harmful AI incidents</a></p>
                     <ul>
-                        <li>Samsung ChatGPT data leak: Engineers used ChatGPT to debug code, pasting sensitive data including proprietary semiconductor designs, into the chat, not realising that their inputs could be used to train future models</li>
-                        <li>Amazon's Ring: The home security company's partnerships with law enforcement raised concerns about surveillance and privacy, as well as the potential for abuse of the technology</li>
-                        <li>Clearview AI: The facial recognition company faced backlash for its controversial practices, including scraping images from social media without consent, raising ethical concerns about privacy and surveillance</li>
+                        <li><strong>Data Privacy & Security</strong>
+                            <ul>
+                                <li>Samsung ChatGPT data leak: Engineers used ChatGPT to debug code, pasting sensitive data including proprietary semiconductor designs, into the chat, not realising that their inputs could be used to train future models</li>
+                                <li>Amazon's Ring: The home security company's partnerships with law enforcement raised concerns about surveillance and privacy, as well as the potential for abuse of the technology</li>
+                                <li>Clearview AI: The facial recognition company faced backlash for its controversial practices, including scraping images from social media without consent, raising ethical concerns about privacy and surveillance</li>
+                            </ul>
+                        </li>
+                        <li><strong>Legal & Liability</strong>
+                            <ul>
+                                <li>Air Canada Chatbot liability: A chatbot promised a discount to a customer that the airline refused to honour. Courts found the airline liable for the chatbot's actions</li>
+                                <li>Australia's Robo-debt scheme: The automated system used by the government to identify welfare fraud was found to be deeply flawed, leading to wrongful debt notices being sent to thousands of citizens</li>
+                            </ul>
+                        </li>
+                        <li><strong>Security & Safety</strong>
+                            <ul>
+                                <li>OpenAI's Codex: The AI model was found to generate code with security vulnerabilities, prompting discussions about the need for better safety measures in AI-assisted development</li>
+                                <li>Various chatbots have suggested harmful or inappropriate content, including recommending self-harm and violence, raising concerns about the potential for AI to perpetuate biases and misinformation</li>
+                                <li>IBM Watson for Oncology: The AI system was found to recommend unsafe and incorrect treatment options for cancer patients, highlighting the risks of relying on AI in high-stakes medical decisions</li>
+                            </ul>
+                        </li>
+                        <li><strong>Bias, Fairness & Ethics</strong>
+                            <ul>
+                                <li>AI systems have been found to exhibit biased behaviour, reflecting and amplifying societal biases present in their training data</li>
+                                <li>AI models have been shown to produce harmful content, including hate speech and misinformation, raising ethical concerns about their deployment</li>
+                                <li>Google DeepMind's Gemini AI: Concerns were raised about the potential for the AI to generate biased or harmful content after Gemini created historically inaccurate images, leading to calls for stricter oversight and governance</li>
+                                <li>OpenAI's DALL-E: The image generation model was found to produce biased or inappropriate content, leading to discussions about the need for better content moderation and ethical guidelines</li>
+                                <li>Amazon's AI recruiting tool: The system was found to be biased against women, leading to its discontinuation</li>
+                                <li>Face recognition technology has been criticised for only being accurate for certain demographics, leading to concerns about bias and fairness in AI systems</li>
+                                <li>Microsoft's facial recognition technology: The company faced criticism for the accuracy and bias of its facial recognition systems, particularly in identifying people of colour</li>
+                                <li>Concerns of use of AI in education by students and faculty regarding academic integrity and the potential for bias in AI-driven tools</li>
+                            </ul>
+                        </li>
+                        <li><strong>Content Moderation & Misinformation</strong>
+                            <ul>
+                                <li>AI-generated deepfakes have been used to create realistic but fake videos and images, leading to concerns about the potential for AI to be used for malicious purposes such as misinformation and fraud and posing risks to democracy</li>
+                                <li>Facebook's AI-driven content moderation: The system was criticized for its inability to effectively identify and remove hate speech and misinformation, leading to calls for greater transparency and accountability</li>
+                                <li>X (formerly Twitter): The platform has faced criticism for its moderating of AI-generated content, raising concerns about the spread of misinformation and the potential for harmful content to go unchecked or being amplified</li>
+                                <li>Grok: The AI chatbot faced backlash for generating misleading information and conspiracy theories, prompting discussions about the need for better content moderation and fact-checking</li>
+                                <li>Microsoft's Tay: The AI chatbot was quickly shut down after it began generating offensive tweets, highlighting the risks of unmonitored AI systems</li>
+                                <li>Robert F Kennedy Jr's MAHA report seemingly generated by AI with hallucinated fake citations</li>
+                                <li>Deloitte Report for the Australian Government purportedly found to have contained AI generated citations and fabricated legal quotes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Inclusivity & Accessibility</strong>
+                            <ul>
+                                <li>Apple's Siri: The virtual assistant was found to have difficulty recognizing and responding to diverse accents and dialects, raising concerns about inclusivity in AI systems</li>
+                                <li>Amazon's Alexa: Similar to Siri, Alexa has faced criticism for its performance with various accents and dialects, highlighting the need for more inclusive AI training data</li>
+                                <li>AI-powered hiring tools have been criticized for perpetuating biases and discrimination, leading to concerns about fairness and inclusivity in the hiring process</li>
+                                <li>AI systems have been found to be less accessible to people with disabilities, raising concerns about inclusivity and equal access to technology</li>
+                                <li>Economic disparities in access to AI technology and resources have raised concerns about widening inequality and the digital divide</li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-                <li><strong>Legal & Liability</strong>
-                    <ul>
-                        <li>Air Canada Chatbot liability: A chatbot promised a discount to a customer that the airline refused to honour. Courts found the airline liable for the chatbot's actions</li>
-                        <li>Australia's Robo-debt scheme: The automated system used by the government to identify welfare fraud was found to be deeply flawed, leading to wrongful debt notices being sent to thousands of citizens</li>
-                    </ul>
-                </li>
-                <li><strong>Security & Safety</strong>
-                    <ul>
-                        <li>OpenAI's Codex: The AI model was found to generate code with security vulnerabilities, prompting discussions about the need for better safety measures in AI-assisted development</li>
-                        <li>Various chatbots have suggested harmful or inappropriate content, including recommending self-harm and violence, raising concerns about the potential for AI to perpetuate biases and misinformation</li>
-                        <li>IBM Watson for Oncology: The AI system was found to recommend unsafe and incorrect treatment options for cancer patients, highlighting the risks of relying on AI in high-stakes medical decisions</li>
-                    </ul>
-                </li>
-                <li><strong>Bias, Fairness & Ethics</strong>
-                    <ul>
-                        <li>AI systems have been found to exhibit biased behaviour, reflecting and amplifying societal biases present in their training data</li>
-                        <li>AI models have been shown to produce harmful content, including hate speech and misinformation, raising ethical concerns about their deployment</li>
-                        <li>Google DeepMind's Gemini AI: Concerns were raised about the potential for the AI to generate biased or harmful content after Gemini created historically inaccurate images, leading to calls for stricter oversight and governance</li>
-                        <li>OpenAI's DALL-E: The image generation model was found to produce biased or inappropriate content, leading to discussions about the need for better content moderation and ethical guidelines</li>
-                        <li>Amazon's AI recruiting tool: The system was found to be biased against women, leading to its discontinuation</li>
-                        <li>Face recognition technology has been criticised for only being accurate for certain demographics, leading to concerns about bias and fairness in AI systems</li>
-                        <li>Microsoft's facial recognition technology: The company faced criticism for the accuracy and bias of its facial recognition systems, particularly in identifying people of colour</li>
-                        <li>Concerns of use of AI in education by students and faculty regarding academic integrity and the potential for bias in AI-driven tools</li>
-                    </ul>
-                </li>
-                <li><strong>Content Moderation & Misinformation</strong>
-                    <ul>
-                        <li>AI-generated deepfakes have been used to create realistic but fake videos and images, leading to concerns about the potential for AI to be used for malicious purposes such as misinformation and fraud and posing risks to democracy</li>
-                        <li>Facebook's AI-driven content moderation: The system was criticized for its inability to effectively identify and remove hate speech and misinformation, leading to calls for greater transparency and accountability</li>
-                        <li>X (formerly Twitter): The platform has faced criticism for its moderating of AI-generated content, raising concerns about the spread of misinformation and the potential for harmful content to go unchecked or being amplified</li>
-                        <li>Microsoft's Tay: The AI chatbot was quickly shut down after it began generating offensive tweets, highlighting the risks of unmonitored AI systems</li>
-                        <li>Robert F Kennedy Jr's MAHA report seemingly generated by AI with hallucinated fake citations</li>
-                        <li>Deloitte Report for the Australian Government purportedly found to have contained AI generated citations and fabricated legal quotes</li>
-                    </ul>
-                </li>
-                <li><strong>Inclusivity & Accessibility</strong>
-                    <ul>
-                        <li>Apple's Siri: The virtual assistant was found to have difficulty recognizing and responding to diverse accents and dialects, raising concerns about inclusivity in AI systems</li>
-                        <li>Amazon's Alexa: Similar to Siri, Alexa has faced criticism for its performance with various accents and dialects, highlighting the need for more inclusive AI training data</li>
-                        <li>AI-powered hiring tools have been criticized for perpetuating biases and discrimination, leading to concerns about fairness and inclusivity in the hiring process</li>
-                        <li>AI systems have been found to be less accessible to people with disabilities, raising concerns about inclusivity and equal access to technology</li>
-                        <li>Economic disparities in access to AI technology and resources have raised concerns about widening inequality and the digital divide</li>
-                    </ul>
-                </li>
-            </ul>
-            <h4>Questions to consider in selecting and deploying AI systems:</h4>
+                </div>
+            </details>
+            <h4>❓Questions to consider in selecting and deploying AI systems:</h4>
             <ul>
                 <li><strong>Strategy & Objectives</strong>
                     <ul>
@@ -447,99 +465,106 @@ const AIRiskIntro = () => {
                     </ul>
                 </li>
             </ul>
-            <h4>NSW AIAF Risk Levels</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th style={{backgroundColor: '#747474', color: 'white'}}>None</th>
-                        <th style={{backgroundColor: '#00B050', color: 'white'}}>Low Risk</th>
-                        <th style={{backgroundColor: '#C88B04', color: 'white'}}>Mid-range Risk</th>
-                        <th style={{backgroundColor: '#E97132', color: 'white'}}>High Risk</th>
-                        <th style={{backgroundColor: '#D7153A', color: 'white'}}>Very High Risk</th>
-                    </tr>
-                    <tr>                        
-                        <th></th>
-                        <th style={{backgroundColor: '#747474', color: 'white'}}>Negligible, or N/A Risk</th>
-                        <th style={{backgroundColor: '#00B050', color: 'white'}}>Reversible with negligible consequences</th>
-                        <th style={{backgroundColor: '#C88B04', color: 'white'}}>Reversible with moderate consequences</th>
-                        <th style={{backgroundColor: '#E97132', color: 'white'}}>Reversible with significant consequences</th>
-                        <th style={{backgroundColor: '#D7153A', color: 'white'}}>Significant or irreversible consequences</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style={{border: '1px solid black'}}><strong>Definition</strong></td>
-                        <td style={{border: '1px solid black'}}>AI systems or applications that have no, or extremely minimal risk associated with their use, or where the concept of risk is not applicable due to the nature of the AI system or its intended purpose. </td>
-                        <td style={{border: '1px solid black'}}>AI systems or applications that, if they malfunction or produce unintended outcomes, can be easily reversed or corrected without causing any harm or damage. </td>
-                        <td style={{border: '1px solid black'}}>AI systems or applications that, if they malfunction or produce unintended outcomes, can be reversed or corrected, but may cause moderate inconvenience, disruption, or harm. </td>
-                        <td style={{border: '1px solid black'}}>AI systems or applications that, if they malfunction or produce unintended outcomes, can be reversed or corrected, but may cause significant financial losses, reputational damage, harm to the environment, individuals, or society.</td>
-                        <td style={{border: '1px solid black'}}>AI systems or applications that, if they malfunction or produce unintended outcomes, may cause catastrophic, irreversible consequences for individuals, societies, or the environment.</td>
-                    </tr>
-                    <tr>
-                        <td style={{border: '1px solid black'}}><strong>Consequences</strong></td>
-                        <td style={{border: '1px solid black'}}>The potential consequences of an AI system in this category are either non-existent or so insignificant that they can be safely disregarded.</td>
-                        <td style={{border: '1px solid black'}}>The potential consequences of a low-risk AI system are minimal and do not cause any harm on individuals, organisations, or society.</td>
-                        <td style={{border: '1px solid black'}}>The potential consequences of a mid-range risk AI system are more noticeable and may have a temporary impact on individuals, organisations, or specific domains.</td>
-                        <td style={{border: '1px solid black'}}>The potential consequences of a high-risk AI system are substantial and may have a lasting impact on individuals, organisations, or entire industries.</td>
-                        <td style={{border: '1px solid black'}}>The potential consequences of a very high-risk AI system are severe and may have permanent and irreversible implications.</td>
-                    </tr>
-                    <tr>
-                        <td style={{border: '1px solid black'}}><strong>Examples</strong></td>
-                        <td style={{border: '1px solid black'}}>
-                            <ul>
-                                <li>Noise suppression on audio calls</li>
-                                <li>Image resolution enhancements</li>
-                                <li>Grammer and spell checking</li>
-                                <li>Text summarisation of non-sensitive content</li>
-                                <li>Search functions in browsers</li>
-                                <li>Analytics report</li>
-                            </ul>
-                        </td>
-                        <td style={{border: '1px solid black'}}>
-                            <ul>
-                                <li>Anomaly detection software</li>
-                                <li>Email spam filters</li>
-                                <li>Document classification and tagging</li>
-                                <li>Photo organising</li>
-                                <li>Non-critical content translation</li>
-                                <li>Voice assistance for basic tasks, i.e. Automated phone menu</li>
-                            </ul>
-                        </td>
-                        <td style={{border: '1px solid black'}}>
-                            <ul>
-                                <li>Customer service chatbots</li>
-                                <li>Recommendation systems</li>
-                                <li>Language translation tools</li>
-                                <li>Content curation</li>
-                                <li>Predictive maintenance</li>
-                                <li>Natural language processing of gov documents.</li>
-                            </ul>
-                        </td>
-                        <td style={{border: '1px solid black'}}>
-                            <ul>
-                                <li>Facial recognition systems</li>
-                                <li>AI powered hiring and recruitment</li>
-                                <li>Autonomous emergency response system</li>
-                                <li>Autonomous tram with human oversight</li>
-                                <li>Healthcare decision support systems</li>
-                                <li>Adaptive learning system</li>
-                            </ul>
-                        </td>
-                        <td style={{border: '1px solid black'}}>
-                            <ul>
-                                <li>Autonomous benefits eligibility  without human oversight</li>
-                                <li>Self-driving cars</li>
-                                <li>Predictive reoffending</li>
-                                <li>Medical diagnosis without oversight</li>
-                                <li>Autonomous AI systems on critical infrastructure (i.e. energy)</li>
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <hr />
+            <h4>🏷️NSW AIAF Risk Levels</h4>
+            <div className="air-ai-risk-level-table-wrapper">
+                <div className="air-ai-risk-level-table-scroll">
+                    <table className="air-ai-risk-level-table">
+                        <thead>
+                            <tr>
+                                <th className="air-ai-risk-level-table-header" rowspan="2"></th>
+                                <th style={{backgroundColor: '#747474', color: 'white'}} className="air-ai-risk-level-table-header">None</th>
+                                <th style={{backgroundColor: '#00B050', color: 'white'}} className="air-ai-risk-level-table-header">Low Risk</th>
+                                <th style={{backgroundColor: '#C88B04', color: 'white'}} className="air-ai-risk-level-table-header">Mid-range Risk</th>
+                                <th style={{backgroundColor: '#E97132', color: 'white'}} className="air-ai-risk-level-table-header">High Risk</th>
+                                <th style={{backgroundColor: '#D7153A', color: 'white'}} className="air-ai-risk-level-table-header">Very High Risk</th>
+                            </tr>
+                            <tr>
+                                <th style={{backgroundColor: '#B2B2B2', color: 'black'}} className="air-ai-risk-level-table-header">Negligible, or N/A Risk</th>
+                                <th style={{backgroundColor: '#A8E6A3', color: 'black'}} className="air-ai-risk-level-table-header">Reversible with negligible consequences</th>
+                                <th style={{backgroundColor: '#F6D7A7', color: 'black'}} className="air-ai-risk-level-table-header">Reversible with moderate consequences</th>
+                                <th style={{backgroundColor: '#FFD2B8', color: 'black'}} className="air-ai-risk-level-table-header">Reversible with significant consequences</th>
+                                <th style={{backgroundColor: '#F7A6B3', color: 'black'}} className="air-ai-risk-level-table-header">Significant or irreversible consequences</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="air-ai-risk-level-table-cell"><strong>Definition</strong></td>
+                                <td className="air-ai-risk-level-table-cell">AI systems or applications that have no, or extremely minimal risk associated with their use, or where the concept of risk is not applicable due to the nature of the AI system or its intended purpose. </td>
+                                <td className="air-ai-risk-level-table-cell">AI systems or applications that, if they malfunction or produce unintended outcomes, can be easily reversed or corrected without causing any harm or damage. </td>
+                                <td className="air-ai-risk-level-table-cell">AI systems or applications that, if they malfunction or produce unintended outcomes, can be reversed or corrected, but may cause moderate inconvenience, disruption, or harm. </td>
+                                <td className="air-ai-risk-level-table-cell">AI systems or applications that, if they malfunction or produce unintended outcomes, can be reversed or corrected, but may cause significant financial losses, reputational damage, harm to the environment, individuals, or society.</td>
+                                <td className="air-ai-risk-level-table-cell">AI systems or applications that, if they malfunction or produce unintended outcomes, may cause catastrophic, irreversible consequences for individuals, societies, or the environment.</td>
+                            </tr>
+                            <tr>
+                                <td className="air-ai-risk-level-table-cell"><strong>Consequences</strong></td>
+                                <td className="air-ai-risk-level-table-cell">The potential consequences of an AI system in this category are either non-existent or so insignificant that they can be safely disregarded.</td>
+                                <td className="air-ai-risk-level-table-cell">The potential consequences of a low-risk AI system are minimal and do not cause any harm on individuals, organisations, or society.</td>
+                                <td className="air-ai-risk-level-table-cell">The potential consequences of a mid-range risk AI system are more noticeable and may have a temporary impact on individuals, organisations, or specific domains.</td>
+                                <td className="air-ai-risk-level-table-cell">The potential consequences of a high-risk AI system are substantial and may have a lasting impact on individuals, organisations, or entire industries.</td>
+                                <td className="air-ai-risk-level-table-cell">The potential consequences of a very high-risk AI system are severe and may have permanent and irreversible implications.</td>
+                            </tr>
+                            <tr>
+                                <td className="air-ai-risk-level-table-cell"><strong>Examples</strong></td>
+                                <td className="air-ai-risk-level-table-cell">
+                                    <ul>
+                                        <li>Noise suppression on audio calls</li>
+                                        <li>Image resolution enhancements</li>
+                                        <li>Grammer and spell checking</li>
+                                        <li>Text summarisation of non-sensitive content</li>
+                                        <li>Search functions in browsers</li>
+                                        <li>Analytics report</li>
+                                    </ul>
+                                </td>
+                                <td className="air-ai-risk-level-table-cell">
+                                    <ul>
+                                        <li>Anomaly detection software</li>
+                                        <li>Email spam filters</li>
+                                        <li>Document classification and tagging</li>
+                                        <li>Photo organising</li>
+                                        <li>Non-critical content translation</li>
+                                        <li>Voice assistance for basic tasks, i.e. Automated phone menu</li>
+                                    </ul>
+                                </td>
+                                <td className="air-ai-risk-level-table-cell">
+                                    <ul>
+                                        <li>Customer service chatbots</li>
+                                        <li>Recommendation systems</li>
+                                        <li>Language translation tools</li>
+                                        <li>Content curation</li>
+                                        <li>Predictive maintenance</li>
+                                        <li>Natural language processing of gov documents.</li>
+                                    </ul>
+                                </td>
+                                <td className="air-ai-risk-level-table-cell">
+                                    <ul>
+                                        <li>Facial recognition systems</li>
+                                        <li>AI powered hiring and recruitment</li>
+                                        <li>Autonomous emergency response system</li>
+                                        <li>Autonomous tram with human oversight</li>
+                                        <li>Healthcare decision support systems</li>
+                                        <li>Adaptive learning system</li>
+                                    </ul>
+                                </td>
+                                <td className="air-ai-risk-level-table-cell">
+                                    <ul>
+                                        <li>Autonomous benefits eligibility  without human oversight</li>
+                                        <li>Self-driving cars</li>
+                                        <li>Predictive reoffending</li>
+                                        <li>Medical diagnosis without oversight</li>
+                                        <li>Autonomous AI systems on critical infrastructure (i.e. energy)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p></p>
+                </div>
+            </div>
           </div>
+          <BackToTopButton />
+        <p><b>Disclaimer:</b> The information provided here is for general informational purposes only and will require adaptation for specific businesses and maturity capabilities and is not intended as legal advice. 
+        Please consult with a qualified legal professional for specific legal advice tailored to your situation.</p>
+        <hr />
         </details>
     );
 };

@@ -2,9 +2,9 @@
 
 /* SC3.com.au theme colors and variables */
 :root {
-  --sc3-primary: #036;
-  --sc3-primary-shadow: #0362;
-  --sc3-secondary: #09c;
+  --sc3-primary: #003366;
+  --sc3-primary-shadow: #00336622;
+  --sc3-secondary: #0099cc;
   --sc3-accent: #fbc02d;
   --sc3-bg: #f4f8fb;
   --sc3-green: #388e3c;
@@ -15,11 +15,18 @@
   --sc3-yellow-light: #fffbea;
   --sc3-green-light: #f8fff5;
   --sc3-blue-light: #f5faff;
+  --sc3-orange: #ff6f00;
+  --sc3-orange-light: #fff3e0;
+  --sc3-teal: #00695c;
+  --sc3-teal-light: #e0f2f1;
+  --sc3-indigo: #303f9f;
+  --sc3-indigo-light: #e8eaf6;
+  --sc3-red: #c62828;
+  --sc3-red-light: #ffebee;
+  --sc3-gray-light: #f5f5f5;
   --sc3-error: #d32f2f;
   --sc3-gray: #757575;
   --sc3-delete: #c00;
-  --sc3-brown: #8B4513;
-  --sc3-red-text: #dc3545;
 
   /* Colours used by sc3.com.au */
   --sc3-background-blue: #08283e;
@@ -176,6 +183,60 @@ body {
   color: var(--sc3-secondary);
 }
 
+.air-intro-card-container {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: var(--sc3-border-radius);
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px var(--sc3-primary-shadow);
+}
+
+.air-ai-risk-level-table-wrapper {
+  width: 100vw;
+  max-width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.air-ai-risk-level-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0.1rem 1rem;
+  box-sizing: border-box;
+}
+
+.air-ai-risk-level-table {
+  width: 95vw;
+  min-width: 1200px;
+  border-collapse: collapse;
+  background: var(--sc3-table-bg);
+}
+
+.air-ai-risk-level-table-header {
+  background: var(--sc3-table-header-bg);
+  color: var(--sc3-primary);
+  padding: 8px;
+  border: 1px solid var(--sc3-primary);
+  font-weight: bold;
+  text-align: center;
+  min-width: 100px;
+}
+
+.air-ai-risk-level-table-cell {
+  padding: 8px;
+  border: 1px solid var(--sc3-primary);
+  text-align: left;
+}
+
 /* Input component styles */
 .air-inputform-details {
   margin-bottom: 1rem;
@@ -185,6 +246,51 @@ body {
   cursor: pointer;
   font-weight: bold;
   color: var(--sc3-secondary);
+}
+
+.air-viewmode-container {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+
+.air-viewmode-container > label:first-child {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.air-viewmode-options {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.air-viewmode-options label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.air-viewmode-options input[type="radio"] {
+  margin-right: 8px;
+  margin-bottom: 0;
+}
+
+.air-viewmode-label {
+  color: #000;
+  margin-bottom: 0.5rem;
 }
 
 .air-table-section {
@@ -231,4 +337,343 @@ body {
   cursor: pointer;
   font-weight: 600;
   color: var(--sc3-secondary);
+}
+
+.air-inputform-fieldset {
+  border-radius: var(--sc3-border-radius);
+  padding: var(--sc3-form-padding);
+  margin-bottom: var(--sc3-section-margin);
+}
+
+.air-inputform-legend {
+    font-weight: var(--sc3-btn-font-weight);
+}
+
+.air-inputform-fieldset-details {
+  border: 2px solid var(--sc3-primary);
+  background: var(--sc3-blue-light);
+}
+
+.air-inputform-legend-details {
+    color: var(--sc3-primary);
+}
+
+.air-inputform-fieldset-required {
+  border: 2px solid var(--sc3-green);
+  background: var(--sc3-green-light);
+}
+
+.air-inputform-legend-required {
+  color: var(--sc3-green);
+}
+
+.air-inputform-fieldset-hria {
+  border: 2px solid var(--sc3-purple);
+  background: var(--sc3-purple-light);
+}
+
+.air-inputform-legend-hria {
+    color: var(--sc3-purple);
+}
+
+.air-inputform-fieldset-benefits {
+  border: 2px solid var(--sc3-accent);
+  background: var(--sc3-yellow-light);
+}
+
+.air-inputform-legend-benefits {
+  color: var(--sc3-accent);
+}
+
+.air-inputform-fieldset-harms {
+  border: 2px solid var(--sc3-orange);
+  background: var(--sc3-orange-light);
+}
+
+.air-inputform-legend-harms {
+  color: var(--sc3-orange);
+}
+
+.air-inputform-fieldset-risks {
+  border: 2px solid var(--sc3-teal);
+  background: var(--sc3-teal-light);
+}
+
+.air-inputform-legend-risks {
+  color: var(--sc3-teal);
+}
+
+.air-inputform-fieldset-fairness {
+  border: 2px solid var(--sc3-indigo);
+  background: var(--sc3-indigo-light);
+}
+
+.air-inputform-legend-fairness {
+  color: var(--sc3-indigo);
+}
+
+.air-inputform-fieldset-transparency {
+  border: 2px solid var(--sc3-red);
+  background: var(--sc3-red-light);
+}
+
+.air-inputform-legend-transparency {
+  color: var(--sc3-red);
+}
+
+.air-inputform-fieldset-accountability {
+  border: 2px solid var(--sc3-secondary);
+  background: var(--sc3-blue-light);
+}
+
+.air-inputform-legend-accountability {
+  color: var(--sc3-secondary);
+}
+
+.air-inputform-fieldset-mitigation {
+  border: 2px solid var(--sc3-gray);
+  background: var(--sc3-gray-light);
+}
+
+.air-inputform-legend-mitigation {
+  color: var(--sc3-gray);
+}
+
+.air-inputform-fieldset-procurement {
+  border: 2px solid var(--sc3-text-orange);
+  background: var(--sc3-orange-light);
+}
+
+.air-inputform-legend-procurement {
+  color: var(--sc3-text-orange);
+}
+
+.air-inputform-field-table {
+  width: 100%;
+}
+
+.air-inputform-field-cell-label {
+  width: 30%;
+}
+
+.air-inputform-label {
+  font-weight: 600;
+  color: var(--sc3-primary);
+  font-size: 0.9rem;
+}
+
+.air-inputform-required {
+  color: var(--sc3-error);
+}
+
+.air-inputform-textarea {
+    min-height: 50px;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+.air-inputform-input,
+.air-inputform-date,
+.air-inputform-select {
+    font-size: 0.9rem;
+    min-height: 38px;
+    padding: 0.3em 0.4em;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+/* Risk Assessment Notification Styles */
+.air-risk-notice-elevated {
+  padding: 15px;
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #856404;
+}
+
+.air-risk-notice-low {
+  padding: 15px;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #155724;
+}
+
+.air-risk-notice-guidance {
+  padding: 15px;
+  background-color: #e1f5fe;
+  border: 1px solid #81d4fa;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #01579b;
+}
+
+/* Guidance row display for select elements */
+.air-inputform-guidance-row {
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Human Rights Impact Assessment requirement notification */
+.air-hria-required-notification {
+  padding: 15px;
+  margin: 15px 0;
+  background-color: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 6px;
+  color: #856404;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Community Benefits highest risk summary - base styles */
+.air-benefits-risk-summary {
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid;
+}
+
+/* Very High and High confidence - Green */
+.air-benefits-risk-summary.very-high,
+.air-benefits-risk-summary.high {
+  background-color: #e8f5e8;
+  border-color: #4caf50;
+  color: #2e7d32;
+}
+
+/* Mid-range confidence - Yellow */
+.air-benefits-risk-summary.mid-range {
+  background-color: #fff9c4;
+  border-color: #ffeb3b;
+  color: #f57f17;
+}
+
+/* Low confidence - Orange */
+.air-benefits-risk-summary.low {
+  background-color: #fff3e0;
+  border-color: #ff9800;
+  color: #e65100;
+}
+
+/* Very Low confidence - Red */
+.air-benefits-risk-summary.very-low {
+  background-color: #ffebee;
+  border-color: #f44336;
+  color: #c62828;
+}
+
+/* Not Set and N/A - Grey */
+.air-benefits-risk-summary.not-set,
+.air-benefits-risk-summary.na {
+  background-color: #f5f5f5;
+  border-color: #9e9e9e;
+  color: #616161;
+}
+
+/* Community Harms highest risk summary - base styles */
+.air-harms-risk-summary {
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid;
+}
+
+/* N/A and Very Low risk - Grey */
+.air-harms-risk-summary.na,
+.air-harms-risk-summary.very-low,
+.air-harms-risk-summary.not-set {
+  background-color: #f5f5f5;
+  border-color: #9e9e9e;
+  color: #616161;
+}
+
+/* Low risk - Green */
+.air-harms-risk-summary.low {
+  background-color: #e8f5e8;
+  border-color: #4caf50;
+  color: #2e7d32;
+}
+
+/* Mid-range risk - Yellow */
+.air-harms-risk-summary.mid-range {
+  background-color: #fff9c4;
+  border-color: #ffeb3b;
+  color: #f57f17;
+}
+
+/* High risk - Orange */
+.air-harms-risk-summary.high {
+  background-color: #fff3e0;
+  border-color: #ff9800;
+  color: #e65100;
+}
+
+/* Very High risk - Red */
+.air-harms-risk-summary.very-high {
+  background-color: #ffebee;
+  border-color: #f44336;
+  color: #c62828;
+}
+
+/* Community Risks highest risk summary - base styles */
+.air-risks-risk-summary {
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid;
+}
+
+/* N/A and Very Low risk - Grey */
+.air-risks-risk-summary.na,
+.air-risks-risk-summary.very-low,
+.air-risks-risk-summary.not-set {
+  background-color: #f5f5f5;
+  border-color: #9e9e9e;
+  color: #616161;
+}
+
+/* Low risk - Green */
+.air-risks-risk-summary.low {
+  background-color: #e8f5e8;
+  border-color: #4caf50;
+  color: #2e7d32;
+}
+
+/* Mid-range risk - Yellow */
+.air-risks-risk-summary.mid-range {
+  background-color: #fff9c4;
+  border-color: #ffeb3b;
+  color: #f57f17;
+}
+
+/* High risk - Orange */
+.air-risks-risk-summary.high {
+  background-color: #fff3e0;
+  border-color: #ff9800;
+  color: #e65100;
+}
+
+/* Very High risk - Red */
+.air-risks-risk-summary.very-high {
+  background-color: #ffebee;
+  border-color: #f44336;
+  color: #c62828;
 }
