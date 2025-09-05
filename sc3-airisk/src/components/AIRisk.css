@@ -25,8 +25,7 @@
   --sc3-red-light: #ffebee;
   --sc3-gray-light: #f5f5f5;
   --sc3-error: #d32f2f;
-  --sc3-gray: #757575;
-  --sc3-delete: #c00;
+  --sc3-charcoal: #333;
 
   /* Colours used by sc3.com.au */
   --sc3-background-blue: #08283e;
@@ -52,6 +51,195 @@
   --sc3-input-border-radius: 4px;
   --sc3-input-padding: 0.4em 0.6em;
   --sc3-table-transition: background 0.2s;
+}
+
+.air-benefits-cell-very_high {
+  background-color: rgba(0, 170, 69, 0.1) !important; /* Pale green */
+  text-align: center !important;
+}
+
+/* Benefits table - pale blue background for left column (benefit names) */
+.air-benefits-summary-table tbody tr td:first-child {
+  background-color: #e8f4fd !important; /* Pale blue background */
+}
+
+/* Harms summary table styling */
+.air-harms-summary-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Harms table - pale blue background for left column (harm names) */
+.air-harms-summary-table tbody tr td:first-child {
+  background-color: #e8f4fd !important; /* Pale blue background */
+}
+
+/* Harms table cell background colors - REVERSED color scheme from benefits */
+/* Very Low or N/A - Grey (same as benefits) */
+.air-harms-cell-header-very_low_na {
+    background-color: #495054;
+    color: white;
+}
+
+.air-harms-cell-very_low_na {
+  background-color: rgba(73, 80, 84, 0.1) !important; /* Pale grey */
+  text-align: center !important;
+}
+
+/* Low Risk - Green (benefits = red, harms = green) */
+.air-harms-cell-header-low {
+    background-color: #00AA45;
+    color: white;
+}
+
+.air-harms-cell-low {
+  background-color: rgba(0, 170, 69, 0.1) !important; /* Pale green */
+  text-align: center !important;
+}
+
+/* Mid-range Risk - Yellow (benefits = orange, harms = yellow) */
+.air-harms-cell-header-mid_range {
+    background-color: #FAAF05;
+    color: white;
+}
+
+.air-harms-cell-mid_range {
+  background-color: rgba(250, 175, 5, 0.1) !important; /* Pale yellow */
+  text-align: center !important;
+}
+
+/* High Risk - Orange (benefits = yellow, harms = orange) */
+.air-harms-cell-header-high {
+    background-color: #F3631B;
+    color: white;
+}
+
+.air-harms-cell-high {
+  background-color: rgba(243, 99, 27, 0.1) !important; /* Pale orange */
+  text-align: center !important;
+}
+
+/* Very High Risk - Red (benefits = green, harms = red) */
+.air-harms-cell-header-very_high {
+    background-color: #D7153A;
+    color: white;
+}
+
+.air-harms-cell-very_high {
+  background-color: rgba(215, 21, 58, 0.1) !important; /* Pale red */
+  text-align: center !important;
+}
+
+/* Risks summary table styling */
+.air-risks-summary-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Risks table - pale blue background for left column (risk names) */
+.air-risks-summary-table tbody tr td:first-child {
+  background-color: #e8f4fd !important; /* Pale blue background */
+}
+
+/* Risks table cell background colors - SAME as harms (reversed color scheme) */
+/* Very Low or N/A - Grey */
+.air-risks-cell-header-very_low_na {
+    background-color: #495054 !important;
+    color: white !important;
+}
+
+.air-risks-cell-very_low_na {
+  background-color: rgba(73, 80, 84, 0.1) !important; /* Pale grey */
+  text-align: center !important;
+}
+
+/* Low Risk - Green */
+.air-risks-cell-header-low {
+    background-color: #00AA45 !important;
+    color: white !important;
+}
+
+.air-risks-cell-low {
+  background-color: rgba(0, 170, 69, 0.1) !important; /* Pale green */
+  text-align: center !important;
+}
+
+/* Mid-range Risk - Yellow */
+.air-risks-cell-header-mid_range {
+    background-color: #FAAF05 !important;
+    color: white !important;
+}
+
+.air-risks-cell-mid_range {
+  background-color: rgba(250, 175, 5, 0.1) !important; /* Pale yellow */
+  text-align: center !important;
+}
+
+/* High Risk - Orange */
+.air-risks-cell-header-high {
+    background-color: #F3631B !important;
+    color: white !important;
+}
+
+.air-risks-cell-high {
+  background-color: rgba(243, 99, 27, 0.1) !important; /* Pale orange */
+  text-align: center !important;
+}
+
+/* Very High Risk - Red */
+.air-risks-cell-header-very_high {
+    background-color: #D7153A !important;
+    color: white !important;
+}
+
+.air-risks-cell-very_high {
+  background-color: rgba(215, 21, 58, 0.1) !important; /* Pale red */
+  text-align: center !important;
+}
+
+/* Fairness summary table styling */
+.air-fairness-summary-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Fairness table - pale blue background for left column (risk names) */
+.air-fairness-summary-table tbody tr td:first-child {
+  background-color: #e8f4fd !important; /* Pale blue background */
+}
+
+/* Fairness table cell background colors */
+/* N/A - Grey */
+.air-fairness-cell-na {
+  background-color: rgba(73, 80, 84, 0.1) !important; /* Pale grey */
+  text-align: center !important;
+}
+
+/* Low Risk - Green */
+.air-fairness-cell-low {
+  background-color: rgba(0, 170, 69, 0.1) !important; /* Pale green */
+  text-align: center !important;
+}
+
+/* Mid-range Risk - Yellow */
+.air-fairness-cell-mid-range {
+  background-color: rgba(250, 175, 5, 0.1) !important; /* Pale yellow */
+  text-align: center !important;
+}
+
+/* High Risk - Orange */
+.air-fairness-cell-high {
+  background-color: rgba(243, 99, 27, 0.1) !important; /* Pale orange */
+  text-align: center !important;
+}
+
+/* Very High Risk - Red */
+.air-fairness-cell-very-high {
+  background-color: rgba(215, 21, 58, 0.1) !important; /* Pale red */
+  text-align: center !important;
 }
 
 /* Global responsive wrapper styles */
@@ -412,6 +600,15 @@ body {
   color: var(--sc3-indigo);
 }
 
+.air-inputform-fieldset-privacy {
+  border: 2px solid var(--sc3-accent);
+  background: var(--sc3-yellow-light);
+}
+
+.air-inputform-legend-privacy {
+  color: var(--sc3-accent);  
+}
+
 .air-inputform-fieldset-transparency {
   border: 2px solid var(--sc3-red);
   background: var(--sc3-red-light);
@@ -431,12 +628,12 @@ body {
 }
 
 .air-inputform-fieldset-mitigation {
-  border: 2px solid var(--sc3-gray);
+  border: 2px solid var(--sc3-charcoal);
   background: var(--sc3-gray-light);
 }
 
 .air-inputform-legend-mitigation {
-  color: var(--sc3-gray);
+  color: var(--sc3-charcoal);
 }
 
 .air-inputform-fieldset-procurement {
@@ -460,6 +657,16 @@ body {
   font-weight: 600;
   color: var(--sc3-primary);
   font-size: 0.9rem;
+}
+
+.air-inputform-assessment-label {
+  font-weight: 400;
+  color: var(--sc3-primary);
+  font-size: 0.9rem;
+}
+
+.air-inputform-assessment-strong-label {
+  font-weight: 600 !important;
 }
 
 .air-inputform-required {
@@ -641,6 +848,12 @@ body {
   border: 2px solid;
 }
 
+.air-benefits-summary-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+}
+
 /* N/A and Very Low risk - Grey */
 .air-risks-risk-summary.na,
 .air-risks-risk-summary.very-low,
@@ -676,4 +889,108 @@ body {
   background-color: #ffebee;
   border-color: #f44336;
   color: #c62828;
+}
+
+/* Fairness risk summary styling */
+.air-fairness-risk-summary {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 2px solid;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+/* N/A and Very Low risk - Light Gray */
+.air-fairness-risk-summary.na,
+.air-fairness-risk-summary.very-low,
+.air-fairness-risk-summary.not-set {
+  background-color: #f5f5f5;
+  border-color: #e0e0e0;
+  color: #666;
+}
+
+/* Low risk - Light Green */
+.air-fairness-risk-summary.low {
+  background-color: #e8f5e8;
+  border-color: #4caf50;
+  color: #2e7d32;
+}
+
+/* Mid-range risk - Yellow */
+.air-fairness-risk-summary.mid-range {
+  background-color: #fff9c4;
+  border-color: #ffeb3b;
+  color: #f57f17;
+}
+
+/* High risk - Orange */
+.air-fairness-risk-summary.high {
+  background-color: #fff3e0;
+  border-color: #ff9800;
+  color: #e65100;
+}
+
+/* Very High risk - Red */
+.air-fairness-risk-summary.very-high {
+  background-color: #ffebee;
+  border-color: #f44336;
+  color: #c62828;
+}
+
+/* Benefits table cell background colors - pale versions of header colors */
+.air-benefits-cell-header-very_low_na {
+    background-color: #495054;
+    color: white;
+}
+
+.air-benefits-cell-very_low_na {
+  background-color: rgba(73, 80, 84, 0.1) !important; /* Pale grey */
+  text-align: center !important;
+}
+
+.air-benefits-cell-header-low {
+    background-color: #D7153A;
+    color: white;
+}
+
+.air-benefits-cell-low {
+  background-color: rgba(215, 21, 58, 0.1) !important; /* Pale red */
+  text-align: center !important;
+}
+
+.air-benefits-cell-header-mid_range {
+    background-color: #F3631B;
+    color: white;
+}
+
+.air-benefits-cell-mid_range {
+  background-color: rgba(243, 99, 27, 0.1) !important; /* Pale orange */
+  text-align: center !important;
+}
+
+.air-benefits-cell-header-high {
+    background-color: #FAAF05;
+    color: white;
+}
+
+.air-benefits-cell-high {
+  background-color: rgba(250, 175, 5, 0.1) !important; /* Pale yellow */
+  text-align: center !important;
+}
+
+.air-benefits-cell-header-very_high {
+    background-color: #00AA45;
+    color: white;
+}
+
+.air-benefits-cell-very_high {
+  background-color: rgba(0, 170, 69, 0.1) !important; /* Pale green */
+  text-align: center !important;
+}
+
+/* Benefits table - pale blue background for left column (benefit names) */
+.air-benefits-summary-table tbody tr td:first-child {
+  background-color: #E8F9FF !important; /* Pale blue background */
 }

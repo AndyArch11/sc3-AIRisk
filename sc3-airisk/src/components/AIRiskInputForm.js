@@ -83,6 +83,12 @@ const AIRiskInputForm = () => {
         'no-elevated': 'Very High Risk - For elevated risk uses of AI, pause the project until you have established performance measures and targets. If your solution is operational - consult responsible officers for an appropriate equivalent action.',
         'no-nonelevated': 'Mid-range Risk - For non-elevated risk projects or systems, results should be treated as indicative and not relied on. Document your reasons. If your solution is operational - consult responsible officers for an appropriate equivalent action.'
       },
+      fairnessControlsPerformanceMeasures: {
+        'yes': 'Low Risk - Explain your answer',
+        'no-elevated': 'Very High Risk - For elevated risk uses of AI, pause the project until you have established performance measures and targets. If your solution is operational - consult responsible officers for an appropriate equivalent action.',
+        'no-nonelevated': 'Mid-range Risk - For non-elevated risk projects or systems, results should be treated as indicative and not relied on. Document your reasons. If your solution is operational - consult responsible officers for an appropriate equivalent action.',
+        'na': 'N/A - Document your reasons as to why this does not apply, then go to the next question.'
+      },
       fairnessControlsDataPopulation: {
         'yes': 'Low Risk - Explain your answer',
         'partially-but-better': 'High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action.',
@@ -113,56 +119,56 @@ const AIRiskInputForm = () => {
         'partially-but-better': 'High Risk - Document your reasons and details to demonstrate that you have consulted with all relevant stakeholders before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action.',
         'no': 'Very High Risk - Pause the project and review with the responsible officers on how to resolve. If your solution is operational - consult responsible officers for an appropriate equivalent action.'
       },
-      fairnessControlsSensitiveChildren: {
+      privacyControlsSensitiveChildren: {
         'na': 'Very Low Risk or N/A',
         'low': 'Low Risk',
         'mid-range': 'Mid-range Risk',
         'high': 'High Risk',
         'very-high': 'Very High Risk'
       },
-      fairnessControlsSensitiveReligious: {
+      privacyControlsSensitiveReligious: {
         'na': 'Very Low Risk or N/A',
         'low': 'Low Risk',
         'mid-range': 'Mid-range Risk',
         'high': 'High Risk',
         'very-high': 'Very High Risk'
       },
-      fairnessControlsSensitiveRacial: {
+      privacyControlsSensitiveRacial: {
         'na': 'Very Low Risk or N/A',
         'low': 'Low Risk',
         'mid-range': 'Mid-range Risk',
         'high': 'High Risk',
         'very-high': 'Very High Risk'
       },
-      fairnessControlsSensitivePolitical: {
+      privacyControlsSensitivePolitical: {
         'na': 'Very Low Risk or N/A',
         'low': 'Low Risk',
         'mid-range': 'Mid-range Risk',
         'high': 'High Risk',
         'very-high': 'Very High Risk'
       },
-      fairnessControlsSensitiveUnion: {
+      privacyControlsSensitiveUnion: {
         'na': 'Very Low Risk or N/A',
         'low': 'Low Risk',
         'mid-range': 'Mid-range Risk',
         'high': 'High Risk',
         'very-high': 'Very High Risk'
       },
-      fairnessControlsSensitiveGender: {
+      privacyControlsSensitiveGender: {
         'na': 'Very Low Risk or N/A',
         'low': 'Low Risk',
         'mid-range': 'Mid-range Risk',
         'high': 'High Risk',
         'very-high': 'Very High Risk'
       },
-      fairnessControlsSensitiveCriminalRecord: {
+      privacyControlsSensitiveCriminalRecord: {
         'na': 'Very Low Risk or N/A',
         'low': 'Low Risk',
         'mid-range': 'Mid-range Risk',
         'high': 'High Risk',
         'very-high': 'Very High Risk'
       },
-      fairnessControlsSensitiveHealth: {
+      privacyControlsSensitiveHealth: {
         'na': 'Very Low Risk or N/A',
         'low': 'Low Risk',
         'mid-range': 'Mid-range Risk',
@@ -246,7 +252,7 @@ const AIRiskInputForm = () => {
       },
 
       // Fairness Controls - Sensitive Biometric Data
-      fairnessControlsSensitiveBiometric: {
+      privacyControlsSensitiveBiometric: {
         'na': 'Very Low Risk or N/A',
         'low': 'Low Risk',
         'mid-range': 'Mid-range Risk',
@@ -255,7 +261,7 @@ const AIRiskInputForm = () => {
       },
 
       // Fairness Controls - Other Sensitive Data (first instance)
-      fairnessControlsSensitiveOtherData: {
+      privacyControlsSensitiveOtherData: {
         'na': 'Very Low Risk or N/A',
         'low': 'Low Risk',
         'mid-range': 'Mid-range Risk',
@@ -265,9 +271,9 @@ const AIRiskInputForm = () => {
 
       // Privacy by Design & Security by Design
       privacyByDesign: {
-        'na': 'Low Risk - Document any points to resolve, then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved',
-        'low': 'High Risk - Pause the project, apply the principles before proceeding, document any points to resolve below then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved. If your solution is operational - consult responsible officers for an appropriate equivalent action',
-        'high': 'Very High Risk - Pause the project, apply the principles before proceeding, document any points to resolve below then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved. If your solution is operational - consult responsible officers for an appropriate equivalent action'
+        'no': 'Very High Risk - Pause the project, apply the principles before proceeding, document any points to resolve, then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved. If your solution is operational - consult responsible officers for an appropriate equivalent action',
+        'low': 'Low Risk - Document any points to resolve below then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved.',
+        'high': 'High Risk - Pause the project, apply the principles before proceeding, document any points to resolve then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved. If your solution is operational - consult responsible officers for an appropriate equivalent action'
       },
 
       // Transparency - Scope and Goals
@@ -354,6 +360,14 @@ const AIRiskInputForm = () => {
         'yes': 'Low Risk - Document below the treatments and the order in which they are applied',
         'no': 'Very High Risk - Pause the project and consult with the appropriate subject matter experts to determine the risk treatment status',
         'unclear': 'Very High Risk - Pause the project and consult with the responsible officers and your risk team to determine the risk treatment status'
+      },
+
+      // Fairness Controls - Performance Calibration
+      fairnessControlsPerformanceCalibration: {
+        'yes': 'Low Risk - Explain your answer',
+        'no-elevated': 'Very High Risk - For elevated risk uses of AI, pause the project until you have established performance measures and targets. If your solution is operational - consult responsible officers for an appropriate equivalent action.',
+        'no-nonelevated': 'Mid-range Risk - For non-elevated risk projects or systems, results should be treated as indicative and not relied on. Document your reasons. If your solution is operational - consult responsible officers for an appropriate equivalent action.',
+        'na': 'N/A - Document your reasons as to why this does not apply, then go to the next question.'
       }
     };
     
@@ -604,6 +618,1252 @@ const AIRiskInputForm = () => {
     return reverseLevels[maxLevel];
   };
 
+  // Get highest risk rating in Fairness fieldset
+  const getFairnessHighestRisk = () => {
+    const reverseLevels = {
+      6: { text: 'Very High', cssClass: 'very-high' },
+      5: { text: 'High', cssClass: 'high' },
+      4: { text: 'Mid-range', cssClass: 'mid-range' },
+      3: { text: 'Low', cssClass: 'low' },
+      2: { text: 'Very Low', cssClass: 'very-low' },
+      1: { text: 'N/A', cssClass: 'na' },
+      0: { text: 'Not Set', cssClass: 'not-set' }
+    };
+
+    let maxLevel = 0;
+
+    // Standard risk levels mapping for most fields
+    const standardRiskLevels = {
+      'very_high': 6,
+      'very-high': 6,
+      'high': 5,
+      'mid_range': 4,
+      'mid-range': 4,
+      'low': 3,
+      'very_low': 2,
+      'na': 1,
+      '': 0
+    };
+
+    // Process fairness risk assessment fields (9 different risk categories)
+    const fairnessRiskFields = [
+      'fairnessRisksIncompleteData',
+      'fairnessRisksPoorlyDefined', 
+      'fairnessRisksNoMonitoring',
+      'fairnessRisksOutlierData',
+      'fairnessRisksDataCleansing',
+      'fairnessRisksBiasDetection',
+      'fairnessRisksReproducibility',
+      'fairnessRisksDataLinking',
+      'fairnessRisksTrainingData'
+    ];
+
+    fairnessRiskFields.forEach(field => {
+      const value = selectedValues[field] || '';
+      const level = standardRiskLevels[value] || 0;
+      if (level > maxLevel) {
+        maxLevel = level;
+      }
+    });
+
+    // Also process the legacy fairnessRisksGeneral field if it exists
+    const generalValue = selectedValues.fairnessRisksGeneral || '';
+    const generalLevel = standardRiskLevels[generalValue] || 0;
+    if (generalLevel > maxLevel) {
+      maxLevel = generalLevel;
+    }
+
+    // Note: Sensitive data fields (fairnessControlsSensitive*) have been moved to Privacy and Security fieldset
+    // Fairness now focuses on algorithmic fairness and bias assessment fields only
+
+    // Individual mapping fields with special option mappings
+    const getSpecialFairnessFieldLevel = (field, value) => {
+      if (!value) return 0;
+      
+      if (field === 'fairnessControlsDataSelection') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'no-but-better': return 5; // High Risk
+          case 'unclear': return 6; // Very High Risk
+          case 'yes': return 3; // Low Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'fairnessControlsDataAvailability') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          case 'yes-high': return 5; // High Risk
+          case 'yes-low': return 3; // Low Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'fairnessControlsDataPopulation') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          case 'yes-but-better': return 5; // High Risk
+          case 'yes': return 3; // Low Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'fairnessControlsDiversityInclusion') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          case 'yes-high': return 5; // High Risk
+          case 'yes-low': return 3; // Low Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'fairnessControlsGenderMinority') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          case 'yes-high': return 5; // High Risk
+          case 'yes-low': return 3; // Low Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'fairnessControlsPerformanceMeasures') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          case 'yes-high': return 5; // High Risk
+          case 'yes-low': return 3; // Low Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'fairnessControlsPerformanceCalibration') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          case 'yes-high': return 5; // High Risk
+          case 'yes-low': return 3; // Low Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'privacyControlsConsent') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          case 'yes-high': return 5; // High Risk
+          case 'yes-low': return 3; // Low Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'privacyControlsCyberSecurity') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          case 'yes-high': return 5; // High Risk
+          case 'yes-low': return 3; // Low Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'privacyControlsSensitiveData') {
+        switch (value) {
+          case 'very-high': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          case 'low': return 3; // Low Risk
+          default: return 0;
+        }
+      }
+      
+      return 0;
+    };
+
+    // Process special mapping fields
+    const specialFairnessFields = [
+      'fairnessControlsDataSelection',
+      'fairnessControlsDataAvailability', 
+      'fairnessControlsDataPopulation',
+      'fairnessControlsDiversityInclusion',
+      'fairnessControlsGenderMinority',
+      'fairnessControlsPerformanceMeasures',
+      'fairnessControlsPerformanceCalibration',
+      'privacyControlsConsent',
+      'privacyControlsCyberSecurity',
+      'privacyControlsSensitiveData'
+    ];
+
+    specialFairnessFields.forEach(field => {
+      const value = selectedValues[field] || '';
+      const level = getSpecialFairnessFieldLevel(field, value);
+      if (level > maxLevel) {
+        maxLevel = level;
+      }
+    });
+
+    // Additional fairness fields with standard risk level mappings
+    const additionalFairnessFields = [
+      'privacyImpactAssessment'
+    ];
+
+    additionalFairnessFields.forEach(field => {
+      const value = selectedValues[field] || '';
+      const level = standardRiskLevels[value] || 0;
+      if (level > maxLevel) {
+        maxLevel = level;
+      }
+    });
+
+    return reverseLevels[maxLevel];
+  };
+
+  // Function to get the blue circle indicator for benefits table cells
+  const getBenefitsIndicator = (benefitField, confidenceLevel) => {
+    const selectedValue = selectedValues[benefitField];
+    if (!selectedValue) return { indicator: '', cellClass: '' };
+    
+    const confidenceMapping = {
+      'na': 'very_low_na',
+      'very_low': 'very_low_na', 
+      'low': 'low',
+      'mid_range': 'mid_range',
+      'high': 'high',
+      'very_high': 'very_high'
+    };
+    
+    if (confidenceMapping[selectedValue] === confidenceLevel) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-benefits-cell-${confidenceLevel}`
+      };
+    }
+    return { indicator: '', cellClass: '' };
+  };
+
+  // Function to check if any Community Benefits field has a value selected
+  const hasBenefitsSelections = () => {
+    const benefitsFields = [
+      'communityBenefitsQuality',
+      'communityBenefitsProcessing', 
+      'communityBenefitsFinancial',
+      'communityBenefitsAdaptable',
+      'communityBenefitsNewService',
+      'communityBenefitsInnovation'
+    ];
+    
+    return benefitsFields.some(field => selectedValues[field] && selectedValues[field] !== '');
+  };
+
+  // Function to check if any Community Harms field has a value selected
+  const hasHarmsSelections = () => {
+    const harmsFields = [
+      'communityHarmsPhysicalConfidenceLevel',
+      'communityHarmsPsychologicalConfidenceLevel',
+      'communityHarmsEnvironmentalConfidenceLevel',
+      'communityHarmsUnauthorisedUseConfidenceLevel',
+      'communityHarmsImpactOnRightsConfidenceLevel',
+      'communityHarmsMisidentificationConfidenceLevel',
+      'communityHarmsMisapplicationConfidenceLevel',
+      'communityHarmsOtherFinancialImpactConfidenceLevel',
+      'communityHarmsIncorrectAdviceConfidenceLevel',
+      'communityHarmsInconvenienceDelayConfidenceLevel',
+      'communityHarmsErosionOfTrustConfidenceLevel',
+      'communityHarmsEthicalImplicationsConfidenceLevel',
+      'communityHarmsEconomicDisruptionConfidenceLevel',
+      'communityHarmsSocialInequalityConfidenceLevel',
+      'communityHarmsOtherConfidenceLevel',
+      'communityHarmsReversibleConfidenceLevel',
+      'communityHarmsIrreversibleConfidenceLevel',
+      'communityHarmsSecondaryCumulativeConfidenceLevel'
+    ];
+    
+    return harmsFields.some(field => selectedValues[field] && selectedValues[field] !== '');
+  };
+
+  // Function to check if any Community Risks field has a value selected
+  const hasRisksSelections = () => {
+    const risksFields = [
+      'communityRisksNewOrExistingService',
+      'communityRisksDiscriminationUnintendedBias',
+      'communityRisksSinglePointOfFailure',
+      'communityRisksHumanOversight',
+      'communityRisksOverRelianceFalseAlert',
+      'communityRisksLinkageUnclear',
+      'communityRisksExplainability',
+      'communityRisksNonAISystems',
+      'privacyInformationCompliance'
+    ];
+    
+    return risksFields.some(field => selectedValues[field] && selectedValues[field] !== '');
+  };
+
+  // Function to get the circle indicator for harms table cells (reversed colors)
+  const getHarmsIndicator = (harmField, riskLevel) => {
+    const selectedValue = selectedValues[harmField];
+    if (!selectedValue) return { indicator: '', cellClass: '' };
+    
+    const riskMapping = {
+      'na': 'very_low_na',
+      'very_low': 'very_low_na', 
+      'low': 'low',
+      'mid_range': 'mid_range',
+      'high': 'high',
+      'very_high': 'very_high'
+    };
+    
+    if (riskMapping[selectedValue] === riskLevel) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-harms-cell-${riskLevel}`
+      };
+    }
+    return { indicator: '', cellClass: '' };
+  };
+
+  // Function to get the circle indicator for special harms fields with custom mappings
+  const getHarmsIndicatorSpecial = (harmField, riskLevel) => {
+    const selectedValue = selectedValues[harmField];
+    if (!selectedValue) return { indicator: '', cellClass: '' };
+    
+    // Map the special field values to risk levels
+    const getSpecialRiskLevel = (field, value) => {
+      if (field === 'communityHarmsReversibleConfidenceLevel') {
+        switch (value) {
+          case 'unclear': return 'very_high'; // Very High risk
+          case 'yes-high': return 'high'; // High risk
+          case 'yes-low': return 'low'; // Low risk
+          case 'no': return 'low'; // Low risk
+          default: return null;
+        }
+      }
+      
+      if (field === 'communityHarmsIrreversibleConfidenceLevel') {
+        switch (value) {
+          case 'yes-veryhigh': return 'very_high'; // Very High risk
+          case 'unclear-veryhigh': return 'very_high'; // Very High risk
+          case 'yes-high': return 'high'; // High risk (better than existing)
+          case 'no': return 'low'; // Low risk
+          default: return null;
+        }
+      }
+      
+      if (field === 'communityHarmsSecondaryCumulativeConfidenceLevel') {
+        switch (value) {
+          case 'unclear-veryhigh': return 'very_high'; // Very High risk
+          case 'yes-high': return 'high'; // High risk
+          case 'yes-low': return 'low'; // Low risk
+          case 'no': return 'low'; // Low risk
+          default: return null;
+        }
+      }
+      
+      return null;
+    };
+    
+    const mappedRiskLevel = getSpecialRiskLevel(harmField, selectedValue);
+    if (!mappedRiskLevel) return { indicator: '', cellClass: '' };
+    
+    // Convert risk level to table column format
+    const riskMapping = {
+      'very_low': 'very_low_na',
+      'low': 'low',
+      'mid_range': 'mid_range',
+      'high': 'high',
+      'very_high': 'very_high'
+    };
+    
+    if (riskMapping[mappedRiskLevel] === riskLevel) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-harms-cell-${riskLevel}`
+      };
+    }
+    return { indicator: '', cellClass: '' };
+  };
+
+  // Function to get the circle indicator for risks table cells (first 7 standard fields)
+  const getRisksIndicator = (riskField, riskLevel) => {
+    const selectedValue = selectedValues[riskField];
+    if (!selectedValue) return { indicator: '', cellClass: '' };
+    
+    const riskMapping = {
+      'new': 'very_low_na', // N/A
+      'existing': 'low', // Low Risk
+      'unclear': 'mid_range', // Mid-range Risk
+      'high': 'high', // High Risk
+      'very-high': 'very_high' // Very High Risk
+    };
+    
+    if (riskMapping[selectedValue] === riskLevel) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-risks-cell-${riskLevel}`
+      };
+    }
+    return { indicator: '', cellClass: '' };
+  };
+
+  // Function to get the circle indicator for special risks fields with custom mappings
+  const getRisksIndicatorSpecial = (riskField, riskLevel) => {
+    const selectedValue = selectedValues[riskField];
+    if (!selectedValue) return { indicator: '', cellClass: '' };
+    
+    // Map the special field values to risk levels
+    const getSpecialRiskLevel = (field, value) => {
+      if (field === 'communityRisksNonAISystems') {
+        switch (value) {
+          case 'no': return 'very_high'; // Very High risk - not considering alternatives
+          case 'informally': return 'high'; // High risk - informal consideration
+          case 'yes': return 'low'; // Low risk - proper consideration
+          case 'na': return 'very_low_na'; // N/A
+          default: return null;
+        }
+      }
+      
+      if (field === 'privacyInformationCompliance') {
+        switch (value) {
+          case 'no': return 'very_high'; // Very High risk - non-compliance
+          case 'unclear': return 'very_high'; // Very High risk - uncertainty
+          case 'yes': return 'low'; // Low risk - compliant
+          default: return null;
+        }
+      }
+      
+      return null;
+    };
+    
+    const mappedRiskLevel = getSpecialRiskLevel(riskField, selectedValue);
+    if (!mappedRiskLevel) return { indicator: '', cellClass: '' };
+    
+    if (mappedRiskLevel === riskLevel) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-risks-cell-${riskLevel}`
+      };
+    }
+    return { indicator: '', cellClass: '' };
+  };
+
+  // Check if any fairness selections have been made
+  const hasFairnessSelections = () => {
+    // Fairness fields focus on algorithmic fairness and bias assessment
+    const allFairnessFields = [
+      // Risk assessment fields
+      'fairnessRisksIncompleteData',
+      'fairnessRisksPoorlyDefined', 
+      'fairnessRisksNoMonitoring',
+      'fairnessRisksOutlierData',
+      'fairnessRisksDataCleansing',
+      'fairnessRisksBiasDetection',
+      'fairnessRisksReproducibility',
+      'fairnessRisksDataLinking',
+      'fairnessRisksTrainingData',
+      // Note: Sensitive data fields (fairnessControlsSensitive*) moved to Privacy and Security
+      // Fairness control fields
+      'fairnessControlsDataSelection',
+      'fairnessControlsDataAvailability', 
+      'fairnessControlsDataPopulation',
+      'fairnessControlsDiversityInclusion',
+      'fairnessControlsGenderMinority',
+      'fairnessControlsPerformanceMeasures',
+      'fairnessControlsPerformanceCalibration',
+      // Additional fairness assessment fields
+      'fairnessDataRepresentative',
+      'fairnessDataQuality',
+      'fairnessDiscriminationAge',
+      'fairnessDiscriminationSex',
+      'fairnessDiscriminationRace',
+      'fairnessPerformanceTargets',
+      'fairnessPerformanceMeasures',
+      'fairnessControlsSensitiveOther'
+    ];
+    return allFairnessFields.some(field => selectedValues[field] && selectedValues[field] !== '');
+  };
+
+  // Get fairness risk indicator for table
+  const getFairnessIndicator = (fieldValue, riskLevel) => {
+    if (!fieldValue) {
+      return { indicator: '', cellClass: '' };
+    }
+    
+    // Handle N/A case
+    if (riskLevel === 'very_low_na' && (fieldValue === 'na' || fieldValue === '')) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-risks-cell-very_low_na`
+      };
+    }
+    
+    // Map special field values to standard risk levels
+    let mappedRiskLevel = fieldValue;
+    
+    // Handle special mappings for certain fields
+    if (fieldValue === 'no' || fieldValue === 'unclear') {
+      mappedRiskLevel = 'very-high';
+    } else if (fieldValue === 'no-but-better' || fieldValue === 'yes-high') {
+      mappedRiskLevel = 'high';
+    } else if (fieldValue === 'yes' || fieldValue === 'yes-low') {
+      mappedRiskLevel = 'low';
+    }
+    
+    // Normalize risk level names to match field values (convert underscores to hyphens)
+    let normalizedRiskLevel = riskLevel;
+    if (riskLevel === 'very_high') {
+      normalizedRiskLevel = 'very-high';
+    } else if (riskLevel === 'mid_range') {
+      normalizedRiskLevel = 'mid-range';
+    }
+    
+    if (mappedRiskLevel === normalizedRiskLevel) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-risks-cell-${riskLevel}`
+      };
+    }
+    return { indicator: '', cellClass: '' };
+  };
+
+  // Get accountability risk indicator for table
+  const getAccountabilityIndicator = (fieldName, fieldValue, riskLevel) => {
+    if (!fieldValue) {
+      return { indicator: '', cellClass: '' };
+    }
+    
+    // Handle standard accountability fields (first 5 fields)
+    const standardFields = ['accountabilityTraining', 'accountabilityAwareness', 'accountabilityDocumentation', 
+                           'accountabilityDecisionHistory', 'accountabilityThirdParties'];
+    
+    if (standardFields.includes(fieldName)) {
+      // Handle N/A and very-low case
+      if (riskLevel === 'very_low_na' && (fieldValue === 'na' || fieldValue === 'very-low')) {
+        return { 
+          indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+          cellClass: `air-risks-cell-very_low_na`
+        };
+      }
+      
+      // Map field values to risk levels
+      let mappedRiskLevel = fieldValue;
+      
+      // Normalize risk level names
+      let normalizedRiskLevel = riskLevel;
+      if (riskLevel === 'very_high') {
+        normalizedRiskLevel = 'very-high';
+      } else if (riskLevel === 'mid_range') {
+        normalizedRiskLevel = 'mid-range';
+      }
+      
+      if (mappedRiskLevel === normalizedRiskLevel) {
+        return { 
+          indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+          cellClass: `air-risks-cell-${riskLevel}`
+        };
+      }
+    }
+    
+    // Handle responsible officer fields
+    if (fieldName.startsWith('accountabilityResponsible')) {
+      if (riskLevel === 'very_low_na' && fieldValue === 'na') {
+        return { 
+          indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+          cellClass: `air-risks-cell-very_low_na`
+        };
+      }
+      if (riskLevel === 'very_high' && fieldValue === 'low') {
+        return { 
+          indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+          cellClass: `air-risks-cell-very_high`
+        };
+      }
+    }
+    
+    // Handle process fields (intervention and overconfidence)
+    if (fieldName === 'interventionProcess' || fieldName === 'overconfidenceProcess') {
+      if (riskLevel === 'very_low_na' && (fieldValue === 'na' || fieldValue === 'yes')) {
+        return { 
+          indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+          cellClass: `air-risks-cell-very_low_na`
+        };
+      }
+      if (riskLevel === 'very_high' && fieldValue === 'no') {
+        return { 
+          indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+          cellClass: `air-risks-cell-very_high`
+        };
+      }
+    }
+    
+    return { indicator: '', cellClass: '' };
+  };
+
+  // Get procurement risk indicator for table
+  const getProcurementIndicator = (fieldName, fieldValue, riskLevel) => {
+    if (!fieldValue) {
+      return { indicator: '', cellClass: '' };
+    }
+    
+    // Handle procurement field mappings
+    let mappedRiskLevel = '';
+    
+    if (fieldName === 'procurementControls') {
+      switch (fieldValue) {
+        case 'yes': mappedRiskLevel = 'low'; break;
+        case 'no': 
+        case 'unclear': mappedRiskLevel = 'very-high'; break;
+        default: break;
+      }
+    } else if (fieldName === 'procurementContractualClauses') {
+      switch (fieldValue) {
+        case 'yes': mappedRiskLevel = 'low'; break;
+        case 'no': 
+        case 'unclear': mappedRiskLevel = 'very-high'; break;
+        default: break;
+      }
+    } else if (fieldName === 'procurementSupplierQuestions') {
+      switch (fieldValue) {
+        case 'yes': 
+        case 'unclear': mappedRiskLevel = 'very-high'; break;
+        case 'no': mappedRiskLevel = 'low'; break;
+        default: break;
+      }
+    } else if (fieldName === 'procurementResidualRiskFactors') {
+      switch (fieldValue) {
+        case 'yes': 
+        case 'unclear': mappedRiskLevel = 'high'; break;
+        case 'no': mappedRiskLevel = 'low'; break;
+        default: break;
+      }
+    } else if (fieldName === 'procurementSystemRequirements') {
+      switch (fieldValue) {
+        case 'yes': mappedRiskLevel = 'low'; break;
+        case 'no': 
+        case 'unclear': mappedRiskLevel = 'very-high'; break;
+        default: break;
+      }
+    } else if (fieldName === 'procurementRiskTreatments') {
+      switch (fieldValue) {
+        case 'yes': mappedRiskLevel = 'low'; break;
+        case 'no': 
+        case 'unclear': mappedRiskLevel = 'very-high'; break;
+        default: break;
+      }
+    }
+    
+    // Normalize risk level names
+    let normalizedRiskLevel = riskLevel;
+    if (riskLevel === 'very_high') {
+      normalizedRiskLevel = 'very-high';
+    } else if (riskLevel === 'mid_range') {
+      normalizedRiskLevel = 'mid-range';
+    }
+    
+    if (mappedRiskLevel === normalizedRiskLevel) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-risks-cell-${riskLevel}`
+      };
+    }
+    
+    return { indicator: '', cellClass: '' };
+  };
+
+  // Get overall risk indicator for summary table
+  const getOverallRiskIndicator = (category, riskLevel) => {
+    let highestRisk = { text: 'Not Set', cssClass: 'not-set' };
+    
+    if (category === 'community') {
+      // Get highest risk from Community Harms and Community Risks
+      const harmsRisk = getCommunityHarmsHighestRisk();
+      const risksRisk = getCommunityRisksHighestRisk();
+      
+      // Convert risk levels to numeric values for comparison
+      const riskLevelValues = {
+        'Very High': 6, 'High': 5, 'Mid-range': 4, 'Low': 3, 'Very Low': 2, 'N/A': 1, 'Not Set': 0
+      };
+      
+      const harmsValue = riskLevelValues[harmsRisk.text] || 0;
+      const risksValue = riskLevelValues[risksRisk.text] || 0;
+      
+      highestRisk = harmsValue >= risksValue ? harmsRisk : risksRisk;
+      
+    } else if (category === 'fairness') {
+      highestRisk = getFairnessHighestRisk();
+      
+    } else if (category === 'privacy') {
+      highestRisk = getPrivacyAndSecurityHighestRisk();
+      
+    } else if (category === 'transparency') {
+      highestRisk = getTransparencyHighestRisk();
+      
+    } else if (category === 'accountability') {
+      highestRisk = getAccountabilityHighestRisk();
+    }
+    
+    // Normalize risk level names for comparison
+    let normalizedRiskLevel = riskLevel;
+    if (riskLevel === 'very_high') {
+      normalizedRiskLevel = 'very-high';
+    } else if (riskLevel === 'mid_range') {
+      normalizedRiskLevel = 'mid-range';
+    } else if (riskLevel === 'very_low_na') {
+      normalizedRiskLevel = 'very-low';
+    }
+    
+    // Check if this risk level matches the highest risk for this category
+    let categoryRiskLevel = highestRisk.cssClass;
+    if (categoryRiskLevel === 'very-low' || categoryRiskLevel === 'na') {
+      categoryRiskLevel = 'very-low';
+    }
+    
+    // Handle "not-set" case - treat as very low/N/A
+    if (categoryRiskLevel === 'not-set' && riskLevel === 'very_low_na') {
+      categoryRiskLevel = 'very-low';
+      normalizedRiskLevel = 'very-low';
+    }
+    
+    if (categoryRiskLevel === normalizedRiskLevel || 
+        (riskLevel === 'very_low_na' && (categoryRiskLevel === 'very-low' || categoryRiskLevel === 'na' || categoryRiskLevel === 'not-set'))) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-risks-cell-${riskLevel}`
+      };
+    }
+    
+    return { indicator: '', cellClass: '' };
+  };
+
+  // Get highest risk rating in Transparency fieldset
+  const getTransparencyHighestRisk = () => {
+    const reverseLevels = {
+      6: { text: 'Very High', cssClass: 'very-high' },
+      5: { text: 'High', cssClass: 'high' },
+      4: { text: 'Mid-range', cssClass: 'mid-range' },
+      3: { text: 'Low', cssClass: 'low' },
+      2: { text: 'Very Low', cssClass: 'very-low' },
+      1: { text: 'N/A', cssClass: 'na' },
+      0: { text: 'Not Set', cssClass: 'not-set' }
+    };
+
+    let maxLevel = 0;
+
+    // Standard risk levels mapping for most transparency fields
+    const standardRiskLevels = {
+      'very_high': 6,
+      'very-high': 6,
+      'high': 5,
+      'mid_range': 4,
+      'mid-range': 4,
+      'low': 3,
+      'very_low': 2,
+      'na': 1,
+      '': 0
+    };
+
+    // Standard transparency fields with direct risk level mappings
+    const standardTransparencyFields = [
+      'transparencyPurpose',
+      'transparencyDataSources',
+      'transparencyDataUsage', 
+      'transparencyPublicAwareness',
+      'transparencyUserFeedback',
+      'transparencyAuditability'
+    ];
+
+    standardTransparencyFields.forEach(field => {
+      const value = selectedValues[field] || '';
+      const level = standardRiskLevels[value] || 0;
+      if (level > maxLevel) {
+        maxLevel = level;
+      }
+    });
+
+    // Special transparency fields with custom mappings
+    const getSpecialTransparencyFieldLevel = (field, value) => {
+      if (!value) return 0;
+      
+      if (field === 'transparencyConsultation') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'partially': return 5; // High Risk
+          case 'authorised-use': return 4; // Mid-range Risk
+          case 'yes': return 3; // Low Risk
+          case 'na': return 1; // N/A
+          default: return 0;
+        }
+      }
+      
+      if (field === 'transparencyScopeGoals') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'yes': return 3; // Low Risk
+          case 'na': return 1; // N/A
+          default: return 0;
+        }
+      }
+      
+      if (field === 'transparencyRightToAppeal') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'yes': return 3; // Low Risk
+          case 'na': return 1; // N/A
+          default: return 0;
+        }
+      }
+      
+      if (field === 'transparencyClearExplanations') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'no-but-person-decision': return 5; // High Risk
+          case 'yes': return 3; // Low Risk
+          case 'na': return 1; // N/A
+          default: return 0;
+        }
+      }
+      
+      return 0;
+    };
+
+    // Process special transparency fields
+    const specialTransparencyFields = [
+      'transparencyConsultation',
+      'transparencyScopeGoals',
+      'transparencyRightToAppeal',
+      'transparencyClearExplanations'
+    ];
+
+    specialTransparencyFields.forEach(field => {
+      const value = selectedValues[field] || '';
+      const level = getSpecialTransparencyFieldLevel(field, value);
+      if (level > maxLevel) {
+        maxLevel = level;
+      }
+    });
+
+    return reverseLevels[maxLevel] || reverseLevels[0];
+  };
+
+  // Check if there are any transparency field selections
+  const hasTransparencySelections = () => {
+    const allTransparencyFields = [
+      'transparencyPurpose',
+      'transparencyDataSources',
+      'transparencyDataUsage',
+      'transparencyPublicAwareness',
+      'transparencyUserFeedback',
+      'transparencyAuditability',
+      'transparencyConsultation',
+      'transparencyScopeGoals',
+      'transparencyRightToAppeal',
+      'transparencyClearExplanations'
+    ];
+    return allTransparencyFields.some(field => selectedValues[field] && selectedValues[field] !== '');
+  };
+
+  // Get transparency risk indicator for table
+  const getTransparencyIndicator = (fieldValue, riskLevel) => {
+    if (!fieldValue) {
+      return { indicator: '', cellClass: '' };
+    }
+    
+    // Handle N/A case
+    if (riskLevel === 'very_low_na' && (fieldValue === 'na' || fieldValue === '')) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-risks-cell-very_low_na`
+      };
+    }
+    
+    // Map special field values to standard risk levels
+    let mappedRiskLevel = fieldValue;
+    
+    // Handle special mappings for certain fields
+    if (fieldValue === 'no' || fieldValue === 'unclear') {
+      mappedRiskLevel = 'very-high';
+    } else if (fieldValue === 'no-but-person-decision' || fieldValue === 'partially') {
+      mappedRiskLevel = 'high';
+    } else if (fieldValue === 'yes') {
+      mappedRiskLevel = 'low';
+    } else if (fieldValue === 'authorised-use') {
+      mappedRiskLevel = 'mid-range';
+    }
+    
+    // Normalize risk level names to match field values (convert underscores to hyphens)
+    let normalizedRiskLevel = riskLevel;
+    if (riskLevel === 'very_high') {
+      normalizedRiskLevel = 'very-high';
+    } else if (riskLevel === 'mid_range') {
+      normalizedRiskLevel = 'mid-range';
+    }
+    
+    if (mappedRiskLevel === normalizedRiskLevel) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-risks-cell-${riskLevel}`
+      };
+    }
+    return { indicator: '', cellClass: '' };
+  };
+
+  // Get highest risk rating in Accountability fieldset
+  const getAccountabilityHighestRisk = () => {
+    const reverseLevels = {
+      6: { text: 'Very High', cssClass: 'very-high' },
+      5: { text: 'High', cssClass: 'high' },
+      4: { text: 'Mid-range', cssClass: 'mid-range' },
+      3: { text: 'Low', cssClass: 'low' },
+      2: { text: 'Very Low', cssClass: 'very-low' },
+      1: { text: 'N/A', cssClass: 'na' },
+      0: { text: 'Not Set', cssClass: 'not-set' }
+    };
+
+    let maxLevel = 0;
+
+    // Special accountability fields with custom mappings
+    const getSpecialAccountabilityFieldLevel = (field, value) => {
+      if (!value) return 0;
+      
+      // All the responsible officer fields have the same mapping
+      if (field.startsWith('accountabilityResponsible')) {
+        switch (value) {
+          case 'low': return 6; // "No or unclear" = Very High Risk
+          case 'na': return 3; // "Yes" = Low Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'interventionProcess' || field === 'overconfidenceProcess') {
+        switch (value) {
+          case 'no': return 6; // Very High Risk
+          case 'yes': return 3; // Low Risk
+          case 'na': return 1; // N/A
+          default: return 0;
+        }
+      }
+      
+      // Standard risk mapping for the new accountability fields
+      if (['accountabilityTraining', 'accountabilityAwareness', 'accountabilityDocumentation', 
+           'accountabilityDecisionHistory', 'accountabilityThirdParties'].includes(field)) {
+        switch (value) {
+          case 'very-high': return 6;
+          case 'high': return 5;
+          case 'mid-range': return 4;
+          case 'low': return 3;
+          case 'na': return 1;
+          default: return 0;
+        }
+      }
+      
+      return 0;
+    };
+
+    // Process accountability fields with special mappings
+    const accountabilityFields = [
+      'accountabilityTraining',
+      'accountabilityAwareness', 
+      'accountabilityDocumentation',
+      'accountabilityDecisionHistory',
+      'accountabilityThirdParties',
+      'accountabilityResponsibleUse',
+      'accountabilityResponsiblePolicy',
+      'accountabilityResponsibleMonitoring',
+      'accountabilityResponsibleDataGovernance',
+      'accountabilityResponsibleTechnicalGovernance',
+      'accountabilityResponsibleAppealRedress',
+      'interventionProcess',
+      'overconfidenceProcess'
+    ];
+
+    accountabilityFields.forEach(field => {
+      const value = selectedValues[field] || '';
+      const level = getSpecialAccountabilityFieldLevel(field, value);
+      if (level > maxLevel) {
+        maxLevel = level;
+      }
+    });
+
+    return reverseLevels[maxLevel] || reverseLevels[0];
+  };
+
+  // Get highest risk rating in Procurement fieldset
+  const getProcurementHighestRisk = () => {
+    const reverseLevels = {
+      6: { text: 'Very High', cssClass: 'very-high' },
+      5: { text: 'High', cssClass: 'high' },
+      4: { text: 'Mid-range', cssClass: 'mid-range' },
+      3: { text: 'Low', cssClass: 'low' },
+      2: { text: 'Very Low', cssClass: 'very-low' },
+      1: { text: 'N/A', cssClass: 'na' },
+      0: { text: 'Not Set', cssClass: 'not-set' }
+    };
+
+    let maxLevel = 0;
+
+    // Special procurement fields with custom mappings
+    const getSpecialProcurementFieldLevel = (field, value) => {
+      if (!value) return 0;
+      
+      if (field === 'procurementControls') {
+        switch (value) {
+          case 'yes': return 3; // Low Risk
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'procurementContractualClauses') {
+        switch (value) {
+          case 'yes': return 3; // Low Risk
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'procurementSupplierQuestions') {
+        switch (value) {
+          case 'yes': return 6; // Very High Risk
+          case 'no': return 3; // Low Risk
+          case 'unclear': return 6; // Very High Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'procurementResidualRiskFactors') {
+        switch (value) {
+          case 'yes': return 5; // High Risk
+          case 'no': return 3; // Low Risk
+          case 'unclear': return 5; // High Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'procurementSystemRequirements') {
+        switch (value) {
+          case 'yes': return 3; // Low Risk
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          default: return 0;
+        }
+      }
+      
+      if (field === 'procurementRiskTreatments') {
+        switch (value) {
+          case 'yes': return 3; // Low Risk
+          case 'no': return 6; // Very High Risk
+          case 'unclear': return 6; // Very High Risk
+          default: return 0;
+        }
+      }
+      
+      return 0;
+    };
+
+    // Process procurement fields with special mappings
+    const procurementFields = [
+      'procurementControls',
+      'procurementContractualClauses',
+      'procurementSupplierQuestions',
+      'procurementResidualRiskFactors',
+      'procurementSystemRequirements',
+      'procurementRiskTreatments'
+    ];
+
+    procurementFields.forEach(field => {
+      const value = selectedValues[field] || '';
+      const level = getSpecialProcurementFieldLevel(field, value);
+      if (level > maxLevel) {
+        maxLevel = level;
+      }
+    });
+
+    return reverseLevels[maxLevel] || reverseLevels[0];
+  };
+
+  // Get highest risk rating in Privacy and Security fieldset
+  const getPrivacyAndSecurityHighestRisk = () => {
+    const reverseLevels = {
+      6: { text: 'Very High', cssClass: 'very-high' },
+      5: { text: 'High', cssClass: 'high' },
+      4: { text: 'Mid-range', cssClass: 'mid-range' },
+      3: { text: 'Low', cssClass: 'low' },
+      2: { text: 'Very Low', cssClass: 'very-low' },
+      1: { text: 'N/A', cssClass: 'na' },
+      0: { text: 'Not Set', cssClass: 'not-set' }
+    };
+
+    let maxLevel = 0;
+
+    // Privacy and Security fields include both sensitive data and privacy controls
+    const privacySecurityFields = [
+      // Sensitive Data Cohort fields (currently in fairness section but belong to privacy)
+      'privacyControlsSensitiveChildren',
+      'privacyControlsSensitiveReligious',
+      'privacyControlsSensitiveRacial',
+      'privacyControlsSensitivePolitical',
+      'privacyControlsSensitiveUnion',
+      'privacyControlsSensitiveGender',
+      'privacyControlsSensitiveCriminalRecord',
+      'privacyControlsSensitiveHealth',
+      'privacyControlsSensitiveBiometric',
+      'privacyControlsSensitiveOtherData',
+      // Privacy Controls
+      'privacyByDesign',
+      'privacyImpactAssessment',
+      'privacyControlsConsent',
+      'privacyControlsCyberSecurity',
+      'privacyControlsSensitiveData'
+    ];
+
+    privacySecurityFields.forEach(field => {
+      const value = selectedValues[field] || '';
+      let level = 0;
+
+      if (field.startsWith('privacyControlsSensitive')) {
+        // Standard risk level mapping for sensitive data cohort size
+        switch (value) {
+          case 'very-high': level = 6;
+            break;
+          case 'high': level = 5;
+            break;
+          case 'mid-range': level = 4;
+            break;
+          case 'low': level = 3;
+            break;
+          case 'na': level = 1;
+            break;
+          default: level = 0;
+        }
+      } else if (field === 'privacyByDesign') {
+        switch (value) {
+          case 'low': level = 3; // "Yes" = Low Risk
+            break;
+          case 'high': level = 5; // "Partially" = High Risk
+            break;
+          case 'no': level = 6; // "No or unclear" = Very High Risk
+            break;
+          default: level = 0;
+        }
+      } else if (field === 'privacyImpactAssessment') {
+        switch (value) {
+          case 'low': level = 3; // "Yes" = Low Risk
+            break;
+          case 'very-high': level = 6; // "No" = Very High Risk
+            break;
+          case 'na': level = 1; // "N/A" = N/A
+            break;
+          default: level = 0;
+        }
+      } else if (field === 'privacyControlsConsent') {
+        switch (value) {
+          case 'low': level = 3; // "Yes" = Low Risk
+            break;
+          case 'midrange': level = 4; // "Authorised use" = Mid-range Risk
+            break;
+          case 'high': level = 5; // "Partially" = High Risk
+            break;
+          case 'very-high': level = 6; // "No" = Very High Risk
+            break;
+          case 'na': level = 1; // "N/A" = N/A
+            break;
+          default: level = 0;
+        }
+      } else if (field === 'privacyControlsCyberSecurity') {
+        switch (value) {
+          case 'low': level = 3; // "Yes" = Low Risk
+            break;
+          case 'very-high': level = 6; // "No or Partially" = Very High Risk
+            break;
+          default: level = 0;
+        }
+      } else if (field === 'privacyControlsSensitiveData') {
+        switch (value) {
+          case 'low': level = 3; // "No" = Low Risk
+            break;
+          case 'very-high': level = 6; // "Yes" = Very High Risk
+            break;
+          case 'unclear': level = 6; // "Unclear" = Very High Risk
+            break;
+          default: level = 0;
+        }
+      }
+
+      if (level > maxLevel) {
+        maxLevel = level;
+      }
+    });
+
+    return reverseLevels[maxLevel] || reverseLevels[0];
+  };
+
+  // Check if Privacy and Security fieldset has any selections
+  const hasPrivacyAndSecuritySelections = () => {
+    const privacySecurityFields = [
+      'privacyControlsSensitiveChildren',
+      'privacyControlsSensitiveReligious',
+      'privacyControlsSensitiveRacial',
+      'privacyControlsSensitivePolitical',
+      'privacyControlsSensitiveUnion',
+      'privacyControlsSensitiveGender',
+      'privacyControlsSensitiveCriminalRecord',
+      'privacyControlsSensitiveHealth',
+      'privacyControlsSensitiveBiometric',
+      'privacyControlsSensitiveOtherData',
+      'privacyByDesign',
+      'privacyImpactAssessment',
+      'privacyControlsConsent',
+      'privacyControlsCyberSecurity',
+      'privacyControlsSensitiveData'
+    ];
+    
+    return privacySecurityFields.some(field => selectedValues[field]);
+  };
+
+  // Get Privacy and Security indicator for summary table
+  const getPrivacyAndSecurityIndicator = (fieldValue, riskLevel) => {
+    if (!fieldValue) {
+      return { indicator: '', cellClass: '' };
+    }
+
+    let mappedRiskLevel = '';
+    
+    // Handle field mapping based on the field value
+    switch (fieldValue) {
+      case 'very-high': mappedRiskLevel = 'very-high'; break;
+      case 'high': mappedRiskLevel = 'high'; break;
+      case 'mid-range': mappedRiskLevel = 'mid-range'; break;
+      case 'midrange': mappedRiskLevel = 'mid-range'; break;
+      case 'low': mappedRiskLevel = 'low'; break;
+      case 'na': mappedRiskLevel = 'very-low'; break;
+      case 'no': mappedRiskLevel = 'very-high'; break;
+      case 'unclear': mappedRiskLevel = 'very-high'; break;
+      default: return { indicator: '', cellClass: '' };
+    }
+
+    // Normalize risk level names
+    let normalizedRiskLevel = riskLevel;
+    if (riskLevel === 'very_high') {
+      normalizedRiskLevel = 'very-high';
+    } else if (riskLevel === 'mid_range') {
+      normalizedRiskLevel = 'mid-range';
+    } else if (riskLevel === 'very_low_na') {
+      normalizedRiskLevel = 'very-low';
+    }
+
+    if (mappedRiskLevel === normalizedRiskLevel || 
+        (riskLevel === 'very_low_na' && (mappedRiskLevel === 'very-low' || mappedRiskLevel === 'na'))) {
+      return { 
+        indicator: <span style={{color: '#007bff', fontSize: '24px'}}>🔵</span>,
+        cellClass: `air-risks-cell-${riskLevel}`
+      };
+    }
+
+    return { indicator: '', cellClass: '' };
+  };
+
   return (
     <details className="air-inputform-details">
         <summary className="air-inputform-summary">
@@ -648,13 +1908,13 @@ const AIRiskInputForm = () => {
                                 <table className="air-inputform-field-table">
                                     <tbody>
                                         <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Project Name:<span className="air-inputform-required">*</span></label></td>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Project / System Name:<span className="air-inputform-required">*</span></label></td>
                                             <td className="air-inputform-field-cell">
                                                 <input type="text" name="projectName" className="air-inputform-input" required />
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Project Description:<span className="air-inputform-required">*</span></label></td>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Project / System Description:<span className="air-inputform-required">*</span></label></td>
                                             <td className="air-inputform-field-cell">
                                                 <textarea name="projectDescription" className="air-inputform-textarea" required></textarea>
                                             </td>
@@ -686,39 +1946,70 @@ const AIRiskInputForm = () => {
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Strategic Alignment:</label></td>
+                                                <td className="air-inputform-field-cell">
+                                                    <textarea name="strategicAlignment" className="air-inputform-textarea" placeholder="List the strategic goals this solution aims to achieve"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Project Sponsor:</label></td>
                                                 <td className="air-inputform-field-cell">
-                                                    <input type="text" name="projectSponsor" className="air-inputform-input" />
+                                                    <input type="text" name="projectSponsor" className="air-inputform-input" placeholder="Name (role)" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Executive Sponsor:</label></td>
+                                                <td className="air-inputform-field-cell">
+                                                    <input type="text" name="executiveSponsor" className="air-inputform-input" placeholder="Name (role)" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Project Owner</label></td>
                                                 <td className="air-inputform-field-cell">
-                                                    <input type="text" name="projectOwner" className="air-inputform-input" />
+                                                    <input type="text" name="projectOwner" className="air-inputform-input" placeholder="Name (role)" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Technical System Owner</label></td>
                                                 <td className="air-inputform-field-cell">
-                                                    <input type="text" name="technicalSystemOwner" className="air-inputform-input" />
+                                                    <input type="text" name="technicalSystemOwner" className="air-inputform-input" placeholder="Name (role)" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Data Governance Owner</label></td>
                                                 <td className="air-inputform-field-cell">
-                                                    <input type="text" name="dataGovernanceOwner" className="air-inputform-input" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Contributors</label></td>
-                                                <td className="air-inputform-field-cell">
-                                                    <textarea name="contributors" className="air-inputform-textarea"></textarea>
+                                                    <input type="text" name="dataGovernanceOwner" className="air-inputform-input" placeholder="Name (role)" />
                                                 </td>
                                             </tr>
                                             <tr title="Phase of the Project (design and develop; verify and validate through pilot; deploy and evaluate; operate / monitor / maintain; re-evaluate)">
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Phase of the Project</label></td>
                                                 <td className="air-inputform-field-cell">
-                                                    <input type="text" name="projectPhase" className="air-inputform-input" />
+                                                    <select name="projectPhase" className="air-inputform-select">
+                                                        <option value="">Select...</option>
+                                                        <option value="design_and_develop">Design and Develop</option>
+                                                        <option value="verify_and_validate">Verify and Validate through Pilot</option>
+                                                        <option value="deploy_and_evaluate">Deploy and Evaluate</option>
+                                                        <option value="operate_monitor_maintain">Operate / Monitor / Maintain</option>
+                                                        <option value="re_evaluate">Re-evaluate</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Assessed By</label></td>
+                                                <td className="air-inputform-field-cell">
+                                                    <input type="text" name="assessedBy" className="air-inputform-input" placeholder="Name (role)" />
+                                                </td>                                            
+                                            </tr>
+                                            <tr>
+                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Assessment Contributors</label></td>
+                                                <td className="air-inputform-field-cell">
+                                                    <textarea name="contributors" className="air-inputform-textarea" placeholder="Name (role), "></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Date of Assessment</label></td>
+                                                <td className="air-inputform-field-cell">
+                                                    <input type="date" name="assessmentDate" className="air-inputform-date" />
                                                 </td>
                                             </tr>
                                             <tr title="Next date/milestone that will trigger the next review">
@@ -735,14 +2026,90 @@ const AIRiskInputForm = () => {
                         </td>
                     </tr>
                     {/* Is the framework assessment required? */}
+                    {viewMode !== 'basic' && (
                     <tr>
                         <td colSpan={2}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-required">
                                 <legend className="air-inputform-legend air-inputform-legend-required">AI Assessment Required?</legend>
                                 <table className="air-inputform-field-table">
-                                    <tbody>                                        
+                                    <tbody>
                                         <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Operational Impact: Does your system produce or directly influence any administrative decisions (government decision with legal or similar significant effect)? i.e., automating decisions on issuing infringements.</label></td>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-assessment-label"><span className="air-inputform-assessment-strong-label">Buy AI and use - Buying or using an off the shelf system.</span> Used without modifying the algorithm or any risk mitigation tools, nor adding domain-specific content. i.e. ChatGPT, or AI in Salesforce, SAP, etc.</label></td>
+                                            <td className="air-inputform-field-cell">
+                                                <select name="buyAI" className="air-inputform-select" value={selectedValues.buyAI || ""} onChange={handleSelectChange}>
+                                                    <option value="">Select...</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                            </td>                                            
+                                        </tr>
+                                        <tr>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-assessment-label"><span className="air-inputform-assessment-strong-label">Embed AI and/or co-train - Developing a product with embedded AI or purchasing an AI platform</span> and augmented training data with domain-specific content. i.e., integrating AI biometrics or developing a chatbot with augmented training.</label></td>
+                                            <td className="air-inputform-field-cell">
+                                                <select name="embedAI" className="air-inputform-select" value={selectedValues.embedAI || ""} onChange={handleSelectChange}>
+                                                    <option value="">Select...</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-assessment-label"><span className="air-inputform-assessment-strong-label">Develop AI and/or train - Developing an AI tool in-house.</span> Even if based on a standard platform, I am developing algorithms and supplying the training data. i.e. Developing anomaly detection or training LLM with domain-specific content.</label></td>
+                                            <td className="air-inputform-field-cell">
+                                                <select name="developAI" className="air-inputform-select" value={selectedValues.developAI || ""} onChange={handleSelectChange}>
+                                                    <option value="">Select...</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-assessment-label"><span className="air-inputform-assessment-strong-label">Automating decisions - Developing a tool in-house that uses AI</span> and that automates at least one critical step in the decision-making process. i.e. AI powered hiring and recruitment.</label></td>
+                                            <td className="air-inputform-field-cell">
+                                                <select name="automatingDecisions" className="air-inputform-select" value={selectedValues.automatingDecisions || ""} onChange={handleSelectChange}>
+                                                    <option value="">Select...</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        {/* Conditional notice based on AI implementation approach selections */}
+                                        {(() => {
+                                            const aiImplementationFields = [
+                                                selectedValues.buyAI,
+                                                selectedValues.embedAI,
+                                                selectedValues.developAI,
+                                                selectedValues.automatingDecisions
+                                            ];
+                                            
+                                            const hasYesSelection = aiImplementationFields.some(value => value === 'yes');
+                                            const allNoSelections = aiImplementationFields.every(value => value === 'no');
+                                            
+                                            if (hasYesSelection) {
+                                                return (
+                                                    <tr>
+                                                        <td colSpan={2} className="air-risk-notice-guidance">
+                                                            ℹ️ <strong>Consult the guidance as to whether an assessment is needed</strong>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            } else if (allNoSelections) {
+                                                return (
+                                                    <tr>
+                                                        <td colSpan={2} className="air-risk-notice-low">
+                                                            ✅ If you can answer No to all questions it means you are not using AI in a manner which is potentially elevated risk.
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            }
+                                            return null;
+                                        })()}
+                                        <tr>
+                                            <td colSpan={2}><hr /></td>
+                                        </tr>
+                                                                       
+                                        <tr>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-assessment-label"><span className="air-inputform-assessment-strong-label">Operational Impact: Does your system produce or directly influence any administrative decisions</span> (operational decision with legal or similar significant effect)? i.e., automating decisions on issuing infringements.</label></td>
                                             <td className="air-inputform-field-cell">
                                                 <select name="impactsAdministrativeDecisions" className="air-inputform-select" value={selectedValues.impactsAdministrativeDecisions || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
@@ -752,7 +2119,7 @@ const AIRiskInputForm = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Operational Impact: Does your system trigger a real-world action with more than negligible potential effect (meaningful change to environment or system state)? i.e., an automated alerting system.</label></td>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-assessment-label"><span className="air-inputform-assessment-strong-label">Operational Impact: Does your system trigger a real-world action with more than negligible potential effect</span> (meaningful change to environment or system state)? i.e., an automated alerting system.</label></td>
                                             <td className="air-inputform-field-cell">
                                                 <select name="triggersRealWorldAction" className="air-inputform-select" value={selectedValues.triggersRealWorldAction || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
@@ -762,7 +2129,7 @@ const AIRiskInputForm = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Autonomous: Does your system operate autonomously or have potential to produce harmful outputs independently of human action, without requiring manual initiation? i.e., autonomous vehicles.</label></td>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-assessment-label"><span className="air-inputform-assessment-strong-label">Autonomous: Does your system operate autonomously</span> or have potential to produce harmful outputs independently of human action, without requiring manual initiation? i.e., autonomous vehicles.</label></td>
                                             <td className="air-inputform-field-cell">
                                                 <select name="operatesAutonomously" className="air-inputform-select" value={selectedValues.operatesAutonomously || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
@@ -772,7 +2139,7 @@ const AIRiskInputForm = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Data Sensitivity: Was any part of your system trained using sensitive information or can it produce outputs which contain sensitive information? i.e. a biometric based face matching system</label></td>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-assessment-label"><span className="air-inputform-assessment-strong-label">Data Sensitivity: Was any part of your system trained using sensitive information</span> or can it produce outputs which contain sensitive information? i.e. a biometric based face matching system</label></td>
                                             <td className="air-inputform-field-cell">
                                                 <select name="dataSensitivity" className="air-inputform-select" value={selectedValues.dataSensitivity || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
@@ -782,7 +2149,7 @@ const AIRiskInputForm = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Unintended harms: Is there a risk of system failure, misuse, or inappropriately deployed that could cause harm to an individual or group? i.e., systems using unverifiable data inputs</label></td>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-assessment-label"><span className="air-inputform-assessment-strong-label">Unintended harms: Is there a risk of system failure, misuse, or being inappropriately deployed</span> that could cause harm to an individual or group? i.e., systems using unverifiable data inputs</label></td>
                                             <td className="air-inputform-field-cell">
                                                 <select name="unintendedHarms" className="air-inputform-select" value={selectedValues.unintendedHarms || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
@@ -792,7 +2159,7 @@ const AIRiskInputForm = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Explainability and Transparency: Does your system fail to provide explainability for generated content and decisions, hindering comprehension by laypeople and assessment by technical experts? i.e., information informing policy development</label></td>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-assessment-label"><span className="air-inputform-assessment-strong-label">Explainability and Transparency: Does your system fail to provide explainability for generated content and decisions</span>, hindering comprehension by laypeople and assessment by technical experts? i.e., information informing policy development</label></td>
                                             <td className="air-inputform-field-cell">
                                                 <select name="explainability" className="air-inputform-select" value={selectedValues.explainability || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
@@ -833,95 +2200,38 @@ const AIRiskInputForm = () => {
                                                 );
                                             }
                                             return null;
-                                        })()}
-                                        <tr>
-                                            <td colSpan={2}><hr /></td>
-                                        </tr>
-                                        {/* If any of the following are Yes, show banner: Yes: Consult the guidance as to when the framework may not be needed / No: If you can answer No to all questions it means you are not using AI in a manner which is potentially elevated risk. */}
-                                        <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Buy AI and use - Buying or using an off the shelf system. Used without modifying the algorithm or any risk mitigation tools, nor adding domain-specific content. i.e. ChatGPT, or AI in Salesforce, SAP, etc.</label></td>
-                                            <td className="air-inputform-field-cell">
-                                                <select name="buyAI" className="air-inputform-select" value={selectedValues.buyAI || ""} onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option>
-                                                    <option value="no">No</option>
-                                                </select>
-                                            </td>                                            
-                                        </tr>
-                                        <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Embed AI and/or co-train - Developing a product with embedded AI or purchasing an AI platform and augmented training data with domain-specific content. i.e., integrating AI biometrics or developing a chatbot with augmented training.</label></td>
-                                            <td className="air-inputform-field-cell">
-                                                <select name="embedAI" className="air-inputform-select" value={selectedValues.embedAI || ""} onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option>
-                                                    <option value="no">No</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Develop AI and/or train - Developing an AI tool in-house. Even if based on a standard platform, I am developing algorithms and supplying the training data. i.e. Developing anomaly detection or training LLM with domain-specific content.</label></td>
-                                            <td className="air-inputform-field-cell">
-                                                <select name="developAI" className="air-inputform-select" value={selectedValues.developAI || ""} onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option>
-                                                    <option value="no">No</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Automating decisions - Developing a tool in-house that uses AI and that automates at least one critical step in the decision-making process. i.e. AI powered hiring and recruitment.</label></td>
-                                            <td className="air-inputform-field-cell">
-                                                <select name="automatingDecisions" className="air-inputform-select" value={selectedValues.automatingDecisions || ""} onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option>
-                                                    <option value="no">No</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        {/* Conditional notice based on AI implementation approach selections */}
-                                        {(() => {
-                                            const aiImplementationFields = [
-                                                selectedValues.buyAI,
-                                                selectedValues.embedAI,
-                                                selectedValues.developAI,
-                                                selectedValues.automatingDecisions
-                                            ];
-                                            
-                                            const hasYesSelection = aiImplementationFields.some(value => value === 'yes');
-                                            const allNoSelections = aiImplementationFields.every(value => value === 'no');
-                                            
-                                            if (hasYesSelection) {
-                                                return (
-                                                    <tr>
-                                                        <td colSpan={2} className="air-risk-notice-guidance">
-                                                            ℹ️ <strong>Consult the guidance as to whether an assessment is needed</strong>
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            } else if (allNoSelections) {
-                                                return (
-                                                    <tr>
-                                                        <td colSpan={2} className="air-risk-notice-low">
-                                                            ✅ If you can answer No to all questions it means you are not using AI in a manner which is potentially elevated risk.
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            }
-                                            return null;
-                                        })()}
-                                        {/** If any of the above questions are true: Show the following inputs, otherwise keep them hidden */}
+                                        })()}                                        
                                     </tbody>
                                 </table>
                             </fieldset>
                         </td>
                     </tr>
+                    )}
                     {/* Human Rights Impact Assessment Required? */}
+                    {viewMode !== 'basic' && (
                     <tr>
                         <td colSpan={3}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-hria">
                                 <legend className="air-inputform-legend air-inputform-legend-hria">Human Rights Impact Assessment Required?</legend>
                                 <table className="air-inputform-field-table">
                                     <tbody>
+                                        <tr>
+                                            <td colSpan={3}><em>Ensure AI use complies with legal protections for human rights. Human rights are legally recognised and protected through:
+                                                <ul>
+                                                    <li>Laws at the federal and state and territory levels</li>
+                                                    <li>The Australian constitution</li>
+                                                    <li>The common law</li>
+                                                </ul>
+                                                Applicable federal laws that protect human rights include:
+                                                <ul>
+                                                    <li>Australian Human Rights Commission Act 1986 (Cth)</li>
+                                                    <li>Age Discrimination Act 2004 (Cth)</li>
+                                                    <li>Disability Discrimination Act 1992 (Cth)</li>
+                                                    <li>Racial Discrimination Act 1975 (Cth)</li>
+                                                    <li>Sex Discrimination Act 1984 (Cth)</li>
+                                                </ul>
+                                                </em></td>
+                                        </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Will the AI system's outputs, content, recommendations, or results that arise from algorithmic decisions impact on individuals or groups and thus they will need to be informed?</label></td>
                                             <td className="air-inputform-field-cell">
@@ -1003,7 +2313,9 @@ const AIRiskInputForm = () => {
                             </fieldset>
                         </td>
                     </tr>
+                    )}
                     {/* Community Benefits - Confidence Level */}
+                    {viewMode !== 'basic' && (
                     <tr>
                         <td colSpan={3}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-benefits">
@@ -1019,11 +2331,11 @@ const AIRiskInputForm = () => {
                                                 <select name="communityBenefitsQuality" className="air-inputform-select" value={selectedValues.communityBenefitsQuality || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
                                                     <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="mid_range">Mid-range</option>
-                                                    <option value="high">High</option>
-                                                    <option value="very_high">Very High</option>
+                                                    <option value="very_low">Very Low Confidence</option>
+                                                    <option value="low">Low Confidence</option>
+                                                    <option value="mid_range">Mid-range Confidence</option>
+                                                    <option value="high">High Confidence</option>
+                                                    <option value="very_high">Very High Confidence</option>
                                                 </select>
                                             </td>
                                             <td><textarea name="communityBenefitsQualityDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1034,11 +2346,11 @@ const AIRiskInputForm = () => {
                                                 <select name="communityBenefitsProcessing" className="air-inputform-select" value={selectedValues.communityBenefitsProcessing || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
                                                     <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="mid_range">Mid-range</option>
-                                                    <option value="high">High</option>
-                                                    <option value="very_high">Very High</option>
+                                                    <option value="very_low">Very Low Confidence</option>
+                                                    <option value="low">Low Confidence</option>
+                                                    <option value="mid_range">Mid-range Confidence</option>
+                                                    <option value="high">High Confidence</option>
+                                                    <option value="very_high">Very High Confidence</option>
                                                 </select>
                                             </td>
                                             <td><textarea name="communityBenefitsProcessingDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1049,11 +2361,11 @@ const AIRiskInputForm = () => {
                                                 <select name="communityBenefitsFinancial" className="air-inputform-select" value={selectedValues.communityBenefitsFinancial || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
                                                     <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="mid_range">Mid-range</option>
-                                                    <option value="high">High</option>
-                                                    <option value="very_high">Very High</option>
+                                                    <option value="very_low">Very Low Confidence</option>
+                                                    <option value="low">Low Confidence</option>
+                                                    <option value="mid_range">Mid-range Confidence</option>
+                                                    <option value="high">High Confidence</option>
+                                                    <option value="very_high">Very High Confidence</option>
                                                 </select>
                                             </td>
                                             <td><textarea name="communityBenefitsFinancialDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1064,11 +2376,11 @@ const AIRiskInputForm = () => {
                                                 <select name="communityBenefitsAdaptable" className="air-inputform-select" value={selectedValues.communityBenefitsAdaptable || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
                                                     <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="mid_range">Mid-range</option>
-                                                    <option value="high">High</option>
-                                                    <option value="very_high">Very High</option>
+                                                    <option value="very_low">Very Low Confidence</option>
+                                                    <option value="low">Low Confidence</option>
+                                                    <option value="mid_range">Mid-range Confidence</option>
+                                                    <option value="high">High Confidence</option>
+                                                    <option value="very_high">Very High Confidence</option>
                                                 </select>
                                             </td>
                                             <td><textarea name="communityBenefitsAdaptableDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1079,11 +2391,11 @@ const AIRiskInputForm = () => {
                                                 <select name="communityBenefitsNewService" className="air-inputform-select" value={selectedValues.communityBenefitsNewService || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
                                                     <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="mid_range">Mid-range</option>
-                                                    <option value="high">High</option>
-                                                    <option value="very_high">Very High</option>
+                                                    <option value="very_low">Very Low Confidence</option>
+                                                    <option value="low">Low Confidence</option>
+                                                    <option value="mid_range">Mid-range Confidence</option>
+                                                    <option value="high">High Confidence</option>
+                                                    <option value="very_high">Very High Confidence</option>
                                                 </select>
                                             </td>
                                             <td><textarea name="communityBenefitsNewServiceDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1094,11 +2406,11 @@ const AIRiskInputForm = () => {
                                                 <select name="communityBenefitsInnovation" className="air-inputform-select" value={selectedValues.communityBenefitsInnovation || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
                                                     <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="mid_range">Mid-range</option>
-                                                    <option value="high">High</option>
-                                                    <option value="very_high">Very High</option>
+                                                    <option value="very_low">Very Low Confidence</option>
+                                                    <option value="low">Low Confidence</option>
+                                                    <option value="mid_range">Mid-range Confidence</option>
+                                                    <option value="high">High Confidence</option>
+                                                    <option value="very_high">Very High Confidence</option>
                                                 </select>
                                             </td>
                                             <td><textarea name="communityBenefitsInnovationDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1119,16 +2431,85 @@ const AIRiskInputForm = () => {
                                                 })()}
                                             </td>
                                         </tr>
+                                        {hasBenefitsSelections() && (
+                                        <tr>
+                                            <td colSpan={3}>
+                                                <table className="air-benefits-summary-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Benefits</th>
+                                                            <th className="air-benefits-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
+                                                            <th className="air-benefits-cell-header-low air-ai-risk-level-table-header">Low</th>
+                                                            <th className="air-benefits-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
+                                                            <th className="air-benefits-cell-header-high air-ai-risk-level-table-header">High</th>
+                                                            <th className="air-benefits-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Better Quality Service</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsQuality', 'very_low_na').cellClass}`}>{getBenefitsIndicator('communityBenefitsQuality', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsQuality', 'low').cellClass}`}>{getBenefitsIndicator('communityBenefitsQuality', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsQuality', 'mid_range').cellClass}`}>{getBenefitsIndicator('communityBenefitsQuality', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsQuality', 'high').cellClass}`}>{getBenefitsIndicator('communityBenefitsQuality', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsQuality', 'very_high').cellClass}`}>{getBenefitsIndicator('communityBenefitsQuality', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Reduction in time</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsProcessing', 'very_low_na').cellClass}`}>{getBenefitsIndicator('communityBenefitsProcessing', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsProcessing', 'low').cellClass}`}>{getBenefitsIndicator('communityBenefitsProcessing', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsProcessing', 'mid_range').cellClass}`}>{getBenefitsIndicator('communityBenefitsProcessing', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsProcessing', 'high').cellClass}`}>{getBenefitsIndicator('communityBenefitsProcessing', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsProcessing', 'very_high').cellClass}`}>{getBenefitsIndicator('communityBenefitsProcessing', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Financial savings</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsFinancial', 'very_low_na').cellClass}`}>{getBenefitsIndicator('communityBenefitsFinancial', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsFinancial', 'low').cellClass}`}>{getBenefitsIndicator('communityBenefitsFinancial', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsFinancial', 'mid_range').cellClass}`}>{getBenefitsIndicator('communityBenefitsFinancial', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsFinancial', 'high').cellClass}`}>{getBenefitsIndicator('communityBenefitsFinancial', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsFinancial', 'very_high').cellClass}`}>{getBenefitsIndicator('communityBenefitsFinancial', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Reusability</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsAdaptable', 'very_low_na').cellClass}`}>{getBenefitsIndicator('communityBenefitsAdaptable', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsAdaptable', 'low').cellClass}`}>{getBenefitsIndicator('communityBenefitsAdaptable', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsAdaptable', 'mid_range').cellClass}`}>{getBenefitsIndicator('communityBenefitsAdaptable', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsAdaptable', 'high').cellClass}`}>{getBenefitsIndicator('communityBenefitsAdaptable', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsAdaptable', 'very_high').cellClass}`}>{getBenefitsIndicator('communityBenefitsAdaptable', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>New Service / Capabilities</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsNewService', 'very_low_na').cellClass}`}>{getBenefitsIndicator('communityBenefitsNewService', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsNewService', 'low').cellClass}`}>{getBenefitsIndicator('communityBenefitsNewService', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsNewService', 'mid_range').cellClass}`}>{getBenefitsIndicator('communityBenefitsNewService', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsNewService', 'high').cellClass}`}>{getBenefitsIndicator('communityBenefitsNewService', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsNewService', 'very_high').cellClass}`}>{getBenefitsIndicator('communityBenefitsNewService', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>New Innovations</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsInnovation', 'very_low_na').cellClass}`}>{getBenefitsIndicator('communityBenefitsInnovation', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsInnovation', 'low').cellClass}`}>{getBenefitsIndicator('communityBenefitsInnovation', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsInnovation', 'mid_range').cellClass}`}>{getBenefitsIndicator('communityBenefitsInnovation', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsInnovation', 'high').cellClass}`}>{getBenefitsIndicator('communityBenefitsInnovation', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator('communityBenefitsInnovation', 'very_high').cellClass}`}>{getBenefitsIndicator('communityBenefitsInnovation', 'very_high').indicator}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        )}
                                     </tbody>
                                 </table>
                             </fieldset>
                         </td>
-                    </tr>                    
-                    {/* Community Harms - Confidence Level */}
+                    </tr>
+                    )}                    
+                    {/* Community Harms - Risk Level */}
                     <tr>
                         <td colSpan={3}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-harms">
-                                <legend className="air-inputform-legend air-inputform-legend-harms">Community Harms - Confidence Level AI Will Cause</legend>
+                                <legend className="air-inputform-legend air-inputform-legend-harms">Community Harms - Risk That AI Will Cause</legend>
                                 <table className="air-inputform-field-table">
                                     <tbody>
                                         <tr>
@@ -1144,11 +2525,11 @@ const AIRiskInputForm = () => {
                                             >
                                                     <option value="">Select...</option>
                                                     <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="mid_range">Mid-range</option>
-                                                    <option value="high">High</option>
-                                                    <option value="very_high">Very High</option>
+                                                    <option value="very_low">Very Low Risk</option>
+                                                    <option value="low">Low Risk</option>
+                                                    <option value="mid_range">Mid-range Risk</option>
+                                                    <option value="high">High Risk</option>
+                                                    <option value="very_high">Very High Risk</option>
                                                 </select>
                                             </td>
                                             <td><textarea name="communityHarmsPhysicalConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1163,11 +2544,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsPsychologicalConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1182,11 +2563,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsEnvironmentalConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1201,11 +2582,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsUnauthorisedUseConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1220,11 +2601,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsImpactOnRightsConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1239,11 +2620,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsMisidentificationConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1258,11 +2639,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsMisapplicationConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1277,11 +2658,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsOtherFinancialImpactConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1296,11 +2677,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsIncorrectAdviceConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1315,11 +2696,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsInconvenienceDelayConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1334,11 +2715,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsErosionOfTrustConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1353,11 +2734,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsEthicalImplicationsConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1372,11 +2753,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsEconomicDisruptionConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1391,11 +2772,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsSocialInequalityConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1410,11 +2791,11 @@ const AIRiskInputForm = () => {
                                             >
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
-                                                <option value="very_low">Very Low</option>
-                                                <option value="low">Low</option>
-                                                <option value="mid_range">Mid-range</option>
-                                                <option value="high">High</option>
-                                                <option value="very_high">Very High</option>
+                                                <option value="very_low">Very Low Risk</option>
+                                                <option value="low">Low Risk</option>
+                                                <option value="mid_range">Mid-range Risk</option>
+                                                <option value="high">High Risk</option>
+                                                <option value="very_high">Very High Risk</option>
                                             </select>
                                             </td>
                                             <td><textarea name="communityHarmsOtherConfidenceLevelDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -1519,6 +2900,170 @@ const AIRiskInputForm = () => {
                                                 })()}
                                             </td>
                                         </tr>
+                                        {hasHarmsSelections() && (
+                                        <tr>
+                                            <td colSpan={3}>
+                                                <table className="air-harms-summary-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Harms</th>
+                                                            <th className="air-harms-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
+                                                            <th className="air-harms-cell-header-low air-ai-risk-level-table-header">Low</th>
+                                                            <th className="air-harms-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
+                                                            <th className="air-harms-cell-header-high air-ai-risk-level-table-header">High</th>
+                                                            <th className="air-harms-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Physical harms</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsPhysicalConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsPhysicalConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsPhysicalConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsPhysicalConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsPhysicalConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsPhysicalConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsPhysicalConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsPhysicalConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsPhysicalConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsPhysicalConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Psychological harms</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsPsychologicalConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsPsychologicalConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsPsychologicalConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsPsychologicalConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsPsychologicalConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsPsychologicalConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsPsychologicalConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsPsychologicalConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsPsychologicalConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsPsychologicalConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Environmental harms</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEnvironmentalConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsEnvironmentalConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEnvironmentalConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsEnvironmentalConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEnvironmentalConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsEnvironmentalConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEnvironmentalConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsEnvironmentalConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEnvironmentalConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsEnvironmentalConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Unauthorised use of SIP</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsUnauthorisedUseConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsUnauthorisedUseConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsUnauthorisedUseConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsUnauthorisedUseConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsUnauthorisedUseConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsUnauthorisedUseConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsUnauthorisedUseConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsUnauthorisedUseConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsUnauthorisedUseConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsUnauthorisedUseConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Impact on rights</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsImpactOnRightsConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsImpactOnRightsConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsImpactOnRightsConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsImpactOnRightsConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsImpactOnRightsConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsImpactOnRightsConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsImpactOnRightsConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsImpactOnRightsConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsImpactOnRightsConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsImpactOnRightsConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Misidentification</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsMisidentificationConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsMisidentificationConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsMisidentificationConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsMisidentificationConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsMisidentificationConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsMisidentificationConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsMisidentificationConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsMisidentificationConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsMisidentificationConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsMisidentificationConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Misapplication of penalty</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsMisapplicationConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsMisapplicationConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsMisapplicationConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsMisapplicationConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsMisapplicationConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsMisapplicationConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsMisapplicationConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsMisapplicationConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsMisapplicationConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsMisapplicationConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Financial/Commercial impact</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsOtherFinancialImpactConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsOtherFinancialImpactConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsOtherFinancialImpactConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsOtherFinancialImpactConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsOtherFinancialImpactConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsOtherFinancialImpactConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsOtherFinancialImpactConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsOtherFinancialImpactConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsOtherFinancialImpactConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsOtherFinancialImpactConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Incorrect advice</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsIncorrectAdviceConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsIncorrectAdviceConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsIncorrectAdviceConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsIncorrectAdviceConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsIncorrectAdviceConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsIncorrectAdviceConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsIncorrectAdviceConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsIncorrectAdviceConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsIncorrectAdviceConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsIncorrectAdviceConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Inconvenience/Delay</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsInconvenienceDelayConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsInconvenienceDelayConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsInconvenienceDelayConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsInconvenienceDelayConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsInconvenienceDelayConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsInconvenienceDelayConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsInconvenienceDelayConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsInconvenienceDelayConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsInconvenienceDelayConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsInconvenienceDelayConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Erosion of trust</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsErosionOfTrustConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsErosionOfTrustConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsErosionOfTrustConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsErosionOfTrustConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsErosionOfTrustConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsErosionOfTrustConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsErosionOfTrustConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsErosionOfTrustConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsErosionOfTrustConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsErosionOfTrustConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Ethical implications</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEthicalImplicationsConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsEthicalImplicationsConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEthicalImplicationsConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsEthicalImplicationsConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEthicalImplicationsConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsEthicalImplicationsConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEthicalImplicationsConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsEthicalImplicationsConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEthicalImplicationsConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsEthicalImplicationsConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Economic disruption</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEconomicDisruptionConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsEconomicDisruptionConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEconomicDisruptionConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsEconomicDisruptionConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEconomicDisruptionConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsEconomicDisruptionConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEconomicDisruptionConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsEconomicDisruptionConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsEconomicDisruptionConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsEconomicDisruptionConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Social inequality</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsSocialInequalityConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsSocialInequalityConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsSocialInequalityConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsSocialInequalityConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsSocialInequalityConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsSocialInequalityConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsSocialInequalityConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsSocialInequalityConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsSocialInequalityConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsSocialInequalityConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Other harms</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsOtherConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicator('communityHarmsOtherConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsOtherConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicator('communityHarmsOtherConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsOtherConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicator('communityHarmsOtherConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsOtherConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicator('communityHarmsOtherConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicator('communityHarmsOtherConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicator('communityHarmsOtherConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Reversible harms</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsReversibleConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsReversibleConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsReversibleConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsReversibleConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsReversibleConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsReversibleConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsReversibleConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsReversibleConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsReversibleConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsReversibleConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Irreversible harms</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsIrreversibleConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsIrreversibleConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsIrreversibleConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsIrreversibleConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsIrreversibleConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsIrreversibleConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsIrreversibleConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsIrreversibleConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsIrreversibleConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsIrreversibleConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-ai-risk-level-table-cell"><strong>Secondary/Cumulative harms</strong></td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsSecondaryCumulativeConfidenceLevel', 'very_low_na').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsSecondaryCumulativeConfidenceLevel', 'very_low_na').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsSecondaryCumulativeConfidenceLevel', 'low').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsSecondaryCumulativeConfidenceLevel', 'low').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsSecondaryCumulativeConfidenceLevel', 'mid_range').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsSecondaryCumulativeConfidenceLevel', 'mid_range').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsSecondaryCumulativeConfidenceLevel', 'high').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsSecondaryCumulativeConfidenceLevel', 'high').indicator}</td>
+                                                            <td className={`air-ai-risk-level-table-cell ${getHarmsIndicatorSpecial('communityHarmsSecondaryCumulativeConfidenceLevel', 'very_high').cellClass}`}>{getHarmsIndicatorSpecial('communityHarmsSecondaryCumulativeConfidenceLevel', 'very_high').indicator}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        )}
                                     </tbody>
                                 </table>
                             </fieldset>
@@ -1711,6 +3256,98 @@ const AIRiskInputForm = () => {
                                                     </div>
                                                 </td>
                                             </tr>
+                                            {hasRisksSelections() && (
+                                            <tr>
+                                                <td colSpan={3}>
+                                                    <table className="air-risks-summary-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Risks</th>
+                                                                <th className="air-risks-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
+                                                                <th className="air-risks-cell-header-low air-ai-risk-level-table-header">Low</th>
+                                                                <th className="air-risks-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
+                                                                <th className="air-risks-cell-header-high air-ai-risk-level-table-header">High</th>
+                                                                <th className="air-risks-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td className="air-ai-risk-level-table-cell"><strong>New/Existing Service</strong></td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksNewOrExistingService', 'very_low_na').cellClass}`}>{getRisksIndicator('communityRisksNewOrExistingService', 'very_low_na').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksNewOrExistingService', 'low').cellClass}`}>{getRisksIndicator('communityRisksNewOrExistingService', 'low').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksNewOrExistingService', 'mid_range').cellClass}`}>{getRisksIndicator('communityRisksNewOrExistingService', 'mid_range').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksNewOrExistingService', 'high').cellClass}`}>{getRisksIndicator('communityRisksNewOrExistingService', 'high').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksNewOrExistingService', 'very_high').cellClass}`}>{getRisksIndicator('communityRisksNewOrExistingService', 'very_high').indicator}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="air-ai-risk-level-table-cell"><strong>Discrimination/Bias</strong></td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksDiscriminationUnintendedBias', 'very_low_na').cellClass}`}>{getRisksIndicator('communityRisksDiscriminationUnintendedBias', 'very_low_na').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksDiscriminationUnintendedBias', 'low').cellClass}`}>{getRisksIndicator('communityRisksDiscriminationUnintendedBias', 'low').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksDiscriminationUnintendedBias', 'mid_range').cellClass}`}>{getRisksIndicator('communityRisksDiscriminationUnintendedBias', 'mid_range').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksDiscriminationUnintendedBias', 'high').cellClass}`}>{getRisksIndicator('communityRisksDiscriminationUnintendedBias', 'high').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksDiscriminationUnintendedBias', 'very_high').cellClass}`}>{getRisksIndicator('communityRisksDiscriminationUnintendedBias', 'very_high').indicator}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="air-ai-risk-level-table-cell"><strong>Single Point of Failure</strong></td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksSinglePointOfFailure', 'very_low_na').cellClass}`}>{getRisksIndicator('communityRisksSinglePointOfFailure', 'very_low_na').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksSinglePointOfFailure', 'low').cellClass}`}>{getRisksIndicator('communityRisksSinglePointOfFailure', 'low').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksSinglePointOfFailure', 'mid_range').cellClass}`}>{getRisksIndicator('communityRisksSinglePointOfFailure', 'mid_range').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksSinglePointOfFailure', 'high').cellClass}`}>{getRisksIndicator('communityRisksSinglePointOfFailure', 'high').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksSinglePointOfFailure', 'very_high').cellClass}`}>{getRisksIndicator('communityRisksSinglePointOfFailure', 'very_high').indicator}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="air-ai-risk-level-table-cell"><strong>Human Oversight</strong></td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksHumanOversight', 'very_low_na').cellClass}`}>{getRisksIndicator('communityRisksHumanOversight', 'very_low_na').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksHumanOversight', 'low').cellClass}`}>{getRisksIndicator('communityRisksHumanOversight', 'low').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksHumanOversight', 'mid_range').cellClass}`}>{getRisksIndicator('communityRisksHumanOversight', 'mid_range').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksHumanOversight', 'high').cellClass}`}>{getRisksIndicator('communityRisksHumanOversight', 'high').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksHumanOversight', 'very_high').cellClass}`}>{getRisksIndicator('communityRisksHumanOversight', 'very_high').indicator}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="air-ai-risk-level-table-cell"><strong>Over-reliance/False Alerts</strong></td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksOverRelianceFalseAlert', 'very_low_na').cellClass}`}>{getRisksIndicator('communityRisksOverRelianceFalseAlert', 'very_low_na').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksOverRelianceFalseAlert', 'low').cellClass}`}>{getRisksIndicator('communityRisksOverRelianceFalseAlert', 'low').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksOverRelianceFalseAlert', 'mid_range').cellClass}`}>{getRisksIndicator('communityRisksOverRelianceFalseAlert', 'mid_range').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksOverRelianceFalseAlert', 'high').cellClass}`}>{getRisksIndicator('communityRisksOverRelianceFalseAlert', 'high').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksOverRelianceFalseAlert', 'very_high').cellClass}`}>{getRisksIndicator('communityRisksOverRelianceFalseAlert', 'very_high').indicator}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="air-ai-risk-level-table-cell"><strong>Unclear Linkage</strong></td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksLinkageUnclear', 'very_low_na').cellClass}`}>{getRisksIndicator('communityRisksLinkageUnclear', 'very_low_na').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksLinkageUnclear', 'low').cellClass}`}>{getRisksIndicator('communityRisksLinkageUnclear', 'low').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksLinkageUnclear', 'mid_range').cellClass}`}>{getRisksIndicator('communityRisksLinkageUnclear', 'mid_range').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksLinkageUnclear', 'high').cellClass}`}>{getRisksIndicator('communityRisksLinkageUnclear', 'high').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksLinkageUnclear', 'very_high').cellClass}`}>{getRisksIndicator('communityRisksLinkageUnclear', 'very_high').indicator}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="air-ai-risk-level-table-cell"><strong>Explainability/Transparency</strong></td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksExplainability', 'very_low_na').cellClass}`}>{getRisksIndicator('communityRisksExplainability', 'very_low_na').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksExplainability', 'low').cellClass}`}>{getRisksIndicator('communityRisksExplainability', 'low').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksExplainability', 'mid_range').cellClass}`}>{getRisksIndicator('communityRisksExplainability', 'mid_range').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksExplainability', 'high').cellClass}`}>{getRisksIndicator('communityRisksExplainability', 'high').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicator('communityRisksExplainability', 'very_high').cellClass}`}>{getRisksIndicator('communityRisksExplainability', 'very_high').indicator}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="air-ai-risk-level-table-cell"><strong>Non-AI Alternatives</strong></td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicatorSpecial('communityRisksNonAISystems', 'very_low_na').cellClass}`}>{getRisksIndicatorSpecial('communityRisksNonAISystems', 'very_low_na').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicatorSpecial('communityRisksNonAISystems', 'low').cellClass}`}>{getRisksIndicatorSpecial('communityRisksNonAISystems', 'low').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicatorSpecial('communityRisksNonAISystems', 'mid_range').cellClass}`}>{getRisksIndicatorSpecial('communityRisksNonAISystems', 'mid_range').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicatorSpecial('communityRisksNonAISystems', 'high').cellClass}`}>{getRisksIndicatorSpecial('communityRisksNonAISystems', 'high').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicatorSpecial('communityRisksNonAISystems', 'very_high').cellClass}`}>{getRisksIndicatorSpecial('communityRisksNonAISystems', 'very_high').indicator}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="air-ai-risk-level-table-cell"><strong>Privacy/Legal Compliance</strong></td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicatorSpecial('privacyInformationCompliance', 'very_low_na').cellClass}`}>{getRisksIndicatorSpecial('privacyInformationCompliance', 'very_low_na').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicatorSpecial('privacyInformationCompliance', 'low').cellClass}`}>{getRisksIndicatorSpecial('privacyInformationCompliance', 'low').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicatorSpecial('privacyInformationCompliance', 'mid_range').cellClass}`}>{getRisksIndicatorSpecial('privacyInformationCompliance', 'mid_range').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicatorSpecial('privacyInformationCompliance', 'high').cellClass}`}>{getRisksIndicatorSpecial('privacyInformationCompliance', 'high').indicator}</td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getRisksIndicatorSpecial('privacyInformationCompliance', 'very_high').cellClass}`}>{getRisksIndicatorSpecial('privacyInformationCompliance', 'very_high').indicator}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            )}
                                         </tbody>
                                 </table>
                             </fieldset>
@@ -1725,7 +3362,9 @@ const AIRiskInputForm = () => {
                                     <tbody>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Using incomplete or inaccurate data</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessRisksGeneral" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="fairnessRisksIncompleteData" className="air-inputform-select"
+                                                value={selectedValues.fairnessRisksIncompleteData || ''}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">Very Low or N/A Risk</option>
                                                 <option value="low">Low Risk</option>
@@ -1733,11 +3372,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High Risk</option>
                                                 <option value="very-high">Very High Risk</option>
                                             </select></td>
-                                            <td><textarea name="fairnessRisksGeneralDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="fairnessRisksIncompleteDataDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Having poorly defined descriptions and indicators of “Fairness”</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessRisksGeneral" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="fairnessRisksPoorlyDefined" className="air-inputform-select"
+                                                value={selectedValues.fairnessRisksPoorlyDefined || ''}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">Very Low or N/A Risk</option>
                                                 <option value="low">Low Risk</option>
@@ -1745,11 +3386,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High Risk</option>
                                                 <option value="very-high">Very High Risk</option>
                                             </select></td>
-                                            <td><textarea name="fairnessRisksGeneralDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="fairnessRisksPoorlyDefinedDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Not ensuring ongoing monitoring of “Fairness indicators”</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessRisksGeneral" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="fairnessRisksNoMonitoring" className="air-inputform-select"
+                                                value={selectedValues.fairnessRisksNoMonitoring || ''}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">Very Low or N/A Risk</option>
                                                 <option value="low">Low Risk</option>
@@ -1757,11 +3400,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High Risk</option>
                                                 <option value="very-high">Very High Risk</option>
                                             </select></td>
-                                            <td><textarea name="fairnessRisksGeneralDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="fairnessRisksNoMonitoringDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Decisions to exclude outlier data</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessRisksGeneral" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="fairnessRisksOutlierData" className="air-inputform-select"
+                                                value={selectedValues.fairnessRisksOutlierData || ''}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">Very Low or N/A Risk</option>
                                                 <option value="low">Low Risk</option>
@@ -1769,11 +3414,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High Risk</option>
                                                 <option value="very-high">Very High Risk</option>
                                             </select></td>
-                                            <td><textarea name="fairnessRisksGeneralDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="fairnessRisksOutlierDataDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Informal or inconsistent data cleansing and repair protocols and processes</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessRisksGeneral" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="fairnessRisksDataCleansing" className="air-inputform-select"
+                                                value={selectedValues.fairnessRisksDataCleansing || ''}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">Very Low or N/A Risk</option>
                                                 <option value="low">Low Risk</option>
@@ -1781,11 +3428,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High Risk</option>
                                                 <option value="very-high">Very High Risk</option>
                                             </select></td>
-                                            <td><textarea name="fairnessRisksGeneralDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="fairnessRisksDataCleansingDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Using informal bias detection methods (best practice includes automated testing)</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessRisksGeneral" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="fairnessRisksBiasDetection" className="air-inputform-select"
+                                                value={selectedValues.fairnessRisksBiasDetection || ''}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">Very Low or N/A Risk</option>
                                                 <option value="low">Low Risk</option>
@@ -1793,11 +3442,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High Risk</option>
                                                 <option value="very-high">Very High Risk</option>
                                             </select></td>
-                                            <td><textarea name="fairnessRisksGeneralDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="fairnessRisksBiasDetectionDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The likelihood that re-running scenarios could produce different results (reproducibility)</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessRisksGeneral" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="fairnessRisksReproducibility" className="air-inputform-select"
+                                                value={selectedValues.fairnessRisksReproducibility || ''}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">Very Low or N/A Risk</option>
                                                 <option value="low">Low Risk</option>
@@ -1805,11 +3456,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High Risk</option>
                                                 <option value="very-high">Very High Risk</option>
                                             </select></td>
-                                            <td><textarea name="fairnessRisksGeneralDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="fairnessRisksReproducibilityDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Inadvertently creating new associations when linking data and/or metadata</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessRisksGeneral" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="fairnessRisksDataLinking" className="air-inputform-select"
+                                                value={selectedValues.fairnessRisksDataLinking || ''}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">Very Low or N/A Risk</option>
                                                 <option value="low">Low Risk</option>
@@ -1817,11 +3470,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High Risk</option>
                                                 <option value="very-high">Very High Risk</option>
                                             </select></td>
-                                            <td><textarea name="fairnessRisksGeneralDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="fairnessRisksDataLinkingDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Differences in the data used for training compared to the data for intended use</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessRisksGeneral" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="fairnessRisksTrainingData" className="air-inputform-select"
+                                                value={selectedValues.fairnessRisksTrainingData || ''}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">Very Low or N/A Risk</option>
                                                 <option value="low">Low Risk</option>
@@ -1829,7 +3484,7 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High Risk</option>
                                                 <option value="very-high">Very High Risk</option>
                                             </select></td>
-                                            <td><textarea name="fairnessRisksGeneralDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="fairnessRisksTrainingDataDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td colSpan={3}><hr /></td>
@@ -1858,7 +3513,7 @@ const AIRiskInputForm = () => {
                                             </tr>
                                         )}
                                         <tr>
-                                            <td colSpan={3}><em>Data quality: Data quality is often described in terms of minimum requirements for accuracy, timeliness, completeness, and consistency. Your AI system may be significantly impacted by poor quality data. It is important to understand how significant the impact is before relying on insights or decisions generated by the AI system. Absence of data may lead to unintended biases impacting insights generated by the AI system. Unbalanced data is a common problem when training AI systems (the situation where the distribution of classes or categories in the training dataset is not representative of the real-world scenario)</em></td>
+                                            <td colSpan={3}><em>Data quality: Data quality is often described in terms of minimum requirements for accuracy, timeliness, completeness, and consistency. Your AI system may be significantly impacted by poor quality data. It is important to understand how significant the impact is before relying on insights or decisions generated by the AI system. Absence of data may lead to unintended biases impacting insights generated by the AI system. Unbalanced data is a common problem when training AI systems (the situation where the distribution of classes or categories in the training dataset is not representative of the real-world scenario</em></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Is the data that you need for your system available and of appropriate quality given the potential harms identified? If your system is a data creation or data cleansing application, answer according to the availability of any existing data that is needed for the solution to succeed, for example, training datasets.</label></td>
@@ -1998,15 +3653,87 @@ const AIRiskInputForm = () => {
                                             </tr>
                                         )}
                                         <tr>
-                                            <td colSpan={3}><hr /></td>                                            
+                                            <td colSpan={3} className="air-inputform-status-row">
+                                                <div className={`air-risks-risk-summary ${getFairnessHighestRisk().cssClass}`}>
+                                                    <strong>Fairness Risks Status: {getFairnessHighestRisk().text}</strong>
+                                                </div>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td colSpan={3}><em>Privacy and Security - Data Cohort Size</em></td>
-                                        </tr>
+                                    </tbody>
+                                </table>                                
+
+                                {/* Fairness Summary Table */}
+                                {hasFairnessSelections() && (
+                                    <table className="air-risks-summary-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Fairness</th>
+                                                <th className="air-risks-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
+                                                <th className="air-risks-cell-header-low air-ai-risk-level-table-header">Low</th>
+                                                <th className="air-risks-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
+                                                <th className="air-risks-cell-header-high air-ai-risk-level-table-header">High</th>
+                                                <th className="air-risks-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {[
+                                              // Risk Assessment Fields
+                                              { field: 'fairnessRisksIncompleteData', label: 'Incomplete Data' },
+                                              { field: 'fairnessRisksPoorlyDefined', label: 'Poorly Defined Requirements' },
+                                              { field: 'fairnessRisksNoMonitoring', label: 'No Monitoring' },
+                                              { field: 'fairnessRisksOutlierData', label: 'Outlier Data' },
+                                              { field: 'fairnessRisksDataCleansing', label: 'Data Cleansing Issues' },
+                                              { field: 'fairnessRisksBiasDetection', label: 'Bias Detection' },
+                                              { field: 'fairnessRisksReproducibility', label: 'Reproducibility' },
+                                              { field: 'fairnessRisksDataLinking', label: 'Data Linking' },
+                                              { field: 'fairnessRisksTrainingData', label: 'Training Data' },
+                                              // Control Fields
+                                              { field: 'fairnessControlsDataSelection', label: 'Data Selection' },
+                                              { field: 'fairnessControlsDataAvailability', label: 'Data Availability' },
+                                              { field: 'fairnessControlsDataPopulation', label: 'Data Population' },
+                                              { field: 'fairnessControlsDiversityInclusion', label: 'Diversity & Inclusion' },
+                                              { field: 'fairnessControlsGenderMinority', label: 'Gender & Minority' },
+                                              { field: 'fairnessControlsPerformanceMeasures', label: 'Performance Measures Details' },
+                                              { field: 'fairnessControlsPerformanceCalibration', label: 'Calibration' },
+                                            ].map(({ field, label }) => (
+                                              selectedValues[field] && (
+                                                <tr key={field}>
+                                                    <td className="air-ai-risk-level-table-cell"><strong>{label}</strong></td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getFairnessIndicator(selectedValues[field], 'very_low_na').cellClass}`}>
+                                                        {getFairnessIndicator(selectedValues[field], 'very_low_na').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getFairnessIndicator(selectedValues[field], 'low').cellClass}`}>
+                                                        {getFairnessIndicator(selectedValues[field], 'low').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getFairnessIndicator(selectedValues[field], 'mid_range').cellClass}`}>
+                                                        {getFairnessIndicator(selectedValues[field], 'mid_range').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getFairnessIndicator(selectedValues[field], 'high').cellClass}`}>
+                                                        {getFairnessIndicator(selectedValues[field], 'high').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getFairnessIndicator(selectedValues[field], 'very_high').cellClass}`}>
+                                                        {getFairnessIndicator(selectedValues[field], 'very_high').indicator}
+                                                    </td>
+                                                </tr>
+                                              )
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                )}
+                            </fieldset> 
+                        </td> 
+                    </tr>
+                    {/* Privacy and Security */}
+                    <tr>
+                        <td colSpan={3}>
+                            <fieldset className="air-inputform-fieldset air-inputform-fieldset-privacy">
+                                <legend className="air-inputform-legend air-inputform-legend-privacy">Privacy and Security</legend>
+                                <table className="air-inputform-field-table">
+                                    <tbody>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Children</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessControlsSensitiveChildren" className="air-inputform-select"
-                                                value={selectedValues.fairnessControlsSensitiveChildren || ''}
+                                            <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveChildren" className="air-inputform-select"
+                                                value={selectedValues.privacyControlsSensitiveChildren || ''}
                                                 onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
@@ -2015,19 +3742,19 @@ const AIRiskInputForm = () => {
                                                 <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
                                                 <option value="very-high">&lt; 5</option> {/* Very High Risk */}
                                             </select></td>
-                                            <td><textarea name="fairnessControlsSensitiveChildrenDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="privacyControlsSensitiveChildrenDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
-                                        {selectedValues.fairnessControlsSensitiveChildren && (
+                                        {selectedValues.privacyControlsSensitiveChildren && (
                                             <tr>
                                                 <td colSpan={3} className="air-inputform-guidance-row">
-                                                    <strong>Guidance:</strong> {getGuidanceText('fairnessControlsSensitiveChildren', selectedValues.fairnessControlsSensitiveChildren)}
+                                                    <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveChildren', selectedValues.privacyControlsSensitiveChildren)}
                                                 </td>
                                             </tr>
                                         )}
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Religious individuals</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessControlsSensitiveReligious" className="air-inputform-select"
-                                                value={selectedValues.fairnessControlsSensitiveReligious || ''}
+                                            <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveReligious" className="air-inputform-select"
+                                                value={selectedValues.privacyControlsSensitiveReligious || ''}
                                                 onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
@@ -2036,19 +3763,19 @@ const AIRiskInputForm = () => {
                                                 <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
                                                 <option value="very-high">&lt; 5</option> {/* Very High Risk */}
                                             </select></td>
-                                            <td><textarea name="fairnessControlsSensitiveReligiousDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="privacyControlsSensitiveReligiousDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
-                                        {selectedValues.fairnessControlsSensitiveReligious && (
+                                        {selectedValues.privacyControlsSensitiveReligious && (
                                             <tr>
                                                 <td colSpan={3} className="air-inputform-guidance-row">
-                                                    <strong>Guidance:</strong> {getGuidanceText('fairnessControlsSensitiveReligious', selectedValues.fairnessControlsSensitiveReligious)}
+                                                    <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveReligious', selectedValues.privacyControlsSensitiveReligious)}
                                                 </td>
                                             </tr>
                                         )}
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Racially or ethnically diverse individuals</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessControlsSensitiveRacial" className="air-inputform-select"
-                                                value={selectedValues.fairnessControlsSensitiveRacial || ''}
+                                            <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveRacial" className="air-inputform-select"
+                                                value={selectedValues.privacyControlsSensitiveRacial || ''}
                                                 onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
@@ -2057,19 +3784,19 @@ const AIRiskInputForm = () => {
                                                 <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
                                                 <option value="very-high">&lt; 5</option> {/* Very High Risk */}
                                             </select></td>
-                                            <td><textarea name="fairnessControlsSensitiveRacialDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="privacyControlsSensitiveRacialDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
-                                        {selectedValues.fairnessControlsSensitiveRacial && (
+                                        {selectedValues.privacyControlsSensitiveRacial && (
                                             <tr>
                                                 <td colSpan={3} className="air-inputform-guidance-row">
-                                                    <strong>Guidance:</strong> {getGuidanceText('fairnessControlsSensitiveRacial', selectedValues.fairnessControlsSensitiveRacial)}
+                                                    <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveRacial', selectedValues.privacyControlsSensitiveRacial)}
                                                 </td>
                                             </tr>
                                         )}
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with political opinions or associations</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessControlsSensitivePolitical" className="air-inputform-select"
-                                                value={selectedValues.fairnessControlsSensitivePolitical || ''}
+                                            <td className="air-inputform-field-cell"><select name="privacyControlsSensitivePolitical" className="air-inputform-select"
+                                                value={selectedValues.privacyControlsSensitivePolitical || ''}
                                                 onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
@@ -2078,19 +3805,19 @@ const AIRiskInputForm = () => {
                                                 <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
                                                 <option value="very-high">&lt; 5</option> {/* Very High Risk */}
                                             </select></td>
-                                            <td><textarea name="fairnessControlsSensitivePoliticalDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="privacyControlsSensitivePoliticalDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
-                                        {selectedValues.fairnessControlsSensitivePolitical && (
+                                        {selectedValues.privacyControlsSensitivePolitical && (
                                             <tr>
                                                 <td colSpan={3} className="air-inputform-guidance-row">
-                                                    <strong>Guidance:</strong> {getGuidanceText('fairnessControlsSensitivePolitical', selectedValues.fairnessControlsSensitivePolitical)}
+                                                    <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitivePolitical', selectedValues.privacyControlsSensitivePolitical)}
                                                 </td>
                                             </tr>
                                         )}
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with trade union membership or associations</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessControlsSensitiveUnion" className="air-inputform-select"
-                                                value={selectedValues.fairnessControlsSensitiveUnion || ''}
+                                            <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveUnion" className="air-inputform-select"
+                                                value={selectedValues.privacyControlsSensitiveUnion || ''}
                                                 onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
@@ -2099,19 +3826,19 @@ const AIRiskInputForm = () => {
                                                 <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
                                                 <option value="very-high">&lt; 5</option> {/* Very High Risk */}
                                             </select></td>
-                                            <td><textarea name="fairnessControlsSensitiveUnionDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="privacyControlsSensitiveUnionDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
-                                        {selectedValues.fairnessControlsSensitiveUnion && (
+                                        {selectedValues.privacyControlsSensitiveUnion && (
                                             <tr>
                                                 <td colSpan={3} className="air-inputform-guidance-row">
-                                                    <strong>Guidance:</strong> {getGuidanceText('fairnessControlsSensitiveUnion', selectedValues.fairnessControlsSensitiveUnion)}
+                                                    <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveUnion', selectedValues.privacyControlsSensitiveUnion)}
                                                 </td>
                                             </tr>
                                         )}
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with gender and/or sexual diversity</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessControlsSensitiveGender" className="air-inputform-select"
-                                                value={selectedValues.fairnessControlsSensitiveGender || ''}
+                                            <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveGender" className="air-inputform-select"
+                                                value={selectedValues.privacyControlsSensitiveGender || ''}
                                                 onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
@@ -2120,19 +3847,19 @@ const AIRiskInputForm = () => {
                                                 <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
                                                 <option value="very-high">&lt; 5</option> {/* Very High Risk */}
                                             </select></td>
-                                            <td><textarea name="fairnessControlsSensitiveGenderDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="privacyControlsSensitiveGenderDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
-                                        {selectedValues.fairnessControlsSensitiveGender && (
+                                        {selectedValues.privacyControlsSensitiveGender && (
                                             <tr>
                                                 <td colSpan={3} className="air-inputform-guidance-row">
-                                                    <strong>Guidance:</strong> {getGuidanceText('fairnessControlsSensitiveGender', selectedValues.fairnessControlsSensitiveGender)}
+                                                    <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveGender', selectedValues.privacyControlsSensitiveGender)}
                                                 </td>
                                             </tr>
                                         )}
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with a criminal record</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessControlsSensitiveCriminalRecord" className="air-inputform-select"
-                                                value={selectedValues.fairnessControlsSensitiveCriminalRecord || ''}
+                                            <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveCriminalRecord" className="air-inputform-select"
+                                                value={selectedValues.privacyControlsSensitiveCriminalRecord || ''}
                                                 onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
@@ -2141,19 +3868,19 @@ const AIRiskInputForm = () => {
                                                 <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
                                                 <option value="very-high">&lt; 5</option> {/* Very High Risk */}
                                             </select></td>
-                                            <td><textarea name="fairnessControlsSensitiveCriminalRecordDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="privacyControlsSensitiveCriminalRecordDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
-                                        {selectedValues.fairnessControlsSensitiveCriminalRecord && (
+                                        {selectedValues.privacyControlsSensitiveCriminalRecord && (
                                             <tr>
                                                 <td colSpan={3} className="air-inputform-guidance-row">
-                                                    <strong>Guidance:</strong> {getGuidanceText('fairnessControlsSensitiveCriminalRecord', selectedValues.fairnessControlsSensitiveCriminalRecord)}
+                                                    <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveCriminalRecord', selectedValues.privacyControlsSensitiveCriminalRecord)}
                                                 </td>
                                             </tr>
                                         )}
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Specific health or genetic information</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessControlsSensitiveHealth" className="air-inputform-select"
-                                                value={selectedValues.fairnessControlsSensitiveHealth || ''}
+                                            <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveHealth" className="air-inputform-select"
+                                                value={selectedValues.privacyControlsSensitiveHealth || ''}
                                                 onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
@@ -2162,18 +3889,20 @@ const AIRiskInputForm = () => {
                                                 <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
                                                 <option value="very-high">&lt; 5</option> {/* Very High Risk */}
                                             </select></td>
-                                            <td><textarea name="fairnessControlsSensitiveHealthDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="privacyControlsSensitiveHealthDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
-                                        {selectedValues.fairnessControlsSensitiveHealth && (
+                                        {selectedValues.privacyControlsSensitiveHealth && (
                                             <tr>
                                                 <td colSpan={3} className="air-inputform-guidance-row">
-                                                    <strong>Guidance:</strong> {getGuidanceText('fairnessControlsSensitiveHealth', selectedValues.fairnessControlsSensitiveHealth)}
+                                                    <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveHealth', selectedValues.privacyControlsSensitiveHealth)}
                                                 </td>
                                             </tr>
                                         )}
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Personal biometric information</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessControlsSensitiveBiometric" className="air-inputform-select" value={selectedValues.fairnessControlsSensitiveBiometric || ""} onChange={handleSelectChange}>
+                                            <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveBiometric" className="air-inputform-select" 
+                                                value={selectedValues.privacyControlsSensitiveBiometric || ""} 
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
                                                 <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
@@ -2181,18 +3910,20 @@ const AIRiskInputForm = () => {
                                                 <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
                                                 <option value="very-high">&lt; 5</option> {/* Very High Risk */}
                                             </select></td>
-                                            <td><textarea name="fairnessControlsSensitiveBiometricDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="privacyControlsSensitiveBiometricDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
-                                        {selectedValues.fairnessControlsSensitiveBiometric && (
+                                        {selectedValues.privacyControlsSensitiveBiometric && (
                                             <tr>
                                                 <td className="air-inputform-guidance-row">
-                                                    📋 <strong>Guidance:</strong> {getGuidanceText('fairnessControlsSensitiveBiometric', selectedValues.fairnessControlsSensitiveBiometric)}
+                                                    📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveBiometric', selectedValues.privacyControlsSensitiveBiometric)}
                                                 </td>
                                             </tr>
                                         )}
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Other sensitive person-centred data</label></td>
-                                            <td className="air-inputform-field-cell"><select name="fairnessControlsSensitiveOtherData" className="air-inputform-select" value={selectedValues.fairnessControlsSensitiveOtherData || ""} onChange={handleSelectChange}>
+                                            <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveOtherData" className="air-inputform-select" 
+                                                value={selectedValues.privacyControlsSensitiveOtherData || ""} 
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
                                                 <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
@@ -2200,12 +3931,12 @@ const AIRiskInputForm = () => {
                                                 <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
                                                 <option value="very-high">&lt; 5</option> {/* Very High Risk */}
                                             </select></td>
-                                            <td><textarea name="fairnessControlsSensitiveOtherDataDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="privacyControlsSensitiveOtherDataDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
-                                        {selectedValues.fairnessControlsSensitiveOtherData && (
+                                        {selectedValues.privacyControlsSensitiveOtherData && (
                                             <tr>
                                                 <td className="air-inputform-guidance-row">
-                                                    📋 <strong>Guidance:</strong> {getGuidanceText('fairnessControlsSensitiveOtherData', selectedValues.fairnessControlsSensitiveOtherData)}
+                                                    📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveOtherData', selectedValues.privacyControlsSensitiveOtherData)}
                                                 </td>
                                             </tr>
                                         )}
@@ -2217,11 +3948,13 @@ const AIRiskInputForm = () => {
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Have you applied the “Privacy by Design” and “Security by Design” principles in your system?</label></td>
-                                            <td className="air-inputform-field-cell"><select name="privacyByDesign" className="air-inputform-select" value={selectedValues.privacyByDesign || ""} onChange={handleSelectChange}>
+                                            <td className="air-inputform-field-cell"><select name="privacyByDesign" className="air-inputform-select" 
+                                                value={selectedValues.privacyByDesign || ""} 
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
-                                                <option value="na">Yes</option> {/* Low Risk - Document any points to resolve, then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved */}
-                                                <option value="low">Partially</option> {/* High Risk - Pause the project, apply the principles before proceeding, document any points to resolve below then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
-                                                <option value="high">No or unclear</option> {/* Very High Risk - Pause the project, apply the principles before proceeding, document any points to resolve below then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                <option value="low">Yes</option> {/* Low Risk - Document any points to resolve, then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved */}
+                                                <option value="high">Partially</option> {/* High Risk - Pause the project, apply the principles before proceeding, document any points to resolve below then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                <option value="no">No or unclear</option> {/* Very High Risk - Pause the project, apply the principles before proceeding, document any points to resolve below then go to next question. Consider contacting the information and privacy commissioner or Cyber NSW for any points not resolved. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
                                             </select></td>
                                             <td><textarea name="privacyByDesignDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
@@ -2325,8 +4058,73 @@ const AIRiskInputForm = () => {
                                                 </td>
                                             </tr>
                                         )}
+                                        <tr>
+                                            <td colSpan={3} className="air-inputform-status-row">
+                                                <div className={`air-risks-risk-summary ${getPrivacyAndSecurityHighestRisk().cssClass}`}>
+                                                    <strong>Privacy and Security Status: {getPrivacyAndSecurityHighestRisk().text}</strong>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
+
+                                {/* Privacy and Security Summary Table */}
+                                {hasPrivacyAndSecuritySelections() && (
+                                    <table className="air-risks-summary-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Privacy and Security</th>
+                                                <th className="air-risks-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
+                                                <th className="air-risks-cell-header-low air-ai-risk-level-table-header">Low</th>
+                                                <th className="air-risks-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
+                                                <th className="air-risks-cell-header-high air-ai-risk-level-table-header">High</th>
+                                                <th className="air-risks-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {[
+                                              // Sensitive Data Controls
+                                              { field: 'privacyControlsSensitiveChildren', label: 'Children Data' },
+                                              { field: 'privacyControlsSensitiveReligious', label: 'Religious Data' },
+                                              { field: 'privacyControlsSensitiveRacial', label: 'Racial Data' },
+                                              { field: 'privacyControlsSensitivePolitical', label: 'Political Data' },
+                                              { field: 'privacyControlsSensitiveUnion', label: 'Union Data' },
+                                              { field: 'privacyControlsSensitiveGender', label: 'Gender Data' },
+                                              { field: 'privacyControlsSensitiveCriminalRecord', label: 'Criminal Record Data' },
+                                              { field: 'privacyControlsSensitiveHealth', label: 'Health Data' },
+                                              { field: 'privacyControlsSensitiveBiometric', label: 'Biometric Data' },
+                                              { field: 'privacyControlsSensitiveOtherData', label: 'Other Sensitive Data' },
+                                              // Privacy Controls
+                                              { field: 'privacyByDesign', label: 'Privacy by Design' },
+                                              { field: 'privacyImpactAssessment', label: 'Privacy Impact Assessment' },
+                                              { field: 'privacyControlsConsent', label: 'Privacy Consent' },
+                                              { field: 'privacyControlsCyberSecurity', label: 'Cyber Security' },
+                                              { field: 'privacyControlsSensitiveData', label: 'Sensitive Data Privacy' }
+                                            ].map(({ field, label }) => (
+                                              selectedValues[field] && (
+                                                <tr key={field}>
+                                                    <td className="air-ai-risk-level-table-cell"><strong>{label}</strong></td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getPrivacyAndSecurityIndicator(selectedValues[field], 'very_low_na').cellClass}`}>
+                                                        {getPrivacyAndSecurityIndicator(selectedValues[field], 'very_low_na').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getPrivacyAndSecurityIndicator(selectedValues[field], 'low').cellClass}`}>
+                                                        {getPrivacyAndSecurityIndicator(selectedValues[field], 'low').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getPrivacyAndSecurityIndicator(selectedValues[field], 'mid_range').cellClass}`}>
+                                                        {getPrivacyAndSecurityIndicator(selectedValues[field], 'mid_range').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getPrivacyAndSecurityIndicator(selectedValues[field], 'high').cellClass}`}>
+                                                        {getPrivacyAndSecurityIndicator(selectedValues[field], 'high').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getPrivacyAndSecurityIndicator(selectedValues[field], 'very_high').cellClass}`}>
+                                                        {getPrivacyAndSecurityIndicator(selectedValues[field], 'very_high').indicator}
+                                                    </td>
+                                                </tr>
+                                              )
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                )}
                             </fieldset>
                         </td>
                     </tr>
@@ -2339,7 +4137,9 @@ const AIRiskInputForm = () => {
                                     <tbody>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Incomplete documentation of AI system design, or implementation, or operation</label></td>
-                                            <td className="air-inputform-field-cell"><select name="transparencyPurpose" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="transparencyPurpose" className="air-inputform-select"
+                                                value={selectedValues.transparencyPurpose || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2351,7 +4151,9 @@ const AIRiskInputForm = () => {
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">No or limited access to model's internal workings or source code (“Black Box”)</label></td>
-                                            <td className="air-inputform-field-cell"><select name="transparencyDataSources" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="transparencyDataSources" className="air-inputform-select"
+                                                value={selectedValues.transparencyDataSources || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2363,7 +4165,9 @@ const AIRiskInputForm = () => {
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Being unable to explain the output of a complex model</label></td>
-                                            <td className="air-inputform-field-cell"><select name="transparencyDataUsage" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="transparencyDataUsage" className="air-inputform-select"
+                                                value={selectedValues.transparencyDataUsage || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2375,7 +4179,9 @@ const AIRiskInputForm = () => {
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">A member of the public being unaware that they are interacting with an AI system</label></td>
-                                            <td className="air-inputform-field-cell"><select name="transparencyPublicAwareness" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="transparencyPublicAwareness" className="air-inputform-select"
+                                                value={selectedValues.transparencyPublicAwareness || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2387,7 +4193,9 @@ const AIRiskInputForm = () => {
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">No or low ability to incorporate user feedback into an AI system or model</label></td>
-                                            <td className="air-inputform-field-cell"><select name="transparencyUserFeedback" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="transparencyUserFeedback" className="air-inputform-select"
+                                                value={selectedValues.transparencyUserFeedback || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2399,7 +4207,9 @@ const AIRiskInputForm = () => {
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The inability to audit past decisions, where input from AI systems was used.</label></td>
-                                            <td className="air-inputform-field-cell"><select name="transparencyAuditability" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="transparencyAuditability" className="air-inputform-select"
+                                                value={selectedValues.transparencyAuditability || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2495,8 +4305,67 @@ const AIRiskInputForm = () => {
                                                 </td>
                                             </tr>
                                         )}
+                                        <tr>
+                                            <td colSpan={3} className="air-inputform-status-row">
+                                                <div className={`air-risks-risk-summary ${getTransparencyHighestRisk().cssClass}`}>
+                                                    <strong>Transparency Status: {getTransparencyHighestRisk().text}</strong>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
+
+                                {/* Transparency Summary Table */}
+                                {hasTransparencySelections() && (
+                                    <table className="air-risks-summary-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Transparency</th>
+                                                <th className="air-risks-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
+                                                <th className="air-risks-cell-header-low air-ai-risk-level-table-header">Low</th>
+                                                <th className="air-risks-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
+                                                <th className="air-risks-cell-header-high air-ai-risk-level-table-header">High</th>
+                                                <th className="air-risks-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {[
+                                              // Transparency Risk Fields
+                                              { field: 'transparencyPurpose', label: 'Incomplete Documentation' },
+                                              { field: 'transparencyDataSources', label: 'Black Box Access' },
+                                              { field: 'transparencyDataUsage', label: 'Complex Model Explanation' },
+                                              { field: 'transparencyPublicAwareness', label: 'Public AI Awareness' },
+                                              { field: 'transparencyUserFeedback', label: 'User Feedback Incorporation' },
+                                              { field: 'transparencyAuditability', label: 'Decision Auditability' },
+                                              { field: 'transparencyConsultation', label: 'Community Consultation' },
+                                              { field: 'transparencyScopeGoals', label: 'Public Scope & Goals' },
+                                              { field: 'transparencyRightToAppeal', label: 'Right to Appeal' },
+                                              { field: 'transparencyClearExplanations', label: 'Clear Explanations' }
+                                            ].map(({ field, label }) => (
+                                              selectedValues[field] && (
+                                                <tr key={field}>
+                                                    <td className="air-ai-risk-level-table-cell"><strong>{label}</strong></td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getTransparencyIndicator(selectedValues[field], 'very_low_na').cellClass}`}>
+                                                        {getTransparencyIndicator(selectedValues[field], 'very_low_na').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getTransparencyIndicator(selectedValues[field], 'low').cellClass}`}>
+                                                        {getTransparencyIndicator(selectedValues[field], 'low').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getTransparencyIndicator(selectedValues[field], 'mid_range').cellClass}`}>
+                                                        {getTransparencyIndicator(selectedValues[field], 'mid_range').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getTransparencyIndicator(selectedValues[field], 'high').cellClass}`}>
+                                                        {getTransparencyIndicator(selectedValues[field], 'high').indicator}
+                                                    </td>
+                                                    <td className={`air-ai-risk-level-table-cell ${getTransparencyIndicator(selectedValues[field], 'very_high').cellClass}`}>
+                                                        {getTransparencyIndicator(selectedValues[field], 'very_high').indicator}
+                                                    </td>
+                                                </tr>
+                                              )
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                )}
                             </fieldset>
                         </td>
                     </tr>
@@ -2512,7 +4381,9 @@ const AIRiskInputForm = () => {
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Insufficient training of AI system operators</label></td>
-                                            <td className="air-inputform-field-cell"><select name="accountabilityFramework" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="accountabilityTraining" className="air-inputform-select"
+                                                value={selectedValues.accountabilityTraining || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2520,11 +4391,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High</option>
                                                 <option value="very-high">Very High</option>
                                             </select></td>
-                                            <td><textarea name="accountabilityFrameworkDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="accountabilityTrainingDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Insufficient awareness of system limitations of Responsible Officers</label></td>
-                                            <td className="air-inputform-field-cell"><select name="accountabilityFramework" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="accountabilityAwareness" className="air-inputform-select"
+                                                value={selectedValues.accountabilityAwareness || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2532,11 +4405,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High</option>
                                                 <option value="very-high">Very High</option>
                                             </select></td>
-                                            <td><textarea name="accountabilityFrameworkDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="accountabilityAwarenessDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">No or low documentation of performance targets or “Fairness” principles trade-offs</label></td>
-                                            <td className="air-inputform-field-cell"><select name="accountabilityFramework" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="accountabilityDocumentation" className="air-inputform-select"
+                                                value={selectedValues.accountabilityDocumentation || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2544,11 +4419,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High</option>
                                                 <option value="very-high">Very High</option>
                                             </select></td>
-                                            <td><textarea name="accountabilityFrameworkDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="accountabilityDocumentationDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">No or limited mechanisms to record insight / AI System decision history</label></td>
-                                            <td className="air-inputform-field-cell"><select name="accountabilityFramework" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="accountabilityDecisionHistory" className="air-inputform-select"
+                                                value={selectedValues.accountabilityDecisionHistory || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2556,11 +4433,13 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High</option>
                                                 <option value="very-high">Very High</option>
                                             </select></td>
-                                            <td><textarea name="accountabilityFrameworkDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="accountabilityDecisionHistoryDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The inability of third parties to accurately audit AI system insights / decisions</label></td>
-                                            <td className="air-inputform-field-cell"><select name="accountabilityFramework" className="air-inputform-select">
+                                            <td className="air-inputform-field-cell"><select name="accountabilityThirdParties" className="air-inputform-select"
+                                                value={selectedValues.accountabilityThirdParties || ""}
+                                                onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
                                                 <option value="na">N/A</option>
                                                 <option value="low">Low</option>
@@ -2568,7 +4447,7 @@ const AIRiskInputForm = () => {
                                                 <option value="high">High</option>
                                                 <option value="very-high">Very High</option>
                                             </select></td>
-                                            <td><textarea name="accountabilityFrameworkDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                            <td><textarea name="accountabilityThirdPartiesDetails" className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                         </tr>
                                         <tr>
                                             <td colSpan={3}><hr /></td>                                        
@@ -2722,17 +4601,318 @@ const AIRiskInputForm = () => {
                                                 </td>
                                             </tr>
                                         )}
+                                        <tr>
+                                            <td colSpan={3} className="air-inputform-status-row">
+                                                <div className={`air-risks-risk-summary ${getAccountabilityHighestRisk().cssClass}`}>
+                                                    <strong>Accountability Status: {getAccountabilityHighestRisk().text}</strong>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {/* Accountability Summary Table */}
+                                        {(selectedValues.accountabilityTraining || 
+                                          selectedValues.accountabilityAwareness || 
+                                          selectedValues.accountabilityDocumentation ||
+                                          selectedValues.accountabilityDecisionHistory ||
+                                          selectedValues.accountabilityThirdParties ||
+                                          selectedValues.accountabilityResponsibleUse ||
+                                          selectedValues.accountabilityResponsiblePolicy ||
+                                          selectedValues.accountabilityResponsibleMonitoring ||
+                                          selectedValues.accountabilityResponsibleDataGovernance ||
+                                          selectedValues.accountabilityResponsibleTechnicalGovernance ||
+                                          selectedValues.accountabilityResponsibleAppealRedress ||
+                                          selectedValues.interventionProcess ||
+                                          selectedValues.overconfidenceProcess) && (
+                                            <tr>
+                                                <td colSpan={3} className="air-inputform-summary-row">
+                                                    <table className="air-risks-summary-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Accountability</th>
+                                                                <th className="air-risks-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
+                                                                <th className="air-risks-cell-header-low air-ai-risk-level-table-header">Low</th>
+                                                                <th className="air-risks-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
+                                                                <th className="air-risks-cell-header-high air-ai-risk-level-table-header">High</th>
+                                                                <th className="air-risks-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {selectedValues.accountabilityTraining && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Training on responsible AI use</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityTraining', selectedValues.accountabilityTraining, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityTraining', selectedValues.accountabilityTraining, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityTraining', selectedValues.accountabilityTraining, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityTraining', selectedValues.accountabilityTraining, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityTraining', selectedValues.accountabilityTraining, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityTraining', selectedValues.accountabilityTraining, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityTraining', selectedValues.accountabilityTraining, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityTraining', selectedValues.accountabilityTraining, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityTraining', selectedValues.accountabilityTraining, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityTraining', selectedValues.accountabilityTraining, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.accountabilityAwareness && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Awareness of AI system capabilities and limitations</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityAwareness', selectedValues.accountabilityAwareness, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityAwareness', selectedValues.accountabilityAwareness, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityAwareness', selectedValues.accountabilityAwareness, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityAwareness', selectedValues.accountabilityAwareness, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityAwareness', selectedValues.accountabilityAwareness, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityAwareness', selectedValues.accountabilityAwareness, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityAwareness', selectedValues.accountabilityAwareness, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityAwareness', selectedValues.accountabilityAwareness, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityAwareness', selectedValues.accountabilityAwareness, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityAwareness', selectedValues.accountabilityAwareness, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.accountabilityDocumentation && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Documentation and record-keeping processes</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityDocumentation', selectedValues.accountabilityDocumentation, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityDocumentation', selectedValues.accountabilityDocumentation, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityDocumentation', selectedValues.accountabilityDocumentation, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityDocumentation', selectedValues.accountabilityDocumentation, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityDocumentation', selectedValues.accountabilityDocumentation, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityDocumentation', selectedValues.accountabilityDocumentation, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityDocumentation', selectedValues.accountabilityDocumentation, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityDocumentation', selectedValues.accountabilityDocumentation, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityDocumentation', selectedValues.accountabilityDocumentation, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityDocumentation', selectedValues.accountabilityDocumentation, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.accountabilityDecisionHistory && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Decision history and audit trail maintenance</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityDecisionHistory', selectedValues.accountabilityDecisionHistory, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityDecisionHistory', selectedValues.accountabilityDecisionHistory, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityDecisionHistory', selectedValues.accountabilityDecisionHistory, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityDecisionHistory', selectedValues.accountabilityDecisionHistory, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityDecisionHistory', selectedValues.accountabilityDecisionHistory, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityDecisionHistory', selectedValues.accountabilityDecisionHistory, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityDecisionHistory', selectedValues.accountabilityDecisionHistory, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityDecisionHistory', selectedValues.accountabilityDecisionHistory, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityDecisionHistory', selectedValues.accountabilityDecisionHistory, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityDecisionHistory', selectedValues.accountabilityDecisionHistory, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.accountabilityThirdParties && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Third-party AI system oversight and accountability</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityThirdParties', selectedValues.accountabilityThirdParties, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityThirdParties', selectedValues.accountabilityThirdParties, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityThirdParties', selectedValues.accountabilityThirdParties, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityThirdParties', selectedValues.accountabilityThirdParties, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityThirdParties', selectedValues.accountabilityThirdParties, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityThirdParties', selectedValues.accountabilityThirdParties, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityThirdParties', selectedValues.accountabilityThirdParties, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityThirdParties', selectedValues.accountabilityThirdParties, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityThirdParties', selectedValues.accountabilityThirdParties, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityThirdParties', selectedValues.accountabilityThirdParties, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.accountabilityResponsibleUse && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Responsible AI Use Officer</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.accountabilityResponsiblePolicy && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Responsible AI Policy Officer</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.accountabilityResponsibleMonitoring && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Responsible AI Monitoring Officer</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleMonitoring', selectedValues.accountabilityResponsibleMonitoring, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleMonitoring', selectedValues.accountabilityResponsibleMonitoring, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleMonitoring', selectedValues.accountabilityResponsibleMonitoring, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleMonitoring', selectedValues.accountabilityResponsibleMonitoring, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleMonitoring', selectedValues.accountabilityResponsibleMonitoring, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleMonitoring', selectedValues.accountabilityResponsibleMonitoring, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleMonitoring', selectedValues.accountabilityResponsibleMonitoring, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleMonitoring', selectedValues.accountabilityResponsibleMonitoring, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleMonitoring', selectedValues.accountabilityResponsibleMonitoring, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleMonitoring', selectedValues.accountabilityResponsibleMonitoring, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.accountabilityResponsibleDataGovernance && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Responsible AI Data Governance Officer</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleDataGovernance', selectedValues.accountabilityResponsibleDataGovernance, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleDataGovernance', selectedValues.accountabilityResponsibleDataGovernance, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleDataGovernance', selectedValues.accountabilityResponsibleDataGovernance, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleDataGovernance', selectedValues.accountabilityResponsibleDataGovernance, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleDataGovernance', selectedValues.accountabilityResponsibleDataGovernance, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleDataGovernance', selectedValues.accountabilityResponsibleDataGovernance, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleDataGovernance', selectedValues.accountabilityResponsibleDataGovernance, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleDataGovernance', selectedValues.accountabilityResponsibleDataGovernance, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleDataGovernance', selectedValues.accountabilityResponsibleDataGovernance, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleDataGovernance', selectedValues.accountabilityResponsibleDataGovernance, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.accountabilityResponsibleTechnicalGovernance && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Responsible AI Technical Governance Officer</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleTechnicalGovernance', selectedValues.accountabilityResponsibleTechnicalGovernance, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleTechnicalGovernance', selectedValues.accountabilityResponsibleTechnicalGovernance, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleTechnicalGovernance', selectedValues.accountabilityResponsibleTechnicalGovernance, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleTechnicalGovernance', selectedValues.accountabilityResponsibleTechnicalGovernance, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleTechnicalGovernance', selectedValues.accountabilityResponsibleTechnicalGovernance, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleTechnicalGovernance', selectedValues.accountabilityResponsibleTechnicalGovernance, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleTechnicalGovernance', selectedValues.accountabilityResponsibleTechnicalGovernance, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleTechnicalGovernance', selectedValues.accountabilityResponsibleTechnicalGovernance, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleTechnicalGovernance', selectedValues.accountabilityResponsibleTechnicalGovernance, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleTechnicalGovernance', selectedValues.accountabilityResponsibleTechnicalGovernance, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.accountabilityResponsibleAppealRedress && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Responsible AI Appeal and Redress Officer</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleAppealRedress', selectedValues.accountabilityResponsibleAppealRedress, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleAppealRedress', selectedValues.accountabilityResponsibleAppealRedress, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleAppealRedress', selectedValues.accountabilityResponsibleAppealRedress, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleAppealRedress', selectedValues.accountabilityResponsibleAppealRedress, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleAppealRedress', selectedValues.accountabilityResponsibleAppealRedress, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleAppealRedress', selectedValues.accountabilityResponsibleAppealRedress, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleAppealRedress', selectedValues.accountabilityResponsibleAppealRedress, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleAppealRedress', selectedValues.accountabilityResponsibleAppealRedress, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('accountabilityResponsibleAppealRedress', selectedValues.accountabilityResponsibleAppealRedress, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('accountabilityResponsibleAppealRedress', selectedValues.accountabilityResponsibleAppealRedress, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.interventionProcess && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Intervention process for harmful content</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('interventionProcess', selectedValues.interventionProcess, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('interventionProcess', selectedValues.interventionProcess, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('interventionProcess', selectedValues.interventionProcess, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('interventionProcess', selectedValues.interventionProcess, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('interventionProcess', selectedValues.interventionProcess, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('interventionProcess', selectedValues.interventionProcess, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('interventionProcess', selectedValues.interventionProcess, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('interventionProcess', selectedValues.interventionProcess, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('interventionProcess', selectedValues.interventionProcess, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('interventionProcess', selectedValues.interventionProcess, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.overconfidenceProcess && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Process to mitigate over-confidence</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('overconfidenceProcess', selectedValues.overconfidenceProcess, 'very_low_na').cellClass}`}>
+                                                                        {getAccountabilityIndicator('overconfidenceProcess', selectedValues.overconfidenceProcess, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('overconfidenceProcess', selectedValues.overconfidenceProcess, 'low').cellClass}`}>
+                                                                        {getAccountabilityIndicator('overconfidenceProcess', selectedValues.overconfidenceProcess, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('overconfidenceProcess', selectedValues.overconfidenceProcess, 'mid_range').cellClass}`}>
+                                                                        {getAccountabilityIndicator('overconfidenceProcess', selectedValues.overconfidenceProcess, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('overconfidenceProcess', selectedValues.overconfidenceProcess, 'high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('overconfidenceProcess', selectedValues.overconfidenceProcess, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getAccountabilityIndicator('overconfidenceProcess', selectedValues.overconfidenceProcess, 'very_high').cellClass}`}>
+                                                                        {getAccountabilityIndicator('overconfidenceProcess', selectedValues.overconfidenceProcess, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        )}
                                     </tbody>
                                 </table>
                             </fieldset>
                         </td>
                     </tr>
                     {/* Risk Mitigation */}
+                    {viewMode !== 'basic' && (
                     <tr>
                         <td colSpan={3}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-mitigation">
                                 <legend className="air-inputform-legend air-inputform-legend-mitigation">Risk Mitigation</legend>
-                                <table className="air-inputform-table">
+                                <table className="air-inputform-field-table">
                                     <tbody>
                                         <tr>
                                             <td colSpan={3}>
@@ -2774,7 +4954,9 @@ const AIRiskInputForm = () => {
                             </fieldset>
                         </td>
                     </tr>
+                    )}
                     {/* Procurement */}
+                    {viewMode !== 'basic' && (
                     <tr>
                         <td colSpan={3}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-procurement">
@@ -2909,6 +5091,272 @@ const AIRiskInputForm = () => {
                                                 </td>
                                             </tr>
                                         )}
+                                        <tr>
+                                            <td colSpan={3} className="air-inputform-status-row">
+                                                <div className={`air-risks-risk-summary ${getProcurementHighestRisk().cssClass}`}>
+                                                    <strong>Procurement Status: {getProcurementHighestRisk().text}</strong>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {/* Procurement Summary Table */}
+                                        {(selectedValues.procurementControls || 
+                                          selectedValues.procurementContractualClauses || 
+                                          selectedValues.procurementSupplierQuestions ||
+                                          selectedValues.procurementResidualRiskFactors ||
+                                          selectedValues.procurementSystemRequirements ||
+                                          selectedValues.procurementRiskTreatments) && (
+                                            <tr>
+                                                <td colSpan={3} className="air-inputform-summary-row">
+                                                    <table className="air-risks-summary-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Procurement</th>
+                                                                <th className="air-risks-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
+                                                                <th className="air-risks-cell-header-low air-ai-risk-level-table-header">Low</th>
+                                                                <th className="air-risks-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
+                                                                <th className="air-risks-cell-header-high air-ai-risk-level-table-header">High</th>
+                                                                <th className="air-risks-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {selectedValues.procurementControls && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>System Requirements and Contractual Controls</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementControls', selectedValues.procurementControls, 'very_low_na').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementControls', selectedValues.procurementControls, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementControls', selectedValues.procurementControls, 'low').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementControls', selectedValues.procurementControls, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementControls', selectedValues.procurementControls, 'mid_range').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementControls', selectedValues.procurementControls, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementControls', selectedValues.procurementControls, 'high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementControls', selectedValues.procurementControls, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementControls', selectedValues.procurementControls, 'very_high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementControls', selectedValues.procurementControls, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.procurementContractualClauses && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Contractual Clauses Assessment</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementContractualClauses', selectedValues.procurementContractualClauses, 'very_low_na').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementContractualClauses', selectedValues.procurementContractualClauses, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementContractualClauses', selectedValues.procurementContractualClauses, 'low').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementContractualClauses', selectedValues.procurementContractualClauses, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementContractualClauses', selectedValues.procurementContractualClauses, 'mid_range').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementContractualClauses', selectedValues.procurementContractualClauses, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementContractualClauses', selectedValues.procurementContractualClauses, 'high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementContractualClauses', selectedValues.procurementContractualClauses, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementContractualClauses', selectedValues.procurementContractualClauses, 'very_high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementContractualClauses', selectedValues.procurementContractualClauses, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.procurementSupplierQuestions && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Unanswered Supplier Questions</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementSupplierQuestions', selectedValues.procurementSupplierQuestions, 'very_low_na').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementSupplierQuestions', selectedValues.procurementSupplierQuestions, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementSupplierQuestions', selectedValues.procurementSupplierQuestions, 'low').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementSupplierQuestions', selectedValues.procurementSupplierQuestions, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementSupplierQuestions', selectedValues.procurementSupplierQuestions, 'mid_range').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementSupplierQuestions', selectedValues.procurementSupplierQuestions, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementSupplierQuestions', selectedValues.procurementSupplierQuestions, 'high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementSupplierQuestions', selectedValues.procurementSupplierQuestions, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementSupplierQuestions', selectedValues.procurementSupplierQuestions, 'very_high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementSupplierQuestions', selectedValues.procurementSupplierQuestions, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.procurementResidualRiskFactors && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Residual Risk Factors Above Low</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementResidualRiskFactors', selectedValues.procurementResidualRiskFactors, 'very_low_na').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementResidualRiskFactors', selectedValues.procurementResidualRiskFactors, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementResidualRiskFactors', selectedValues.procurementResidualRiskFactors, 'low').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementResidualRiskFactors', selectedValues.procurementResidualRiskFactors, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementResidualRiskFactors', selectedValues.procurementResidualRiskFactors, 'mid_range').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementResidualRiskFactors', selectedValues.procurementResidualRiskFactors, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementResidualRiskFactors', selectedValues.procurementResidualRiskFactors, 'high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementResidualRiskFactors', selectedValues.procurementResidualRiskFactors, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementResidualRiskFactors', selectedValues.procurementResidualRiskFactors, 'very_high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementResidualRiskFactors', selectedValues.procurementResidualRiskFactors, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.procurementSystemRequirements && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>System Requirements Identification</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementSystemRequirements', selectedValues.procurementSystemRequirements, 'very_low_na').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementSystemRequirements', selectedValues.procurementSystemRequirements, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementSystemRequirements', selectedValues.procurementSystemRequirements, 'low').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementSystemRequirements', selectedValues.procurementSystemRequirements, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementSystemRequirements', selectedValues.procurementSystemRequirements, 'mid_range').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementSystemRequirements', selectedValues.procurementSystemRequirements, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementSystemRequirements', selectedValues.procurementSystemRequirements, 'high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementSystemRequirements', selectedValues.procurementSystemRequirements, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementSystemRequirements', selectedValues.procurementSystemRequirements, 'very_high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementSystemRequirements', selectedValues.procurementSystemRequirements, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                            {selectedValues.procurementRiskTreatments && (
+                                                                <tr>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>Appropriate Risk Treatments</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementRiskTreatments', selectedValues.procurementRiskTreatments, 'very_low_na').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementRiskTreatments', selectedValues.procurementRiskTreatments, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementRiskTreatments', selectedValues.procurementRiskTreatments, 'low').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementRiskTreatments', selectedValues.procurementRiskTreatments, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementRiskTreatments', selectedValues.procurementRiskTreatments, 'mid_range').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementRiskTreatments', selectedValues.procurementRiskTreatments, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementRiskTreatments', selectedValues.procurementRiskTreatments, 'high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementRiskTreatments', selectedValues.procurementRiskTreatments, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${getProcurementIndicator('procurementRiskTreatments', selectedValues.procurementRiskTreatments, 'very_high').cellClass}`}>
+                                                                        {getProcurementIndicator('procurementRiskTreatments', selectedValues.procurementRiskTreatments, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    )}
+                    {/* Overall Risk Summary Table */}
+                    <tr>
+                        <td colSpan={3}>
+                            <fieldset className="air-inputform-fieldset">
+                                <legend className="air-inputform-legend">Overall Risk Summary</legend>
+                                <table className="air-risks-summary-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Risk Category</th>
+                                            <th className="air-risks-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
+                                            <th className="air-risks-cell-header-low air-ai-risk-level-table-header">Low</th>
+                                            <th className="air-risks-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
+                                            <th className="air-risks-cell-header-high air-ai-risk-level-table-header">High</th>
+                                            <th className="air-risks-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td className="air-ai-risk-level-table-cell"><strong>Community</strong></td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('community', 'very_low_na').cellClass}`}>
+                                                {getOverallRiskIndicator('community', 'very_low_na').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('community', 'low').cellClass}`}>
+                                                {getOverallRiskIndicator('community', 'low').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('community', 'mid_range').cellClass}`}>
+                                                {getOverallRiskIndicator('community', 'mid_range').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('community', 'high').cellClass}`}>
+                                                {getOverallRiskIndicator('community', 'high').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('community', 'very_high').cellClass}`}>
+                                                {getOverallRiskIndicator('community', 'very_high').indicator}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="air-ai-risk-level-table-cell"><strong>Fairness</strong></td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('fairness', 'very_low_na').cellClass}`}>
+                                                {getOverallRiskIndicator('fairness', 'very_low_na').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('fairness', 'low').cellClass}`}>
+                                                {getOverallRiskIndicator('fairness', 'low').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('fairness', 'mid_range').cellClass}`}>
+                                                {getOverallRiskIndicator('fairness', 'mid_range').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('fairness', 'high').cellClass}`}>
+                                                {getOverallRiskIndicator('fairness', 'high').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('fairness', 'very_high').cellClass}`}>
+                                                {getOverallRiskIndicator('fairness', 'very_high').indicator}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="air-ai-risk-level-table-cell"><strong>Privacy and Security</strong></td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('privacy', 'very_low_na').cellClass}`}>
+                                                {getOverallRiskIndicator('privacy', 'very_low_na').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('privacy', 'low').cellClass}`}>
+                                                {getOverallRiskIndicator('privacy', 'low').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('privacy', 'mid_range').cellClass}`}>
+                                                {getOverallRiskIndicator('privacy', 'mid_range').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('privacy', 'high').cellClass}`}>
+                                                {getOverallRiskIndicator('privacy', 'high').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('privacy', 'very_high').cellClass}`}>
+                                                {getOverallRiskIndicator('privacy', 'very_high').indicator}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="air-ai-risk-level-table-cell"><strong>Transparency</strong></td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('transparency', 'very_low_na').cellClass}`}>
+                                                {getOverallRiskIndicator('transparency', 'very_low_na').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('transparency', 'low').cellClass}`}>
+                                                {getOverallRiskIndicator('transparency', 'low').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('transparency', 'mid_range').cellClass}`}>
+                                                {getOverallRiskIndicator('transparency', 'mid_range').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('transparency', 'high').cellClass}`}>
+                                                {getOverallRiskIndicator('transparency', 'high').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('transparency', 'very_high').cellClass}`}>
+                                                {getOverallRiskIndicator('transparency', 'very_high').indicator}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="air-ai-risk-level-table-cell"><strong>Accountability</strong></td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('accountability', 'very_low_na').cellClass}`}>
+                                                {getOverallRiskIndicator('accountability', 'very_low_na').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('accountability', 'low').cellClass}`}>
+                                                {getOverallRiskIndicator('accountability', 'low').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('accountability', 'mid_range').cellClass}`}>
+                                                {getOverallRiskIndicator('accountability', 'mid_range').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('accountability', 'high').cellClass}`}>
+                                                {getOverallRiskIndicator('accountability', 'high').indicator}
+                                            </td>
+                                            <td className={`air-ai-risk-level-table-cell ${getOverallRiskIndicator('accountability', 'very_high').cellClass}`}>
+                                                {getOverallRiskIndicator('accountability', 'very_high').indicator}
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </fieldset>
