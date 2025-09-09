@@ -1,5 +1,71 @@
 /* SC3 AI Risk Form Styles */
 
+/* Minimal performance optimizations for all browsers */
+.air-inputform-input,
+.air-inputform-textarea,
+.air-inputform-select {
+  box-sizing: border-box;
+}
+
+/* Performance optimizations for Microsoft Edge */
+@supports (-ms-ime-align: auto) {
+  /* Edge-specific performance optimizations - aggressive approach */
+  .air-inputform-input,
+  .air-inputform-textarea,
+  .air-inputform-select {
+    will-change: auto !important;
+    contain: strict !important;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    isolation: isolate !important;
+  }
+  
+  /* Disable ALL transitions and animations in Edge */
+  * {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  /* Force aggressive containment in Edge for form performance */
+  .air-inputform-container {
+    contain: strict !important;
+    transform: translateZ(0) !important;
+  }
+  
+  .air-inputform-details {
+    contain: layout style paint !important;
+  }
+  
+  /* Isolate form rows to prevent cascade repaints */
+  .air-form-row {
+    contain: strict !important;
+    isolation: isolate !important;
+  }
+  
+  /* Simplify focus states to prevent reflow */
+  .air-inputform-input:focus,
+  .air-inputform-textarea:focus,
+  .air-inputform-select:focus {
+    outline: 1px solid var(--sc3-primary) !important;
+    outline-offset: 0 !important;
+    box-shadow: none !important;
+  }
+  
+  /* Optimize scrolling and reduce paint operations in Edge */
+  .air-main-container {
+    -ms-overflow-style: none;
+    scroll-behavior: auto !important;
+    contain: layout style !important;
+  }
+  
+  /* Prevent unnecessary repaints of the entire form during input */
+  .air-inputform-details {
+    -ms-overflow-style: none;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* SC3.com.au theme colors and variables */
 :root {
   --sc3-primary: #003366;
@@ -78,8 +144,8 @@
 /* Harms table cell background colors - REVERSED color scheme from benefits */
 /* Very Low or N/A - Grey (same as benefits) */
 .air-harms-cell-header-very_low_na {
-    background-color: #495054;
-    color: white;
+    background-color: #495054 !important;
+    color: white !important;
 }
 
 .air-harms-cell-very_low_na {
@@ -89,8 +155,8 @@
 
 /* Low Risk - Green (benefits = red, harms = green) */
 .air-harms-cell-header-low {
-    background-color: #00AA45;
-    color: white;
+    background-color: #00AA45 !important;
+    color: white !important;
 }
 
 .air-harms-cell-low {
@@ -100,8 +166,8 @@
 
 /* Mid-range Risk - Yellow (benefits = orange, harms = yellow) */
 .air-harms-cell-header-mid_range {
-    background-color: #FAAF05;
-    color: white;
+    background-color: #FAAF05 !important;
+    color: white !important;
 }
 
 .air-harms-cell-mid_range {
@@ -111,8 +177,8 @@
 
 /* High Risk - Orange (benefits = yellow, harms = orange) */
 .air-harms-cell-header-high {
-    background-color: #F3631B;
-    color: white;
+    background-color: #F3631B !important;
+    color: white !important;
 }
 
 .air-harms-cell-high {
@@ -122,8 +188,8 @@
 
 /* Very High Risk - Red (benefits = green, harms = red) */
 .air-harms-cell-header-very_high {
-    background-color: #D7153A;
-    color: white;
+    background-color: #D7153A !important;
+    color: white !important;
 }
 
 .air-harms-cell-very_high {
@@ -380,6 +446,36 @@ body {
   box-shadow: 0 2px 4px var(--sc3-primary-shadow);
 }
 
+/* Centered wrapper for Framework Comparison table */
+.air-framework-comparison-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 1rem auto;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.air-framework-comparison-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0.1rem 1rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.air-framework-comparison-table {
+  width: auto;
+  min-width: 800px;
+  max-width: 100%;
+  border-collapse: collapse;
+  background: var(--sc3-table-bg);
+  margin: 0 auto;
+}
+
 .air-ai-risk-level-table-wrapper {
   width: 100vw;
   max-width: 100vw;
@@ -404,7 +500,9 @@ body {
 
 .air-ai-risk-level-table {
   width: 95vw;
-  min-width: 1200px;
+  min-width: 900px;
+  max-width: 1200px;
+  margin: auto;
   border-collapse: collapse;
   background: var(--sc3-table-bg);
 }
@@ -525,6 +623,999 @@ body {
   cursor: pointer;
   font-weight: 600;
   color: var(--sc3-secondary);
+}
+
+.air-report-content {
+  padding-top: 1rem;
+}
+
+.air-report-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--sc3-bg);
+  border-radius: var(--sc3-border-radius);
+  border-left: 4px solid var(--sc3-secondary);
+}
+
+.air-report-section h3 {
+  margin: 0 0 1rem 0;
+  color: var(--sc3-primary);
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.air-report-title {
+  color: var(--sc3-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 2px solid var(--sc3-accent);
+  padding-bottom: 0.5rem;
+}
+
+/* Statistics Grid */
+.air-report-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.air-report-stat {
+  background: white;
+  padding: 1rem;
+  border-radius: var(--sc3-border-radius);
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.air-report-stat-value {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: var(--sc3-primary);
+  margin-bottom: 0.25rem;
+}
+
+.air-report-stat-label {
+  color: #666;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Risk Level Colors */
+.air-report-stat-value.very-high,
+.air-report-risk-badge.very-high,
+.air-report-entry-risk.very-high {
+  color: var(--sc3-red) !important;
+  background-color: var(--sc3-red-light);
+}
+
+.air-report-stat-value.high,
+.air-report-risk-badge.high,
+.air-report-entry-risk.high {
+  color: #d84315 !important;
+  background-color: #ffccbc;
+}
+
+.air-report-stat-value.mid-range,
+.air-report-risk-badge.mid-range,
+.air-report-entry-risk.mid-range {
+  color: var(--sc3-orange) !important;
+  background-color: var(--sc3-orange-light);
+}
+
+.air-report-stat-value.low,
+.air-report-risk-badge.low,
+.air-report-entry-risk.low {
+  color: #f57c00 !important;
+  background-color: #fff8e1;
+}
+
+.air-report-stat-value.very-low,
+.air-report-risk-badge.very-low,
+.air-report-entry-risk.very-low {
+  color: var(--sc3-green) !important;
+  background-color: var(--sc3-green-light);
+}
+
+.air-report-stat-value.na,
+.air-report-risk-badge.na,
+.air-report-entry-risk.na {
+  color: #757575 !important;
+  background-color: var(--sc3-gray-light);
+}
+
+.air-report-stat-value.not-set,
+.air-report-risk-badge.not-set,
+.air-report-entry-risk.not-set {
+  color: #bdbdbd !important;
+  background-color: #fafafa;
+}
+
+/* Risk Distribution */
+.air-report-risk-distribution {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.air-report-risk-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: var(--sc3-border-radius);
+  border: 1px solid #e0e0e0;
+}
+
+.air-report-risk-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.85em;
+  font-weight: 600;
+  min-width: 80px;
+  text-align: center;
+  border: 1px solid;
+}
+
+.air-report-risk-count {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Section Analysis */
+.air-report-sections {
+  display: grid;
+  gap: 1rem;
+}
+
+.air-report-section-item {
+  background: white;
+  padding: 1rem;
+  border-radius: var(--sc3-border-radius);
+  border: 1px solid #e0e0e0;
+}
+
+.air-report-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.air-report-section-header h4 {
+  margin: 0;
+  color: var(--sc3-primary);
+  font-size: 1em;
+}
+
+.air-report-section-badges {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.air-report-completion-badge {
+  background: var(--sc3-secondary);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.air-report-completion-badge-secondary {
+  background: var(--sc3-green);
+}
+
+.air-report-progress-container {
+  margin-bottom: 0.5rem;
+}
+
+.air-report-progress-label {
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+/* Entry summary improvements */
+.air-report-entries-info {
+  background: #f5f5f5;
+  padding: 0.75rem;
+  border-radius: var(--sc3-border-radius);
+  margin-bottom: 1rem;
+  font-size: 0.9em;
+  color: #555;
+  text-align: center;
+  font-style: italic;
+}
+
+.air-report-entry-risk-badge {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 8px;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: white;
+}
+
+.air-report-entry-phase {
+  background: #e3f2fd;
+  color: var(--sc3-primary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 8px;
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.air-report-more-entries {
+  padding: 1rem;
+  text-align: center;
+  color: #666;
+  font-size: 0.9em;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 1rem;
+}
+
+/* HRIA Analysis Styles */
+.air-report-hria-required {
+  background: #ff6f00 !important;
+  color: white !important;
+}
+
+.air-report-hria-breakdown {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: var(--sc3-border-radius);
+  border-left: 4px solid var(--sc3-primary);
+}
+
+.air-report-hria-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.air-report-hria-list li {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.air-report-hria-icon {
+  margin-right: 0.5rem;
+  font-size: 1.1em;
+}
+
+.air-report-hria-required {
+  border-left: 3px solid #dc3545;
+}
+
+.air-report-hria-not-required {
+  border-left: 3px solid #28a745;
+}
+
+.air-report-hria-incomplete {
+  border-left: 3px solid #6c757d;
+}
+
+.air-report-hria-percentage {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.1em;
+  color: var(--sc3-primary);
+}
+
+/* Community Benefits Analysis Styles */
+.air-report-benefit-assessed {
+  background: #4caf50 !important;
+  color: white !important;
+}
+
+.air-report-benefit-breakdown {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: var(--sc3-border-radius);
+  border-left: 4px solid #4caf50;
+}
+
+.air-report-benefit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.air-report-benefit-list li {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.air-report-benefit-icon {
+  margin-right: 0.5rem;
+  font-size: 1.1em;
+}
+
+.air-report-benefit-level.risk-level-6 {
+  border-left: 3px solid #4caf50; /* Very High Benefit - Green */
+}
+
+.air-report-benefit-level.risk-level-5 {
+  border-left: 3px solid #8bc34a; /* High Benefit - Light Green */
+}
+
+.air-report-benefit-level.risk-level-4 {
+  border-left: 3px solid #cddc39; /* Medium Benefit - Yellow Green */
+}
+
+.air-report-benefit-level.risk-level-3 {
+  border-left: 3px solid #ffeb3b; /* Low-Medium Benefit - Yellow */
+}
+
+.air-report-benefit-level.risk-level-2 {
+  border-left: 3px solid #ffc107; /* Low Benefit - Amber */
+}
+
+.air-report-benefit-level.risk-level-1 {
+  border-left: 3px solid #ff9800; /* Very Low Benefit - Orange */
+}
+
+.air-report-benefit-incomplete {
+  border-left: 3px solid #6c757d;
+}
+
+.air-report-benefit-summary {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.1em;
+  color: #4caf50;
+  font-weight: 600;
+}
+
+/* Procurement Risk Analysis Styles */
+.air-report-procurement-risk {
+  background: #ff5722 !important;
+  color: white !important;
+}
+
+.air-report-procurement-breakdown {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: var(--sc3-border-radius);
+  border-left: 4px solid #ff5722;
+}
+
+.air-report-procurement-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.air-report-procurement-list li {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.air-report-procurement-icon {
+  margin-right: 0.5rem;
+  font-size: 1.1em;
+}
+
+.air-report-procurement-risk-high {
+  border-left: 3px solid #dc3545;
+}
+
+.air-report-procurement-risk-low {
+  border-left: 3px solid #28a745;
+}
+
+.air-report-procurement-incomplete {
+  border-left: 3px solid #6c757d;
+}
+
+.air-report-procurement-percentage {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.1em;
+  color: #ff5722;
+  font-weight: 600;
+}
+
+.air-report-procurement-label {
+  color: #ff5722;
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.air-report-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.air-report-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sc3-secondary), var(--sc3-accent));
+  transition: width 0.3s ease;
+}
+
+.air-report-progress-fill-secondary {
+  background: linear-gradient(90deg, var(--sc3-green), var(--sc3-teal));
+}
+
+.air-report-entry-completion-secondary {
+  background: var(--sc3-green);
+}
+
+.air-report-entry-section-completions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.air-report-entry-section-completion {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.air-report-section-summary {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Priority-based Section Groups */
+.air-report-priority-group {
+  margin-bottom: 2.5rem;
+  padding: 1rem;
+  border-radius: var(--sc3-border-radius);
+  background: linear-gradient(135deg, #fafbfc, #f4f8fb);
+}
+
+.air-report-priority-title {
+  color: var(--sc3-primary);
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--sc3-border-radius);
+  background: linear-gradient(135deg, var(--sc3-primary), var(--sc3-background-blue));
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 51, 102, 0.2);
+}
+
+/* High Priority Sections */
+.air-report-section-high-priority {
+  border-left: 5px solid var(--sc3-red);
+  background: linear-gradient(135deg, #fff, #fff8f8);
+  box-shadow: 0 3px 12px rgba(198, 40, 40, 0.15);
+  position: relative;
+}
+
+.air-report-section-high-priority::before {
+  content: "PRIORITY";
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  background: var(--sc3-red);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7em;
+  font-weight: bold;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 4px rgba(198, 40, 40, 0.3);
+}
+
+.air-report-section-high-priority .air-report-section-header h4 {
+  color: var(--sc3-red);
+  font-weight: bold;
+}
+
+/* Low Priority Sections */
+.air-report-section-low-priority {
+  border-left: 4px solid var(--sc3-secondary);
+  background: linear-gradient(135deg, #fff, #f8fafe);
+  box-shadow: 0 2px 8px rgba(0, 153, 204, 0.1);
+}
+
+.air-report-section-low-priority .air-report-section-header h4 {
+  color: var(--sc3-secondary);
+}
+
+/* Qualification Sections */
+.air-report-section-qualification {
+  border-left: 4px solid var(--sc3-teal);
+  background: linear-gradient(135deg, #fff, #f0fffe);
+  box-shadow: 0 2px 8px rgba(0, 105, 92, 0.1);
+}
+
+.air-report-section-qualification .air-report-section-header h4 {
+  color: var(--sc3-teal);
+}
+
+/* Qualification Labels */
+.air-report-qualification-label {
+  color: var(--sc3-teal);
+  font-weight: normal;
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+/* Qualification Badges */
+.air-report-completion-badge-qualification {
+  background: var(--sc3-teal);
+}
+
+/* Qualification Progress Fill */
+.air-report-progress-fill-qualification {
+  background: linear-gradient(90deg, var(--sc3-teal), var(--sc3-teal-light));
+}
+
+/* Qualification Note */
+.air-report-qualification-note {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: var(--sc3-teal-light);
+  border-left: 3px solid var(--sc3-teal);
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #004d40;
+}
+
+/* Benefit Sections */
+.air-report-section-benefit {
+  border-left: 4px solid var(--sc3-green);
+  background: linear-gradient(135deg, #fff, #f8fff8);
+  box-shadow: 0 2px 8px rgba(56, 142, 60, 0.1);
+}
+
+.air-report-section-benefit .air-report-section-header h4 {
+  color: var(--sc3-green);
+}
+
+/* Benefit Labels */
+.air-report-benefit-label {
+  color: var(--sc3-green);
+  font-weight: normal;
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+/* Benefit Badges */
+.air-report-completion-badge-benefit {
+  background: var(--sc3-green);
+}
+
+/* Benefit Progress Fill */
+.air-report-progress-fill-benefit {
+  background: linear-gradient(90deg, var(--sc3-green), var(--sc3-green-light));
+}
+
+/* Benefit Note */
+.air-report-benefit-note {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: var(--sc3-green-light);
+  border-left: 3px solid var(--sc3-green);
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #2e7d32;
+}
+
+/* Benefit Level Classes for display */
+.very-high-benefit { color: var(--sc3-green); font-weight: bold; }
+.high-benefit { color: var(--sc3-green); }
+.mid-range-benefit { color: var(--sc3-secondary); }
+.low-benefit { color: var(--sc3-orange); }
+.very-low-benefit { color: var(--sc3-red); }
+.na-benefit { color: #999; }
+.not-set-benefit { color: #ccc; }
+
+/* Donut Charts Styles */
+.air-report-charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.air-report-chart-wrapper {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--sc3-border-radius);
+  border: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.air-report-chart-wrapper h4 {
+  margin: 0 0 1rem 0;
+  color: var(--sc3-primary);
+  font-size: 1.1em;
+}
+
+.air-report-donut-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.air-report-donut-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.air-report-donut-segment {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  stroke: white;
+  stroke-width: 2;
+}
+
+.air-report-donut-segment:hover {
+  opacity: 0.8;
+  filter: brightness(110%);
+}
+
+.air-report-donut-center-text {
+  font-size: 12px;
+  font-weight: bold;
+  fill: var(--sc3-primary);
+}
+
+.air-report-donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 200px;
+}
+
+.air-report-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85em;
+}
+
+.air-report-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.air-report-legend-text {
+  color: #666;
+}
+
+/* Single Entry Display */
+.air-report-single-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.air-report-single-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sc3-primary), var(--sc3-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
+}
+
+.air-report-single-text {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9em;
+  line-height: 1.2;
+}
+
+.air-report-single-label {
+  color: #666;
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+/* No Data Display */
+.air-report-no-data {
+  padding: 2rem;
+  color: #999;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Tooltip styles */
+.air-report-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8em;
+  pointer-events: none;
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+/* Responsive adjustments for charts */
+@media (max-width: 768px) {
+  .air-report-charts-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .air-report-chart-wrapper {
+    padding: 1rem;
+  }
+  
+  .air-report-donut-legend {
+    max-width: 150px;
+  }
+  
+  .air-report-legend-item {
+    font-size: 0.8em;
+  }
+}
+
+/* Priority Indicators */
+.air-report-priority-indicator {
+  margin-right: 0.5rem;
+  font-size: 1.1em;
+}
+
+/* Residual Risk Label */
+.air-report-residual-risk-label {
+  color: var(--sc3-orange);
+  font-weight: normal;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+/* Responsive adjustments for priority sections */
+@media (max-width: 768px) {
+  .air-report-priority-group {
+    padding: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .air-report-priority-title {
+    font-size: 1.1em;
+    padding: 0.5rem;
+  }
+  
+  .air-report-section-high-priority::before,
+  .air-report-section-item:has(.air-report-residual-risk-label)::before {
+    font-size: 0.6em;
+    padding: 0.15rem 0.4rem;
+    top: -6px;
+    right: 8px;
+  }
+  
+  .air-report-section-badges {
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
+  
+  .air-report-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+/* Risk Mitigation Note */
+.air-report-mitigation-note {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, var(--sc3-orange-light), #fff4e6);
+  border-left: 4px solid var(--sc3-orange);
+  border-radius: var(--sc3-border-radius);
+  font-size: 0.9em;
+  color: #b8511a;
+  box-shadow: 0 2px 6px rgba(255, 111, 0, 0.1);
+}
+
+/* Special styling for Risk Mitigation section */
+.air-report-section-item:has(.air-report-residual-risk-label) {
+  border: 2px solid var(--sc3-orange);
+  background: linear-gradient(135deg, #fff, #fffbf7);
+}
+
+.air-report-section-item:has(.air-report-residual-risk-label)::before {
+  content: "RESIDUAL RISK";
+  background: var(--sc3-orange);
+}
+
+/* Individual Entries */
+.air-report-entries {
+  display: grid;
+  gap: 1rem;
+}
+
+.air-report-entry-item {
+  background: white;
+  padding: 1rem;
+  border-radius: var(--sc3-border-radius);
+  border: 1px solid #e0e0e0;
+}
+
+.air-report-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.air-report-entry-header h5 {
+  margin: 0;
+  color: var(--sc3-primary);
+  font-size: 1em;
+}
+
+.air-report-entry-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+.air-report-entry-completion {
+  background: var(--sc3-green);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.air-report-entry-name {
+  color: var(--sc3-secondary);
+  font-style: italic;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.air-report-entry-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.5rem;
+}
+
+.air-report-entry-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  background: var(--sc3-bg);
+  border-radius: var(--sc3-border-radius);
+  font-size: 0.85em;
+}
+
+.air-report-entry-section-name {
+  font-weight: 600;
+  color: var(--sc3-primary);
+}
+
+.air-report-entry-section-completion {
+  color: #666;
+}
+
+.air-report-entry-risk {
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.8em;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+/* Recommendations */
+.air-report-recommendations {
+  display: grid;
+  gap: 1rem;
+}
+
+.air-report-recommendation {
+  padding: 1rem;
+  border-radius: var(--sc3-border-radius);
+  border-left: 4px solid;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.air-report-recommendation.warning {
+  background: var(--sc3-orange-light);
+  border-left-color: var(--sc3-orange);
+  color: #e65100;
+}
+
+.air-report-recommendation.danger {
+  background: var(--sc3-red-light);
+  border-left-color: var(--sc3-red);
+  color: var(--sc3-red);
+}
+
+.air-report-recommendation.success {
+  background: var(--sc3-green-light);
+  border-left-color: var(--sc3-green);
+  color: #2e7d32;
+}
+
+.air-report-recommendation.info {
+  background: var(--sc3-blue-light);
+  border-left-color: var(--sc3-secondary);
+  color: var(--sc3-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .air-report-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .air-report-entry-sections {
+    grid-template-columns: 1fr;
+  }
+  
+  .air-report-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .air-report-entry-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .air-report-stats-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .air-inputform-fieldset {
@@ -653,6 +1744,43 @@ body {
   width: 30%;
 }
 
+/* Responsive design for form fields - fix for 710px breakpoint issue */
+@media (max-width: 750px) {
+  .air-inputform-field-table,
+  .air-inputform-table {
+    display: block;
+    width: 100%;
+  }
+  
+  .air-inputform-field-table tbody,
+  .air-inputform-field-table tr,
+  .air-inputform-field-table td,
+  .air-inputform-table tbody,
+  .air-inputform-table tr,
+  .air-inputform-table td {
+    display: block;
+    width: 100%;
+  }
+  
+  .air-inputform-field-cell-label {
+    width: 100%;
+    padding-bottom: 0.25rem;
+  }
+  
+  .air-inputform-field-cell-label td,
+  .air-inputform-field-cell td {
+    padding-bottom: 0.5rem;
+  }
+  
+  .air-inputform-input,
+  .air-inputform-textarea,
+  .air-inputform-select,
+  .air-inputform-date {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
 .air-inputform-label {
   font-weight: 600;
   color: var(--sc3-primary);
@@ -679,6 +1807,10 @@ body {
     line-height: 1.3;
     width: 100%;
     box-sizing: border-box;
+    /* Performance optimizations */
+    contain: layout;
+    transform: translateZ(0);
+    resize: vertical;
   }
 
 .air-inputform-input,
@@ -689,6 +1821,9 @@ body {
     padding: 0.3em 0.4em;
     width: 100%;
     box-sizing: border-box;
+    /* Performance optimizations */
+    contain: layout;
+    transform: translateZ(0);
   }
 
 /* Risk Assessment Notification Styles */
@@ -732,16 +1867,106 @@ body {
   font-style: italic;
 }
 
+/* Risk-level specific guidance box borders */
+.air-guidance-very-high-risk {
+  border: 1px solid #c62828 !important; /* Red border for Very High Risk */
+  background-color: #f6edee !important; /* Light red background */
+}
+
+.air-guidance-high-risk {
+  border: 1px solid #ff6f00 !important; /* Orange border for High Risk */
+  background-color: #f4f1ec !important; /* Light orange background */
+}
+
+.air-guidance-mid-range-risk {
+  border: 1px solid #fbc02d !important; /* Yellow border for Mid-range Risk */
+  background-color: #f7f5eb !important; /* Light yellow background */
+}
+
+.air-guidance-low-risk {
+  border: 1px solid #388e3c !important; /* Green border for Low Risk */
+  background-color: #f3f8f1 !important; /* Light green background */
+}
+
+.air-guidance-very-low-risk {
+  border: 1px solid #00695c !important; /* Teal border for Very Low Risk/N/A */
+  background-color: #edf5f5 !important; /* Light teal background */
+}
+
 /* Human Rights Impact Assessment requirement notification */
 .air-hria-required-notification {
   padding: 15px;
   margin: 15px 0;
   background-color: #fff3cd;
-  border: 2px solid #ffc107;
-  border-radius: 6px;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
   color: #856404;
-  font-weight: bold;
-  font-size: 16px;
+}
+
+/* Summary View Styles */
+.air-summary-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.air-summary-section {
+  margin: 15px 0;
+  padding: 15px;
+  background-color: white;
+  border-radius: 6px;
+  border-left: 4px solid #6c757d;
+}
+
+.air-summary-section h3 {
+  margin: 0 0 10px 0;
+  color: #495057;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.air-benefits-risk-summary,
+.air-harms-risk-summary,
+.air-risks-risk-summary {
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.air-benefits-risk-summary.air-guidance-very-low-risk,
+.air-harms-risk-summary.air-guidance-very-low-risk,
+.air-risks-risk-summary.air-guidance-very-low-risk {
+  background-color: #edf5f5;
+  color: #00695c;
+}
+
+.air-benefits-risk-summary.air-guidance-low-risk,
+.air-harms-risk-summary.air-guidance-low-risk,
+.air-risks-risk-summary.air-guidance-low-risk {
+  background-color: #f1f8e9;
+  color: #2e7d32;
+}
+
+.air-benefits-risk-summary.air-guidance-mid-range-risk,
+.air-harms-risk-summary.air-guidance-mid-range-risk,
+.air-risks-risk-summary.air-guidance-mid-range-risk {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.air-benefits-risk-summary.air-guidance-high-risk,
+.air-harms-risk-summary.air-guidance-high-risk,
+.air-risks-risk-summary.air-guidance-high-risk {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.air-benefits-risk-summary.air-guidance-very-high-risk,
+.air-harms-risk-summary.air-guidance-very-high-risk,
+.air-risks-risk-summary.air-guidance-very-high-risk {
+  background-color: #f3e5f5;
+  color: #6a1b9a;
 }
 
 /* Community Benefits highest risk summary - base styles */
@@ -993,4 +2218,473 @@ body {
 /* Benefits table - pale blue background for left column (benefit names) */
 .air-benefits-summary-table tbody tr td:first-child {
   background-color: #E8F9FF !important; /* Pale blue background */
+}
+
+.air-button-container {
+  margin-top: 2rem;
+  text-align: center;
+  border-top: 2px solid var(--sc3-primary);
+  padding-top: 1.5rem;
+}
+
+.air-button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Button styles */
+.air-btn {
+  border: none;
+  padding: var(--sc3-btn-padding);
+  border-radius: var(--sc3-btn-radius);
+  font-weight: var(--sc3-btn-font-weight);
+  font-size: var(--sc3-btn-font-size);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.air-btn-primary {
+  background: var(--sc3-primary);
+  border-color: var(--sc3-primary);
+  color: var(--sc3-white);
+  box-shadow: 0 2px 6px rgba(0, 153, 204, 0.13);
+}
+.air-btn-secondary:hover {
+  background-color: var(--sc3-secondary);
+  border-color: var(--sc3-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rar-btn-outline-primary {
+  background: #fff;
+  color: var(--sc3-primary);
+  border: 2px solid var(--sc3-primary);
+  box-shadow: 0 2px 6px rgb(0, 51, 102, 0.13);
+}
+
+.air-btn-outline-primary:hover {
+  background: var(--sc3-primary);
+  color: #fff;
+}
+
+.air-btn-secondary {
+  background: var(--sc3-secondary);
+  color: var(--sc3-white);
+  border-color: var(--sc3-secondary);
+  box-shadow: 0 2px 6px rgba(117, 117, 117, 0.13);
+}
+
+.air-btn-secondary:hover {
+  background-color: var(--sc3-primary);
+  border-color: var(--sc3-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.air-btn-outline-secondary {
+  background: #fff;
+  color: var(--sc3-secondary);
+  border: 2px solid var(--sc3-secondary);
+  box-shadow: 0 2px 6px rgb(0, 153, 204, 0.13);
+}
+
+.air-btn-outline-secondary:hover {
+  background: #007bb5;
+}
+
+.air-btn-outline {
+  background: #fff;
+  color: var(--sc3-primary);
+  border: 2px solid var(--sc3-primary);
+  padding: 10px 20px;
+}
+
+.air-btn-outline:hover {
+  background: var(--sc3-primary);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.air-btn-accent {
+  background: var(--sc3-accent);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 6px rgb(251, 192, 45, 0.13);
+}
+
+/* Action button styles */
+.air-action-cell {
+  background: #fff;
+  border: none;
+  padding: 0;
+  min-width: 32px;
+  white-space: nowrap;
+}
+
+.air-action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  padding: 0 4px;
+  color: var(--sc3-secondary);
+}
+
+.air-action-button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.air-action-button-remove {
+  color: #d32f2f;
+}
+
+.air-action-button-remove:hover:not(:disabled) {
+  color: #b71c1c;
+}
+
+/* Table row styles */
+.air-table-row {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.air-table-row-editing {
+  outline: 3px solid var(--sc3-secondary);
+  background: #e8f4f8;
+  box-shadow: 0 0 8px rgba(0, 153, 204, 0.2);
+}
+
+.air-table-row-hover {
+  background: #f0f8ff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.air-table-row-drop-target {
+  background: rgba(0, 153, 204, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 153, 204, 0.2);
+}
+
+
+.air-table-outer-container {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: #f8f9fa;
+  border-top: 2px solid var(--sc3-secondary);
+  border-bottom: 2px solid var(--sc3-secondary);
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+}
+
+.air-table-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.air-table-section {
+  margin-bottom: 1rem;
+}
+
+.air-table-summary {
+  cursor: pointer;
+  font-weight: var(--sc3-btn-font-weight);
+  color: var(--sc3-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  transition: color 0.2s;
+}
+
+.air-table-count {
+  background: var(--sc3-secondary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: normal;
+}
+
+.air-table-container {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  overflow-x: auto;
+  box-sizing: border-box;
+  margin: 2rem 0;
+}
+
+.air-table-scroll {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.air-risk-table {
+  width: 95vw;
+  min-width: 1200px;
+  border-collapse: collapse;
+  background: var(--sc3-table-bg);
+  border-radius: var(--sc3-table-border-radius);
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.air-th-group-risk-details {
+  border: 4px solid var(--sc3-primary);
+  background: var(--sc3-blue-light);
+  color: var(--sc3-primary);
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-risk-details {
+  border: 3px solid var(--sc3-primary);
+  border-top: none;
+  background: var(--sc3-blue-light);
+  min-width: 120px;
+}
+
+.air-td-risk-details {
+  border: 2px solid var(--sc3-primary);
+  min-width: 120px;
+}
+
+.air-th-group-ai-assessment {
+  border: 4px solid var(--sc3-green);
+  background: var(--sc3-green-light);
+  color: var(--sc3-green);
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-ai-assessment {
+  border: 3px solid var(--sc3-green);
+  border-top: none;
+  background: var(--sc3-green-light);
+  min-width: 120px;
+}
+
+.air-td-ai-assessment {
+  border: 2px solid var(--sc3-green);
+  min-width: 120px;
+}
+
+.air-th-group-human-rights {
+  border: 4px solid var(--sc3-purple);
+  background: var(--sc3-purple-light);
+  color: var(--sc3-purple);
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-human-rights {
+  border: 3px solid var(--sc3-purple);
+  border-top: none;
+  background: var(--sc3-purple-light);
+  min-width: 120px;
+}
+
+.air-td-human-rights {
+  border: 2px solid var(--sc3-purple);
+  min-width: 120px;
+}
+
+.air-th-group-community-benefits {
+  border: 4px solid var(--sc3-accent);
+  background: var(--sc3-yellow-light);
+  color: #b38b00;
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-community-benefits {
+  border: 3px solid var(--sc3-accent);
+  border-top: none;
+  background: var(--sc3-yellow-light);
+  min-width: 120px;
+}
+
+.air-td-community-benefits {
+  border: 2px solid var(--sc3-accent);
+  min-width: 120px;
+}
+
+.air-th-group-community-harms {
+  border: 4px solid var(--sc3-orange);
+  background: var(--sc3-orange-light);
+  color: var(--sc3-orange);
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-community-harms {
+  border: 3px solid var(--sc3-orange);
+  border-top: none;
+  background: var(--sc3-orange-light);
+  min-width: 120px;
+}
+
+.air-td-community-harms {
+  border: 2px solid var(--sc3-orange);
+  min-width: 120px;
+}
+
+.air-th-group-community-risks {
+  border: 4px solid var(--sc3-teal);
+  background: var(--sc3-teal-light);
+  color: var(--sc3-teal);
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-community-risks {
+  border: 3px solid var(--sc3-teal);
+  border-top: none;
+  background: var(--sc3-teal-light);
+  min-width: 120px;
+}
+
+.air-td-community-risks {
+  border: 2px solid var(--sc3-teal);
+  min-width: 120px;
+}
+
+.air-th-group-fairness {
+  border: 4px solid var(--sc3-indigo);
+  background: var(--sc3-indigo-light);
+  color: var(--sc3-indigo);
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+} 
+
+.air-th-fairness {
+  border: 3px solid var(--sc3-indigo);
+  border-top: none;
+  background: var(--sc3-indigo-light);
+  min-width: 120px;
+}
+
+.air-td-fairness {
+  border: 2px solid var(--sc3-indigo);
+  min-width: 120px;
+}
+
+.air-th-group-privacy {
+  border: 4px solid var(--sc3-accent);
+  background: var(--sc3-yellow-light);
+  color: #b38b00;
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-privacy {
+  border: 3px solid var(--sc3-accent);
+  border-top: none;
+  background: var(--sc3-yellow-light);
+  min-width: 120px;
+}
+
+.air-td-privacy {
+  border: 2px solid var(--sc3-accent);
+  min-width: 120px;
+}
+
+.air-th-group-transparency {
+  border: 4px solid var(--sc3-red);
+  background: var(--sc3-red-light);
+  color: var(--sc3-red);
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-transparency {
+  border: 3px solid var(--sc3-red);
+  border-top: none;
+  background: var(--sc3-red-light);
+  min-width: 120px;
+}
+
+.air-td-transparency {
+  border: 2px solid var(--sc3-red);
+  min-width: 120px;
+}
+
+.air-th-group-accountability {
+  border: 4px solid var(--sc3-secondary);
+  background: var(--sc3-blue-light);
+  color: var(--sc3-secondary);
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-accountability {
+  border: 3px solid var(--sc3-secondary);
+  border-top: none;
+  background: var(--sc3-blue-light);
+  min-width: 120px;
+}
+
+.air-td-accountability {
+  border: 2px solid var(--sc3-secondary);
+  min-width: 120px;
+}
+
+.air-th-group-risk-mitigation {
+  border: 4px solid var(--sc3-charcoal);
+  background: var(--sc3-gray-light);
+  color: var(--sc3-charcoal);
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-risk-mitigation {
+  border: 3px solid var(--sc3-charcoal);
+  border-top: none;
+  background: var(--sc3-gray-light);
+  min-width: 120px;
+}
+
+.air-td-risk-mitigation {
+  border: 2px solid var(--sc3-charcoal);
+  min-width: 120px;
+}
+
+.air-th-group-procurement {
+  border: 4px solid var(--sc3-text-orange);
+  background: var(--sc3-orange-light);
+  color: var(--sc3-text-orange);
+  font-weight: var(--sc3-table-header-font-weight);
+  font-size: var(--sc3-table-header-font-size);
+}
+
+.air-th-procurement {
+  border: 3px solid var(--sc3-text-orange);
+  border-top: none;
+  background: var(--sc3-orange-light);
+  min-width: 120px;
+}
+
+.air-td-procurement {
+  border: 2px solid var(--sc3-text-orange);
+  min-width: 120px;
+}
+
+/* Button container for table actions */
+.air-table-button-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
