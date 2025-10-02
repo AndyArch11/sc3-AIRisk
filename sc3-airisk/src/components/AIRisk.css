@@ -129,18 +129,6 @@
   background-color: #e8f4fd !important; /* Pale blue background */
 }
 
-/* Harms summary table styling */
-.air-harms-summary-table {
-  border-collapse: collapse;
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* Harms table - pale blue background for left column (harm names) */
-.air-harms-summary-table tbody tr td:first-child {
-  background-color: #e8f4fd !important; /* Pale blue background */
-}
-
 /* Harms table cell background colors - REVERSED color scheme from benefits */
 /* Very Low or N/A - Grey (same as benefits) */
 .air-harms-cell-header-very_low_na {
@@ -335,14 +323,56 @@ body {
   min-width: 320px;
 }
 
-/* Responsive main container fixes */
+/* Small-screen overrides to allow .air-main-container to shrink */
 @media (max-width: 768px) {
+  /* let the main container actually shrink */
   .air-main-container {
-    margin: 1rem;
-    padding: 16px;
+    min-width: 0;            /* important if it's inside any flex context */
+    overflow-x: auto;        /* let wide children scroll inside the container */
+  }
+
+  /* Allow long text / cells to wrap instead of expanding width */
+  .air-main-container,
+  .air-main-container * {
+    min-width: 0 !important;
+    white-space: normal !important;
+  }
+
+  /* Allow tables to be scrollable inside their scroll wrappers instead of widening the layout */
+  .air-framework-comparison-table,
+  .air-ai-risk-level-table,
+  .air-risk-table,
+  .air-harms-summary-table,
+  .air-benefits-summary-table,
+  .air-risks-summary-table {
+    min-width: 0;        /* prevent child min-width from forcing parent */
     max-width: none;
-    width: calc(100% - 2rem);
+    width: auto;         /* let table keep its natural width; it will be contained by scroll wrapper */
+    table-layout: auto;  /* optional: let columns wrap as needed */
+  }
+
+  /* Stop full-bleed wrappers from forcing viewport width */
+  .air-table-outer-container,
+  .air-table-container {
+    width: 100%;
+    max-width: 100%;
+    left: auto;
+    right: auto;
+    margin-left: 0;
+    margin-right: 0;
+    transform: none;
+    box-sizing: border-box;
+  }
+
+  /* Ensure scroll wrappers are used and visible */
+  .air-framework-comparison-table-scroll,
+  .air-ai-risk-level-table-scroll,
+  .air-table-scroll,
+  .air-summary-scroll-wrapper {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
@@ -461,19 +491,78 @@ body {
 .air-framework-comparison-table-scroll {
   width: 100%;
   overflow-x: auto;
-  padding: 0.1rem 1rem;
+  overflow-y: visible;
+  padding: 0.1rem 0;
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
+  /* Remove flex centering that causes scroll issues */
+  display: block;
+  /* Ensure smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+  /* Add scrollbar styling for better visibility */
+  scrollbar-width: thin;
+  scrollbar-color: var(--sc3-primary) var(--sc3-table-bg);
+}
+
+/* Webkit scrollbar styling */
+.air-framework-comparison-table-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.air-framework-comparison-table-scroll::-webkit-scrollbar-track {
+  background: var(--sc3-table-bg);
+  border-radius: 4px;
+}
+
+.air-framework-comparison-table-scroll::-webkit-scrollbar-thumb {
+  background: var(--sc3-primary);
+  border-radius: 4px;
+}
+
+.air-framework-comparison-table-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--sc3-secondary);
 }
 
 .air-framework-comparison-table {
   width: auto;
   min-width: 800px;
-  max-width: 100%;
+  max-width: none;
   border-collapse: collapse;
   background: var(--sc3-table-bg);
-  margin: 0 auto;
+  margin: 0;
+  /* Ensure table starts from the left edge of scroll container */
+  position: relative;
+  table-layout: fixed;
+}
+
+/* Add responsive handling for framework comparison table */
+@media (max-width: 880px) {
+  .air-framework-comparison-table-wrapper {
+    margin: 1rem 0;
+    padding: 0 0.5rem;
+  }
+  
+  .air-framework-comparison-table-scroll {
+    padding: 0.1rem 0.5rem;
+    /* Add subtle gradient to indicate scrollable content */
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      transparent 2%, 
+      var(--sc3-table-bg) 2%, 
+      var(--sc3-table-bg) 98%, 
+      transparent 98%, 
+      transparent 100%);
+  }
+}
+
+@media (max-width: 847px) {
+  .air-framework-comparison-table {
+    min-width: 750px;
+  }
+  
+  .air-framework-comparison-table-scroll {
+    /* Ensure scrollbar is always visible on very small screens */
+    overflow-x: scroll;
+  }
 }
 
 .air-ai-risk-level-table-wrapper {
@@ -514,13 +603,21 @@ body {
   border: 1px solid var(--sc3-primary);
   font-weight: bold;
   text-align: center;
-  min-width: 100px;
+  min-width: 180px;
+  width: 16%;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .air-ai-risk-level-table-cell {
   padding: 8px;
   border: 1px solid var(--sc3-primary);
   text-align: left;
+  min-width: 180px;
+  width: 16%;
+  word-wrap: break-word;
+  hyphens: auto;
+  vertical-align: top;
 }
 
 /* Input component styles */
@@ -1744,42 +1841,6 @@ body {
   width: 30%;
 }
 
-/* Responsive design for form fields - fix for 710px breakpoint issue */
-@media (max-width: 750px) {
-  .air-inputform-field-table,
-  .air-inputform-table {
-    display: block;
-    width: 100%;
-  }
-  
-  .air-inputform-field-table tbody,
-  .air-inputform-field-table tr,
-  .air-inputform-field-table td,
-  .air-inputform-table tbody,
-  .air-inputform-table tr,
-  .air-inputform-table td {
-    display: block;
-    width: 100%;
-  }
-  
-  .air-inputform-field-cell-label {
-    width: 100%;
-    padding-bottom: 0.25rem;
-  }
-  
-  .air-inputform-field-cell-label td,
-  .air-inputform-field-cell td {
-    padding-bottom: 0.5rem;
-  }
-  
-  .air-inputform-input,
-  .air-inputform-textarea,
-  .air-inputform-select,
-  .air-inputform-date {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-}
 
 .air-inputform-label {
   font-weight: 600;
@@ -2077,6 +2138,67 @@ body {
   border-collapse: collapse;
   margin: 0 auto;
   text-align: center;
+  max-width: 100%;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.air-harms-summary-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 100%;
+  width: 100%;
+  table-layout: fixed;
+  overflow: hidden;
+}
+
+/* Harms table - pale blue background for left column (harm names) */
+.air-harms-summary-table tbody tr td:first-child {
+  background-color: #e8f4fd !important; /* Pale blue background */
+}
+
+.air-risks-summary-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 100%;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Fix first column width for all summary tables */
+.air-benefits-summary-table th:first-child,
+.air-benefits-summary-table td:first-child,
+.air-harms-summary-table th:first-child,
+.air-harms-summary-table td:first-child,
+.air-risks-summary-table th:first-child,
+.air-risks-summary-table td:first-child {
+  width: 40%;
+  min-width: 200px;
+  text-align: left;
+  padding-left: 12px;
+}
+
+/* Other columns get equal distribution */
+.air-benefits-summary-table th:not(:first-child),
+.air-benefits-summary-table td:not(:first-child),
+.air-harms-summary-table th:not(:first-child),
+.air-harms-summary-table td:not(:first-child),
+.air-risks-summary-table th:not(:first-child),
+.air-risks-summary-table td:not(:first-child) {
+  width: 12%;
+  min-width: 80px;
+}
+
+/* Ensure tables don't cause overflow at large screen sizes */
+@media (min-width: 1201px) {
+  .air-benefits-summary-table,
+  .air-harms-summary-table,
+  .air-risks-summary-table {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 /* N/A and Very Low risk - Grey */
@@ -2687,4 +2809,180 @@ body {
     margin-top: 1rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
+}
+
+.air-back-to-top-floating {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1200;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  background-color: var(--sc3-secondary, #6b3fa0);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* hover / active */
+.air-back-to-top-button.air-back-to-top-floating:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+}
+
+/* small screens: shrink a bit */
+@media (max-width: 480px) {
+  .air-back-to-top-floating {
+    bottom: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+/* Summary tables scroll container */
+.air-summary-scroll-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: hidden;
+  box-sizing: border-box;
+}
+
+.air-summary-table-scroll {  
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* optional: prevent parent table cell from expanding */
+.air-inputform-field-table td {
+  /* keep child overflow contained */
+  overflow: visible;
+  white-space: normal;
+}
+
+/* (fix accidental broken value) */
+/* - max-width: 4 -- removed */
+
+/* Improve responsive behaviour for containers (remove problematic full-bleed hacks) */
+.air-table-outer-container,
+.air-framework-comparison-table-wrapper {
+  width: 100%;
+  max-width: 1400px; /* constrain to reasonable max, override where larger layout is needed */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+  overflow-x: visible;
+}
+
+/* Keep wide internal tables scrollable inside their wrapper without expanding parent */
+.air-framework-comparison-table-scroll,
+.air-ai-risk-level-table-scroll,
+.air-table-scroll,
+.air-summary-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Make summary tables scroll instead of forcing parent width */
+.air-harms-summary-table,
+.air-benefits-summary-table,
+.air-risks-summary-table,
+.air-framework-comparison-table,
+.air-ai-risk-level-table,
+.air-risk-table {
+  width: auto;
+  min-width: 700px; /* allow horizontal scroll - tweak as needed */
+  max-width: none;
+  table-layout: auto; /* let table content define column widths for small screens inside scroll wrapper */
+  border-collapse: collapse;
+}
+
+/* Stack form rows vertically on narrow viewports */
+@media (max-width: 900px) {
+  /* Convert the input form field table into block flow so label/input stack */
+  .air-inputform-field-table,
+  .air-inputform-field-table thead,
+  .air-inputform-field-table tbody,
+  .air-inputform-field-table tr,
+  .air-inputform-field-table th,
+  .air-inputform-field-table td {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .air-inputform-field-table tr {
+    margin-bottom: 0.75rem;
+    border: none;
+    padding: 0;
+  }
+
+  .air-inputform-field-cell-label,
+  .air-inputform-field-table th:first-child,
+  .air-inputform-field-table td:first-child {
+    width: 100% !important;
+    min-width: 0;
+    padding-left: 0.25rem;
+    padding-bottom: 0.25rem;
+    box-sizing: border-box;
+  }
+
+  .air-inputform-field-table td:not(:first-child),
+  .air-inputform-field-table th:not(:first-child) {
+    width: 100% !important;
+    min-width: 0;
+    padding-left: 0.25rem;
+  }
+
+  /* Make buttons / groups wrap more nicely */
+  .air-button-group,
+  .air-viewmode-options,
+  .air-report-entry-sections {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Reduce large table min-widths so inner scroll is used earlier */
+  .air-ai-risk-level-table,
+  .air-framework-comparison-table {
+    min-width: 520px;
+  }
+}
+
+/* Fine tuning for very small screens */
+@media (max-width: 480px) {
+  .air-main-container {
+    padding: 12px;
+    margin: 0.5rem;
+  }
+
+  .air-inputform-textarea,
+  .air-inputform-input,
+  .air-inputform-select {
+    font-size: 0.95rem;
+  }
+
+  .air-ai-risk-level-table,
+  .air-framework-comparison-table,
+  .air-harms-summary-table,
+  .air-benefits-summary-table,
+  .air-risks-summary-table {
+    min-width: 420px;
+  }
 }

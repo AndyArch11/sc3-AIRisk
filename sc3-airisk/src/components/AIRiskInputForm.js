@@ -122,26 +122,38 @@ const AIRiskInputForm = ({
     handleSubmit(selectedValues);
   };
 
-      // Function to scroll to top
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    };
+  // Scroll to top function for Risk Assessment section
+    const scrollToRiskAssessment = () => {
+        const element = document.getElementById('risk-assessment-section');
+        if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };  
 
     // Back to Top Button Component
-    const BackToTopButton = ({ className = "" }) => (
-        <div className={`air-back-to-top-container ${className}`}>
-            <button 
-                onClick={scrollToTop}
-                className="air-back-to-top-btn"
-                title="Back to top of page"
-            >
-                ↑ Back to Top
-            </button>
-        </div>
-    );
+    const [showBackToTop, setShowBackToTop] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => setShowBackToTop(window.scrollY > 200);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    const BackToTopButton = () => {
+        if (!showBackToTop) return null;
+        return (
+        <button
+            type="button"
+            onClick={scrollToRiskAssessment}
+            className="air-back-to-top-button air-back-to-top-floating"
+            title="Back to top of Risk Assessment Input Form section"
+            aria-label="Back to top"
+        >
+            ↑
+        </button>
+        );
+    };
 
   const getGuidanceText = (fieldName, value) => {
     const guidanceMap = {
@@ -1755,33 +1767,42 @@ const AIRiskInputForm = ({
                 View Mode:
                 </label>
                 <div className="air-viewmode-options">
-                <label className="air-viewmode-label">
-                    <input
-                    type="radio"
-                    value="basic"
-                    checked={viewMode === 'basic'}
-                    onChange={(e) => setViewMode(e.target.value)}
-                    />
-                    Basic (Essential fields only)
-                </label>
-                <label className="air-viewmode-label">
-                    <input
-                    type="radio"
-                    value="extended"
-                    checked={viewMode === 'extended'}
-                    onChange={(e) => setViewMode(e.target.value)}
-                    />
-                    Extended (All fields)
-                </label>
-                <label className="air-viewmode-label">
-                    <input
-                    type="radio"
-                    value="summary"
-                    checked={viewMode === 'summary'}
-                    onChange={(e) => setViewMode(e.target.value)}
-                    />
-                    Summary (Risk summaries only)
-                </label>
+                    <label className="air-viewmode-label">
+                        <input
+                        type="radio"
+                        value="minimal"
+                        checked={viewMode === 'minimal'}
+                        onChange={(e) => setViewMode(e.target.value)}
+                        />
+                        Minimal (Bare Bones)
+                    </label>
+                    <label className="air-viewmode-label">
+                        <input
+                        type="radio"
+                        value="basic"
+                        checked={viewMode === 'basic'}
+                        onChange={(e) => setViewMode(e.target.value)}
+                        />
+                        Basic (Essential fields only)
+                    </label>
+                    <label className="air-viewmode-label">
+                        <input
+                        type="radio"
+                        value="extended"
+                        checked={viewMode === 'extended'}
+                        onChange={(e) => setViewMode(e.target.value)}
+                        />
+                        Extended (All fields)
+                    </label>
+                    <label className="air-viewmode-label">
+                        <input
+                        type="radio"
+                        value="summary"
+                        checked={viewMode === 'summary'}
+                        onChange={(e) => setViewMode(e.target.value)}
+                        />
+                        Summary (Risk summaries only)
+                    </label>
                 </div>
             </div>
 
@@ -1791,7 +1812,7 @@ const AIRiskInputForm = ({
                     {/* AI Risk Details */}
                     <tr>
                         <td colSpan={2}>
-                            <fieldset className="air-inputform-fieldset air-inputform-fieldset-details">
+                            <fieldset id="risk-assessment-section" className="air-inputform-fieldset air-inputform-fieldset-details">
                                 <legend className="air-inputform-legend air-inputform-legend-details">AI Risk Details</legend>
                                 <table className="air-inputform-field-table">
                                     <tbody>
@@ -1807,7 +1828,7 @@ const AIRiskInputForm = ({
                                                 <textarea name="projectDescription" value={form.projectDescription} onChange={handleChange} className="air-inputform-textarea" required></textarea>
                                             </td>
                                         </tr>
-                                        {viewMode === 'extended' && viewMode !== 'summary' && (
+                                        {viewMode === 'extended' && viewMode !== 'summary' && viewMode === 'minimal' && (
                                             <>
                                             <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Business Goals:</label></td>
@@ -1919,7 +1940,7 @@ const AIRiskInputForm = ({
                         </td>
                     </tr>
                     {/* Is the framework assessment required? */}
-                    {viewMode !== 'basic' && viewMode !== 'summary' && (
+                    {viewMode !== 'basic' && viewMode !== 'summary' && viewMode !== 'minimal' && (
                     <tr>
                         <td colSpan={2}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-required">
@@ -2101,9 +2122,8 @@ const AIRiskInputForm = ({
                     </tr>
                     )}
                     {/* Human Rights Impact Assessment Required? */}
-                    {viewMode !== 'basic' && viewMode !== 'summary' && (
-                    <>
-                    <tr><td colSpan={3}><BackToTopButton /></td></tr>                    
+                    {viewMode !== 'basic' && viewMode !== 'summary' && viewMode !== 'minimal' && (
+                    <>             
                     <tr>
                         <td colSpan={3}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-hria">
@@ -2219,7 +2239,7 @@ const AIRiskInputForm = ({
                     </>
                     )}
                     {/* Community Benefits - Confidence Level */}
-                    {viewMode !== 'basic' && viewMode !== 'summary' && (
+                    {viewMode !== 'basic' && viewMode !== 'summary' && viewMode !== 'minimal' && (
                     <tr>
                         <td colSpan={3}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-benefits">
@@ -2354,38 +2374,38 @@ const AIRiskInputForm = ({
                                                             <th className="air-benefits-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
                                                         </tr>
                                                     </thead>
-                                                <tbody>
-                                                    {[
-                                                    { field: 'communityBenefitsQuality', label: 'Better Quality Service' },
-                                                    { field: 'communityBenefitsProcessing', label: 'Reduction in time' },
-                                                    { field: 'communityBenefitsFinancial', label: 'Financial savings' },
-                                                    { field: 'communityBenefitsAdaptable', label: 'Reusability' },
-                                                    { field: 'communityBenefitsNewService', label: 'New Service / Capabilities' },
-                                                    { field: 'communityBenefitsInnovation', label: 'New Innovations' },
-                                                    ].map(({ field, label }) => (
-                                                    selectedValues[field] && (
-                                                        <tr key={field}>
-                                                            <td className="air-ai-risk-level-table-cell"><strong>{label}</strong></td>
-                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator(field, 'very_low_na').cellClass}`}>
-                                                                {getBenefitsIndicator(field, 'very_low_na').indicator}
-                                                            </td>
-                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator(field, 'low').cellClass}`}>
-                                                                {getBenefitsIndicator(field, 'low').indicator}
-                                                            </td>
-                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator(field, 'mid_range').cellClass}`}>
-                                                                {getBenefitsIndicator(field, 'mid_range').indicator}
-                                                            </td>
-                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator(field, 'high').cellClass}`}>
-                                                                {getBenefitsIndicator(field, 'high').indicator}
-                                                            </td>
-                                                            <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator(field, 'very_high').cellClass}`}>
-                                                                {getBenefitsIndicator(field, 'very_high').indicator}
-                                                            </td>
-                                                        </tr>
-                                                    )
-                                                    ))}
-                                                </tbody>
-                                            </table>
+                                                    <tbody>
+                                                        {[
+                                                        { field: 'communityBenefitsQuality', label: 'Better Quality Service' },
+                                                        { field: 'communityBenefitsProcessing', label: 'Reduction in time' },
+                                                        { field: 'communityBenefitsFinancial', label: 'Financial savings' },
+                                                        { field: 'communityBenefitsAdaptable', label: 'Reusability' },
+                                                        { field: 'communityBenefitsNewService', label: 'New Service / Capabilities' },
+                                                        { field: 'communityBenefitsInnovation', label: 'New Innovations' },
+                                                        ].map(({ field, label }) => (
+                                                        selectedValues[field] && (
+                                                            <tr key={field}>
+                                                                <td className="air-ai-risk-level-table-cell"><strong>{label}</strong></td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator(field, 'very_low_na').cellClass}`}>
+                                                                    {getBenefitsIndicator(field, 'very_low_na').indicator}
+                                                                </td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator(field, 'low').cellClass}`}>
+                                                                    {getBenefitsIndicator(field, 'low').indicator}
+                                                                </td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator(field, 'mid_range').cellClass}`}>
+                                                                    {getBenefitsIndicator(field, 'mid_range').indicator}
+                                                                </td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator(field, 'high').cellClass}`}>
+                                                                    {getBenefitsIndicator(field, 'high').indicator}
+                                                                </td>
+                                                                <td className={`air-ai-risk-level-table-cell ${getBenefitsIndicator(field, 'very_high').cellClass}`}>
+                                                                    {getBenefitsIndicator(field, 'very_high').indicator}
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                        ))}
+                                                    </tbody>
+                                                </table>
                                             </td>
                                         </tr>
                                         )}
@@ -2395,400 +2415,399 @@ const AIRiskInputForm = ({
                         </td>
                     </tr>
                     )}
-                    {viewMode !== 'basic' && viewMode !== 'summary' && (
-                    <>
-                    <tr><td colSpan={3}><BackToTopButton /></td></tr>
-                    </>
-                    )}
                     {/* Community Harms - Risk Level */}
                     <tr>
                         <td colSpan={3}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-harms">
-                                <legend className="air-inputform-legend air-inputform-legend-harms">Community / Organisational Harms - Risk That AI Will Cause</legend>
+                                <legend className="air-inputform-legend air-inputform-legend-harms">Community / Organisational Harms - Risk That AI Will Cause Harm</legend>
                                 <table className="air-inputform-field-table">
                                     <tbody>
                                         {viewMode !== 'summary' && (
                                             <>
-                                            <tr>
-                                                <td colSpan={3}><strong>Principle Statement - Community:</strong> AI must prioritise community outcomes, ensuring alignment with laws, minimising harm, and maximising benefit</td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={3}><em>All AI projects should have a harms register that is kept up to date throughout the project. The harms register should be maintained by the Responsible Officers.</em></td>                                            
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Physical harms:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsPhysicalConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsPhysicalConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
+                                                {viewMode !== 'minimal' && (
+                                                    <>
+                                                        <tr>
+                                                            <td colSpan={3}><strong>Principle Statement - Community:</strong> AI must prioritise community outcomes, ensuring alignment with laws, minimising harm, and maximising benefit</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colSpan={3}><em>All AI projects should have a harms register that is kept up to date throughout the project. The harms register should be maintained by the Responsible Officers.</em></td>                                            
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Physical harms:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsPhysicalConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsPhysicalConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                    <option value="">Select...</option>
+                                                                    <option value="na">N/A</option>
+                                                                    <option value="very_low">Very Low Risk</option>
+                                                                    <option value="low">Low Risk</option>
+                                                                    <option value="mid_range">Mid-range Risk</option>
+                                                                    <option value="high">High Risk</option>
+                                                                    <option value="very_high">Very High Risk</option>
+                                                                </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsPhysicalConfidenceLevelDetails" value={form.communityHarmsPhysicalConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Psychological harms:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsPsychologicalConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsPsychologicalConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsPsychologicalConfidenceLevelDetails" value={form.communityHarmsPsychologicalConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Environmental harms or harms to the broader community:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsEnvironmentalConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsEnvironmentalConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsEnvironmentalConfidenceLevelDetails" value={form.communityHarmsEnvironmentalConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Unauthorised use of health or sensitive personal information (SIP):</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsUnauthorisedUseConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsUnauthorisedUseConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsUnauthorisedUseConfidenceLevelDetails" value={form.communityHarmsUnauthorisedUseConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Impact on right, privilege or entitlement:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsImpactOnRightsConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsImpactOnRightsConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsImpactOnRightsConfidenceLevelDetails" value={form.communityHarmsImpactOnRightsConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Unintended identification or misidentification of an individual:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsMisidentificationConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsMisidentificationConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsMisidentificationConfidenceLevelDetails" value={form.communityHarmsMisidentificationConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Misapplication of a fee, fine or penalty:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsMisapplicationConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsMisapplicationConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsMisapplicationConfidenceLevelDetails" value={form.communityHarmsMisapplicationConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Other financial or commercial impact:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsOtherFinancialImpactConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsOtherFinancialImpactConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsOtherFinancialImpactConfidenceLevelDetails" value={form.communityHarmsOtherFinancialImpactConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Incorrect advice or guidance:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsIncorrectAdviceConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsIncorrectAdviceConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsIncorrectAdviceConfidenceLevelDetails" value={form.communityHarmsIncorrectAdviceConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Inconvenience or delay:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsInconvenienceDelayConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsInconvenienceDelayConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsInconvenienceDelayConfidenceLevelDetails" value={form.communityHarmsInconvenienceDelayConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Erosion of trust:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsErosionOfTrustConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsErosionOfTrustConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsErosionOfTrustConfidenceLevelDetails" value={form.communityHarmsErosionOfTrustConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Ethical implications:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsEthicalImplicationsConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsEthicalImplicationsConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsEthicalImplicationsConfidenceLevelDetails" value={form.communityHarmsEthicalImplicationsConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Economic disruption / impact:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsEconomicDisruptionConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsEconomicDisruptionConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsEconomicDisruptionConfidenceLevelDetails" value={form.communityHarmsEconomicDisruptionConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Social inequality:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsSocialInequalityConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsSocialInequalityConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsSocialInequalityConfidenceLevelDetails" value={form.communityHarmsSocialInequalityConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Other harms:</label></td>
+                                                            <td className="air-inputform-field-cell"><select 
+                                                                name="communityHarmsOtherConfidenceLevel" 
+                                                                className="air-inputform-select"
+                                                                value={selectedValues.communityHarmsOtherConfidenceLevel || ""}
+                                                                onChange={handleSelectChange}
+                                                            >
+                                                                <option value="">Select...</option>
+                                                                <option value="na">N/A</option>
+                                                                <option value="very_low">Very Low Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid_range">Mid-range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very_high">Very High Risk</option>
+                                                            </select>
+                                                            </td>
+                                                            <td><textarea name="communityHarmsOtherConfidenceLevelDetails" value={form.communityHarmsOtherConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colSpan={3}><hr /></td>
+                                                        </tr>                                        
+                                                    </>
+                                                )}   
+                                                <tr>
+                                                    <td colSpan={3}><em>Reversible vs Irreversible harms: Irreversible harm refers to a situation where it's impossible to revert to a previous condition before the harm occurred. For example, if an AI system makes an incorrect decision to deny somebody a pension without an option to have that overturned. You should ensure the ability to overturn outcomes if harm is caused or if the AI system makes incorrect decisions</em></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Could the AI system cause harms that are reversible?</label></td>
+                                                    <td className="air-inputform-field-cell"><select 
+                                                        name="communityHarmsReversibleConfidenceLevel" 
+                                                        className="air-inputform-select"
+                                                        value={selectedValues.communityHarmsReversibleConfidenceLevel || ""}
+                                                        onChange={handleSelectChange}
+                                                    >
                                                         <option value="">Select...</option>
-                                                        <option value="na">N/A</option>
-                                                        <option value="very_low">Very Low Risk</option>
-                                                        <option value="low">Low Risk</option>
-                                                        <option value="mid_range">Mid-range Risk</option>
-                                                        <option value="high">High Risk</option>
-                                                        <option value="very_high">Very High Risk</option>
+                                                        <option value="no">No</option>
+                                                        <option value="yes-high">Yes and mid-range or higher risk</option>
+                                                        <option value="yes-low">Yes and low to very low risk</option>
+                                                        <option value="unclear">Unclear</option>
                                                     </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsPhysicalConfidenceLevelDetails" value={form.communityHarmsPhysicalConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Psychological harms:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsPsychologicalConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsPsychologicalConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsPsychologicalConfidenceLevelDetails" value={form.communityHarmsPsychologicalConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Environmental harms or harms to the broader community:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsEnvironmentalConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsEnvironmentalConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsEnvironmentalConfidenceLevelDetails" value={form.communityHarmsEnvironmentalConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Unauthorised use of health or sensitive personal information (SIP):</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsUnauthorisedUseConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsUnauthorisedUseConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsUnauthorisedUseConfidenceLevelDetails" value={form.communityHarmsUnauthorisedUseConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Impact on right, privilege or entitlement:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsImpactOnRightsConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsImpactOnRightsConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsImpactOnRightsConfidenceLevelDetails" value={form.communityHarmsImpactOnRightsConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Unintended identification or misidentification of an individual:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsMisidentificationConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsMisidentificationConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsMisidentificationConfidenceLevelDetails" value={form.communityHarmsMisidentificationConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Misapplication of a fee, fine or penalty:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsMisapplicationConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsMisapplicationConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsMisapplicationConfidenceLevelDetails" value={form.communityHarmsMisapplicationConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Other financial or commercial impact:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsOtherFinancialImpactConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsOtherFinancialImpactConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsOtherFinancialImpactConfidenceLevelDetails" value={form.communityHarmsOtherFinancialImpactConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Incorrect advice or guidance:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsIncorrectAdviceConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsIncorrectAdviceConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsIncorrectAdviceConfidenceLevelDetails" value={form.communityHarmsIncorrectAdviceConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Inconvenience or delay:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsInconvenienceDelayConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsInconvenienceDelayConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsInconvenienceDelayConfidenceLevelDetails" value={form.communityHarmsInconvenienceDelayConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Erosion of trust:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsErosionOfTrustConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsErosionOfTrustConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsErosionOfTrustConfidenceLevelDetails" value={form.communityHarmsErosionOfTrustConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Ethical implications:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsEthicalImplicationsConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsEthicalImplicationsConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsEthicalImplicationsConfidenceLevelDetails" value={form.communityHarmsEthicalImplicationsConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Economic disruption / impact:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsEconomicDisruptionConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsEconomicDisruptionConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsEconomicDisruptionConfidenceLevelDetails" value={form.communityHarmsEconomicDisruptionConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Social inequality:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsSocialInequalityConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsSocialInequalityConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsSocialInequalityConfidenceLevelDetails" value={form.communityHarmsSocialInequalityConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Other harms:</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsOtherConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsOtherConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="very_low">Very Low Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid_range">Mid-range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very_high">Very High Risk</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsOtherConfidenceLevelDetails" value={form.communityHarmsOtherConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={3}><hr /></td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={3}><em>Reversible vs Irreversible harms: Irreversible harm refers to a situation where it's impossible to revert to a previous condition before the harm occurred. For example, if an AI system makes an incorrect decision to deny somebody a pension without an option to have that overturned. You should ensure the ability to overturn outcomes if harm is caused or if the AI system makes incorrect decisions</em></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Could the AI system cause harms that are reversible?</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsReversibleConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsReversibleConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="no">No</option>
-                                                    <option value="yes-high">Yes and mid-range or higher risk</option>
-                                                    <option value="yes-low">Yes and low to very low risk</option>
-                                                    <option value="unclear">Unclear</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsReversibleConfidenceLevelDetails" value={form.communityHarmsReversibleConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>                                            
-                                            </tr>
-                                            {selectedValues.communityHarmsReversibleConfidenceLevel && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('communityHarmsReversibleConfidenceLevel', selectedValues.communityHarmsReversibleConfidenceLevel)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('communityHarmsReversibleConfidenceLevel', selectedValues.communityHarmsReversibleConfidenceLevel)}
                                                     </td>
+                                                    <td><textarea name="communityHarmsReversibleConfidenceLevelDetails" value={form.communityHarmsReversibleConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>                                            
                                                 </tr>
-                                            )}
-                                            <tr>
-                                                <td colSpan={3}><em>Monitoring for possible harms: You must monitor your AI system closely for harms that it may cause. This includes monitoring outputs and testing results to ensure there are no unintended consequences. You should be able to quantify unintended consequences, secondary harms or benefits, and long-term impacts to the community, even during testing and pilot phases. Testing can still lead to harm if the system is making consequential decisions. You must consider and account for this possibility even if human testers are willing volunteers. Changing the context or environment in which the AI system is used can lead to unintended consequences. Planned changes in how the AI is used should be carefully considered and monitoring undertaken</em></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Could the AI system cause harms that are irreversible? Example: Autonomous AI systems on critical infrastructure (i.e. energy)</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsIrreversibleConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsIrreversibleConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="no">No</option>
-                                                    <option value="yes-high">Yes, but it's better than existing systems</option>
-                                                    <option value="yes-veryhigh">Yes</option>
-                                                    <option value="unclear-veryhigh">Unclear</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsIrreversibleConfidenceLevelDetails" value={form.communityHarmsIrreversibleConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.communityHarmsIrreversibleConfidenceLevel && (
+                                                {selectedValues.communityHarmsReversibleConfidenceLevel && (
+                                                    <tr>
+                                                        <td colSpan={3} className={getGuidanceRiskClass('communityHarmsReversibleConfidenceLevel', selectedValues.communityHarmsReversibleConfidenceLevel)}>
+                                                            📋 <strong>Guidance:</strong> {getGuidanceText('communityHarmsReversibleConfidenceLevel', selectedValues.communityHarmsReversibleConfidenceLevel)}
+                                                        </td>
+                                                    </tr>
+                                                )}
                                                 <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('communityHarmsIrreversibleConfidenceLevel', selectedValues.communityHarmsIrreversibleConfidenceLevel)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('communityHarmsIrreversibleConfidenceLevel', selectedValues.communityHarmsIrreversibleConfidenceLevel)}
-                                                    </td>
+                                                    <td colSpan={3}><em>Monitoring for possible harms: You must monitor your AI system closely for harms that it may cause. This includes monitoring outputs and testing results to ensure there are no unintended consequences. You should be able to quantify unintended consequences, secondary harms or benefits, and long-term impacts to the community, even during testing and pilot phases. Testing can still lead to harm if the system is making consequential decisions. You must consider and account for this possibility even if human testers are willing volunteers. Changing the context or environment in which the AI system is used can lead to unintended consequences. Planned changes in how the AI is used should be carefully considered and monitoring undertaken</em></td>
                                                 </tr>
-                                            )}
-                                            <tr>
-                                                <td colSpan={3}><em>Secondary harms: Sometimes harms are felt by people who are not direct recipients of the product of service. We refer to these as secondary harms. Secondary harms include things like a loss of trust. You need to think deeply about everyone who might be impacted, well beyond the obvious end user.</em></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Could the AI System result in secondary harms, or result in a cumulative harm from repeated application of the AI System? Example of a cumulative harm is a video system initially collecting and analysing data for security purposes, but over time, as more data is gathered and analysed, individual privacy could be at risk.</label></td>
-                                                <td className="air-inputform-field-cell"><select 
-                                                    name="communityHarmsSecondaryCumulativeConfidenceLevel" 
-                                                    className="air-inputform-select"
-                                                    value={selectedValues.communityHarmsSecondaryCumulativeConfidenceLevel || ""}
-                                                    onChange={handleSelectChange}
-                                                >
-                                                    <option value="">Select...</option>
-                                                    <option value="no">No</option>
-                                                    <option value="yes-high">Yes and mid-range or higher risk</option>
-                                                    <option value="yes-low">Yes and low to very low risk</option>
-                                                    <option value="unclear-veryhigh">Unclear</option>
-                                                </select>
-                                                </td>
-                                                <td><textarea name="communityHarmsSecondaryCumulativeConfidenceLevelDetails" value={form.communityHarmsSecondaryCumulativeConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.communityHarmsSecondaryCumulativeConfidenceLevel && (
                                                 <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('communityHarmsSecondaryCumulativeConfidenceLevel', selectedValues.communityHarmsSecondaryCumulativeConfidenceLevel)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('communityHarmsSecondaryCumulativeConfidenceLevel', selectedValues.communityHarmsSecondaryCumulativeConfidenceLevel)}
+                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Could the AI system cause harms that are irreversible? Example: Autonomous AI systems on critical infrastructure (i.e. energy)</label></td>
+                                                    <td className="air-inputform-field-cell"><select 
+                                                        name="communityHarmsIrreversibleConfidenceLevel" 
+                                                        className="air-inputform-select"
+                                                        value={selectedValues.communityHarmsIrreversibleConfidenceLevel || ""}
+                                                        onChange={handleSelectChange}
+                                                    >
+                                                        <option value="">Select...</option>
+                                                        <option value="no">No</option>
+                                                        <option value="yes-high">Yes, but it's better than existing systems</option>
+                                                        <option value="yes-veryhigh">Yes</option>
+                                                        <option value="unclear-veryhigh">Unclear</option>
+                                                    </select>
                                                     </td>
+                                                    <td><textarea name="communityHarmsIrreversibleConfidenceLevelDetails" value={form.communityHarmsIrreversibleConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                                 </tr>
-                                            )}
-                                            <tr>
-                                                <td colSpan={3}><hr /></td>
-                                            </tr>
+                                                {selectedValues.communityHarmsIrreversibleConfidenceLevel && (
+                                                    <tr>
+                                                        <td colSpan={3} className={getGuidanceRiskClass('communityHarmsIrreversibleConfidenceLevel', selectedValues.communityHarmsIrreversibleConfidenceLevel)}>
+                                                            📋 <strong>Guidance:</strong> {getGuidanceText('communityHarmsIrreversibleConfidenceLevel', selectedValues.communityHarmsIrreversibleConfidenceLevel)}
+                                                        </td>
+                                                    </tr>
+                                                )}
+                                                <tr>
+                                                    <td colSpan={3}><em>Secondary harms: Sometimes harms are felt by people who are not direct recipients of the product of service. We refer to these as secondary harms. Secondary harms include things like a loss of trust. You need to think deeply about everyone who might be impacted, well beyond the obvious end user.</em></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Could the AI System result in secondary harms, or result in a cumulative harm from repeated application of the AI System? Example of a cumulative harm is a video system initially collecting and analysing data for security purposes, but over time, as more data is gathered and analysed, individual privacy could be at risk.</label></td>
+                                                    <td className="air-inputform-field-cell"><select 
+                                                        name="communityHarmsSecondaryCumulativeConfidenceLevel" 
+                                                        className="air-inputform-select"
+                                                        value={selectedValues.communityHarmsSecondaryCumulativeConfidenceLevel || ""}
+                                                        onChange={handleSelectChange}
+                                                    >
+                                                        <option value="">Select...</option>
+                                                        <option value="no">No</option>
+                                                        <option value="yes-high">Yes and mid-range or higher risk</option>
+                                                        <option value="yes-low">Yes and low to very low risk</option>
+                                                        <option value="unclear-veryhigh">Unclear</option>
+                                                    </select>
+                                                    </td>
+                                                    <td><textarea name="communityHarmsSecondaryCumulativeConfidenceLevelDetails" value={form.communityHarmsSecondaryCumulativeConfidenceLevelDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                </tr>
+                                                {selectedValues.communityHarmsSecondaryCumulativeConfidenceLevel && (
+                                                    <tr>
+                                                        <td colSpan={3} className={getGuidanceRiskClass('communityHarmsSecondaryCumulativeConfidenceLevel', selectedValues.communityHarmsSecondaryCumulativeConfidenceLevel)}>
+                                                            📋 <strong>Guidance:</strong> {getGuidanceText('communityHarmsSecondaryCumulativeConfidenceLevel', selectedValues.communityHarmsSecondaryCumulativeConfidenceLevel)}
+                                                        </td>
+                                                    </tr>
+                                                )}
+                                                <tr>
+                                                    <td colSpan={3}><hr /></td>
+                                                </tr>
                                             </>
-                                        )}
+                                        )} 
                                         {/* Show highest risk rating summary */}
                                         <tr>
                                             <td colSpan={3}>
@@ -2804,69 +2823,73 @@ const AIRiskInputForm = ({
                                         </tr>
                                         {/* Community Harms Summary Table */}
                                         {hasHarmsSelections() && (
-                                        <tr>
-                                            <td colSpan={3}>
-                                                <table className="air-harms-summary-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Harms <small>({(() => {
-                                                                const fields = ['communityHarmsPhysicalConfidenceLevel', 'communityHarmsPsychologicalConfidenceLevel', 'communityHarmsEnvironmentalConfidenceLevel', 'communityHarmsUnauthorisedUseConfidenceLevel', 'communityHarmsImpactOnRightsConfidenceLevel', 'communityHarmsMisidentificationConfidenceLevel', 'communityHarmsMisapplicationConfidenceLevel', 'communityHarmsOtherFinancialImpactConfidenceLevel', 'communityHarmsIncorrectAdviceConfidenceLevel', 'communityHarmsInconvenienceDelayConfidenceLevel', 'communityHarmsErosionOfTrustConfidenceLevel', 'communityHarmsEthicalImplicationsConfidenceLevel', 'communityHarmsEconomicDisruptionConfidenceLevel', 'communityHarmsSocialInequalityConfidenceLevel', 'communityHarmsOtherConfidenceLevel', 'communityHarmsReversibleConfidenceLevel', 'communityHarmsIrreversibleConfidenceLevel', 'communityHarmsSecondaryCumulativeConfidenceLevel'];
-                                                                const selectedCount = fields.filter(field => selectedValues[field]).length;
-                                                                return `${selectedCount}/${fields.length}`;
-                                                            })()})</small></th>
-                                                            <th className="air-harms-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
-                                                            <th className="air-harms-cell-header-low air-ai-risk-level-table-header">Low</th>
-                                                            <th className="air-harms-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
-                                                            <th className="air-harms-cell-header-high air-ai-risk-level-table-header">High</th>
-                                                            <th className="air-harms-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
-                                                        </tr>
-                                                    </thead>
-                                                <tbody>
-                                                    {[
-                                                    { field: 'communityHarmsPhysicalConfidenceLevel', label: 'Physical harms', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsPsychologicalConfidenceLevel', label: 'Psychological harms', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsEnvironmentalConfidenceLevel', label: 'Environmental harms', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsUnauthorisedUseConfidenceLevel', label: 'Unauthorised use of SIP', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsImpactOnRightsConfidenceLevel', label: 'Impact on rights', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsMisidentificationConfidenceLevel', label: 'Misidentification', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsMisapplicationConfidenceLevel', label: 'Misapplication of penalty', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsOtherFinancialImpactConfidenceLevel', label: 'Financial/Commercial impact', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsIncorrectAdviceConfidenceLevel', label: 'Incorrect advice', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsInconvenienceDelayConfidenceLevel', label: 'Inconvenience/Delay', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsErosionOfTrustConfidenceLevel', label: 'Erosion of trust', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsEthicalImplicationsConfidenceLevel', label: 'Ethical implications', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsEconomicDisruptionConfidenceLevel', label: 'Economic disruption', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsSocialInequalityConfidenceLevel', label: 'Social inequality', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsOtherConfidenceLevel', label: 'Other harms', indicator: getHarmsIndicator },
-                                                    { field: 'communityHarmsReversibleConfidenceLevel', label: 'Reversible harms', indicator: getHarmsIndicatorSpecial },
-                                                    { field: 'communityHarmsIrreversibleConfidenceLevel', label: 'Irreversible harms', indicator: getHarmsIndicatorSpecial },
-                                                    { field: 'communityHarmsSecondaryCumulativeConfidenceLevel', label: 'Secondary/Cumulative harms', indicator: getHarmsIndicatorSpecial },
-                                                    ].map(({ field, label, indicator }) => (
-                                                    selectedValues[field] && (
-                                                        <tr key={field}>
-                                                            <td className="air-ai-risk-level-table-cell"><strong>{label}</strong></td>
-                                                            <td className={`air-ai-risk-level-table-cell ${indicator(field, 'very_low_na').cellClass}`}>
-                                                                {indicator(field, 'very_low_na').indicator}
-                                                            </td>
-                                                            <td className={`air-ai-risk-level-table-cell ${indicator(field, 'low').cellClass}`}>
-                                                                {indicator(field, 'low').indicator}
-                                                            </td>
-                                                            <td className={`air-ai-risk-level-table-cell ${indicator(field, 'mid_range').cellClass}`}>
-                                                                {indicator(field, 'mid_range').indicator}
-                                                            </td>
-                                                            <td className={`air-ai-risk-level-table-cell ${indicator(field, 'high').cellClass}`}>
-                                                                {indicator(field, 'high').indicator}
-                                                            </td>
-                                                            <td className={`air-ai-risk-level-table-cell ${indicator(field, 'very_high').cellClass}`}>
-                                                                {indicator(field, 'very_high').indicator}
-                                                            </td>
-                                                        </tr>
-                                                    )
-                                                    ))}
-                                                </tbody>
-                                            </table>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td colSpan={3}>
+                                                    <div className="air-summary-scroll-wrapper">
+                                                        <div className="air-summary-table-scroll">
+                                                            <table className="air-harms-summary-table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Harms <small>({(() => {
+                                                                            const fields = ['communityHarmsPhysicalConfidenceLevel', 'communityHarmsPsychologicalConfidenceLevel', 'communityHarmsEnvironmentalConfidenceLevel', 'communityHarmsUnauthorisedUseConfidenceLevel', 'communityHarmsImpactOnRightsConfidenceLevel', 'communityHarmsMisidentificationConfidenceLevel', 'communityHarmsMisapplicationConfidenceLevel', 'communityHarmsOtherFinancialImpactConfidenceLevel', 'communityHarmsIncorrectAdviceConfidenceLevel', 'communityHarmsInconvenienceDelayConfidenceLevel', 'communityHarmsErosionOfTrustConfidenceLevel', 'communityHarmsEthicalImplicationsConfidenceLevel', 'communityHarmsEconomicDisruptionConfidenceLevel', 'communityHarmsSocialInequalityConfidenceLevel', 'communityHarmsOtherConfidenceLevel', 'communityHarmsReversibleConfidenceLevel', 'communityHarmsIrreversibleConfidenceLevel', 'communityHarmsSecondaryCumulativeConfidenceLevel'];
+                                                                            const selectedCount = fields.filter(field => selectedValues[field]).length;
+                                                                            return `${selectedCount}/${fields.length}`;
+                                                                        })()})</small></th>
+                                                                <th className="air-harms-cell-header-very_low_na air-ai-risk-level-table-header">Very Low or N/A</th>
+                                                                        <th className="air-harms-cell-header-low air-ai-risk-level-table-header">Low</th>
+                                                                        <th className="air-harms-cell-header-mid_range air-ai-risk-level-table-header">Mid-range</th>
+                                                                        <th className="air-harms-cell-header-high air-ai-risk-level-table-header">High</th>
+                                                                        <th className="air-harms-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {[
+                                                                        { field: 'communityHarmsPhysicalConfidenceLevel', label: 'Physical harms', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsPsychologicalConfidenceLevel', label: 'Psychological harms', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsEnvironmentalConfidenceLevel', label: 'Environmental harms', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsUnauthorisedUseConfidenceLevel', label: 'Unauthorised use of SIP', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsImpactOnRightsConfidenceLevel', label: 'Impact on rights', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsMisidentificationConfidenceLevel', label: 'Misidentification', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsMisapplicationConfidenceLevel', label: 'Misapplication of penalty', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsOtherFinancialImpactConfidenceLevel', label: 'Financial/Commercial impact', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsIncorrectAdviceConfidenceLevel', label: 'Incorrect advice', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsInconvenienceDelayConfidenceLevel', label: 'Inconvenience/Delay', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsErosionOfTrustConfidenceLevel', label: 'Erosion of trust', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsEthicalImplicationsConfidenceLevel', label: 'Ethical implications', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsEconomicDisruptionConfidenceLevel', label: 'Economic disruption', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsSocialInequalityConfidenceLevel', label: 'Social inequality', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsOtherConfidenceLevel', label: 'Other harms', indicator: getHarmsIndicator },
+                                                                        { field: 'communityHarmsReversibleConfidenceLevel', label: 'Reversible harms', indicator: getHarmsIndicatorSpecial },
+                                                                        { field: 'communityHarmsIrreversibleConfidenceLevel', label: 'Irreversible harms', indicator: getHarmsIndicatorSpecial },
+                                                                        { field: 'communityHarmsSecondaryCumulativeConfidenceLevel', label: 'Secondary/Cumulative harms', indicator: getHarmsIndicatorSpecial },
+                                                                    ].map(({ field, label, indicator }) => (
+                                                                    selectedValues[field] && (
+                                                                        <tr key={field}>
+                                                                            <td className="air-ai-risk-level-table-cell"><strong>{label}</strong></td>
+                                                                            <td className={`air-ai-risk-level-table-cell ${indicator(field, 'very_low_na').cellClass}`}>
+                                                                                {indicator(field, 'very_low_na').indicator}
+                                                                            </td>
+                                                                            <td className={`air-ai-risk-level-table-cell ${indicator(field, 'low').cellClass}`}>
+                                                                                {indicator(field, 'low').indicator}
+                                                                            </td>
+                                                                            <td className={`air-ai-risk-level-table-cell ${indicator(field, 'mid_range').cellClass}`}>
+                                                                                {indicator(field, 'mid_range').indicator}
+                                                                            </td>
+                                                                            <td className={`air-ai-risk-level-table-cell ${indicator(field, 'high').cellClass}`}>
+                                                                                {indicator(field, 'high').indicator}
+                                                                            </td>
+                                                                            <td className={`air-ai-risk-level-table-cell ${indicator(field, 'very_high').cellClass}`}>
+                                                                                {indicator(field, 'very_high').indicator}
+                                                                            </td>
+                                                                        </tr>
+                                                                    )
+                                                                    ))}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                   </div>
+                                                </td>
+                                            </tr>
                                         )}
                                     </tbody>
                                 </table>
@@ -2882,200 +2905,204 @@ const AIRiskInputForm = ({
                                         <tbody>
                                             {viewMode !== 'summary' && (
                                                 <>
-                                                <tr>
-                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Whether this AI system is delivering a new or existing service.</label></td>
-                                                    <td className="air-inputform-field-cell"><select 
-                                                        name="communityRisksNewOrExistingService" 
-                                                        className="air-inputform-select"
-                                                        value={selectedValues.communityRisksNewOrExistingService || ""}
-                                                        onChange={handleSelectChange}
-                                                    >
-                                                        <option value="">Select...</option>
-                                                        <option value="new">N/A</option>
-                                                        <option value="existing">Low Risk</option>
-                                                        <option value="unclear">Mid-range Risk</option>
-                                                        <option value="high">High Risk</option>
-                                                        <option value="very-high">Very High Risk</option>
-                                                    </select></td>
-                                                    <td><textarea name="communityRisksNewOrExistingServiceDetails" value={form.communityRisksNewOrExistingServiceDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The potential to cause discrimination from unintended bias.</label></td>
-                                                    <td className="air-inputform-field-cell"><select 
-                                                        name="communityRisksDiscriminationUnintendedBias" 
-                                                        className="air-inputform-select"
-                                                        value={selectedValues.communityRisksDiscriminationUnintendedBias || ""}
-                                                        onChange={handleSelectChange}
-                                                    >
-                                                        <option value="">Select...</option>
-                                                        <option value="new">N/A</option>
-                                                        <option value="existing">Low Risk</option>
-                                                        <option value="unclear">Mid-range Risk</option>
-                                                        <option value="high">High Risk</option>
-                                                        <option value="very-high">Very High Risk</option>
-                                                    </select></td>
-                                                    <td><textarea name="communityRisksDiscriminationUnintendedBiasDetails" value={form.communityRisksDiscriminationUnintendedBiasDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Whether the AI system is a single point of failure for your service or policy.</label></td>
-                                                    <td className="air-inputform-field-cell"><select 
-                                                        name="communityRisksSinglePointOfFailure" 
-                                                        className="air-inputform-select"
-                                                        value={selectedValues.communityRisksSinglePointOfFailure || ""}
-                                                        onChange={handleSelectChange}
-                                                    >
-                                                        <option value="">Select...</option>
-                                                        <option value="new">N/A</option>
-                                                        <option value="existing">Low Risk</option>
-                                                        <option value="unclear">Mid-range Risk</option>
-                                                        <option value="high">High Risk</option>
-                                                        <option value="very-high">Very High Risk</option>
-                                                    </select></td>
-                                                    <td><textarea name="communityRisksSinglePointOfFailureDetails" value={form.communityRisksSinglePointOfFailureDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">If there is sufficient experienced human oversight of the AI system.</label></td>
-                                                    <td className="air-inputform-field-cell"><select 
-                                                        name="communityRisksHumanOversight" 
-                                                        className="air-inputform-select"
-                                                        value={selectedValues.communityRisksHumanOversight || ""}
-                                                        onChange={handleSelectChange}
-                                                    >
-                                                        <option value="">Select...</option>
-                                                        <option value="new">N/A</option>
-                                                        <option value="existing">Low Risk</option>
-                                                        <option value="unclear">Mid-range Risk</option>
-                                                        <option value="high">High Risk</option>
-                                                        <option value="very-high">Very High Risk</option>
-                                                    </select></td>
-                                                    <td><textarea name="communityRisksHumanOversightDetails" value={form.communityRisksHumanOversightDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Over-reliance on the AI system or ignoring the system due to high rates of false alert.</label></td>
-                                                    <td className="air-inputform-field-cell"><select 
-                                                        name="communityRisksOverRelianceFalseAlert" 
-                                                        className="air-inputform-select"
-                                                        value={selectedValues.communityRisksOverRelianceFalseAlert || ""}
-                                                        onChange={handleSelectChange}
-                                                    >
-                                                        <option value="">Select...</option>
-                                                        <option value="new">N/A</option>
-                                                        <option value="existing">Low Risk</option>
-                                                        <option value="unclear">Mid-range Risk</option>
-                                                        <option value="high">High Risk</option>
-                                                        <option value="very-high">Very High Risk</option>
-                                                    </select></td>
-                                                    <td><textarea name="communityRisksOverRelianceFalseAlertDetails" value={form.communityRisksOverRelianceFalseAlertDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Whether the linkage between operating the AI system and the policy outcome is unclear.</label></td>
-                                                    <td className="air-inputform-field-cell"><select 
-                                                        name="communityRisksLinkageUnclear" 
-                                                        className="air-inputform-select"
-                                                        value={selectedValues.communityRisksLinkageUnclear || ""}
-                                                        onChange={handleSelectChange}
-                                                    >
-                                                        <option value="">Select...</option>
-                                                        <option value="new">N/A</option>
-                                                        <option value="existing">Low Risk</option>
-                                                        <option value="unclear">Mid-range Risk</option>
-                                                        <option value="high">High Risk</option>
-                                                        <option value="very-high">Very High Risk</option>
-                                                    </select></td>
-                                                    <td><textarea name="communityRisksLinkageUnclearDetails" value={form.communityRisksLinkageUnclearDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The system's explainability and transparency regarding generated content and decisions.</label></td>
-                                                    <td className="air-inputform-field-cell"><select 
-                                                        name="communityRisksExplainability" 
-                                                        className="air-inputform-select"
-                                                        value={selectedValues.communityRisksExplainability || ""}
-                                                        onChange={handleSelectChange}
-                                                    >
-                                                        <option value="">Select...</option>
-                                                        <option value="new">N/A</option>
-                                                        <option value="existing">Low Risk</option>
-                                                        <option value="unclear">Mid-range Risk</option>
-                                                        <option value="high">High Risk</option>
-                                                        <option value="very-high">Very High Risk</option>
-                                                    </select></td>
-                                                    <td><textarea name="communityRisksExplainabilityDetails" value={form.communityRisksExplainabilityDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Risk of cost overruns on budget for the AI system implementation and ongoing operations.</label></td>
-                                                    <td className="air-inputform-field-cell"><select 
-                                                        name="communityRisksBudgetOverrun" 
-                                                        className="air-inputform-select"
-                                                        value={selectedValues.communityRisksBudgetOverrun || ""}
-                                                        onChange={handleSelectChange}
-                                                    >
-                                                        <option value="">Select...</option>
-                                                        <option value="new">N/A</option>
-                                                        <option value="existing">Low Risk</option>
-                                                        <option value="unclear">Mid-range Risk</option>
-                                                        <option value="high">High Risk</option>
-                                                        <option value="very-high">Very High Risk</option>
-                                                    </select></td>
-                                                    <td><textarea name="communityRisksBudgetOverrunDetails" value={form.communityRisksBudgetOverrunDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colSpan={3}><hr /></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colSpan={3}><em>Alternatives: For an AI system to be viable, AI must be the most appropriate system for your service delivery or policy problem.  AI systems can come with more risk and cost than traditional tools. You should use an AI system when it the best system to maximise the benefit for the customer and for government.</em></td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Were other non-AI systems considered?</label></td>
-                                                    <td className="air-inputform-field-cell"><select 
-                                                        name="communityRisksNonAISystems" 
-                                                        className="air-inputform-select"
-                                                        value={selectedValues.communityRisksNonAISystems || ""}
-                                                        onChange={handleSelectChange}
-                                                    >
-                                                        <option value="">Select...</option>
-                                                        <option value="yes">Yes</option>
-                                                        <option value="informally">Informally</option>
-                                                        <option value="no">No</option>
-                                                        <option value="na">N/A</option>
-                                                    </select></td>
-                                                    <td><textarea name="communityRisksNonAISystemsDetails" value={form.communityRisksNonAISystemsDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                                </tr>
-                                                {selectedValues.communityRisksNonAISystems && (
+                                                    {viewMode !== 'minimal' && (
+                                                        <>
+                                                            <tr>
+                                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Whether this AI system is delivering a new or existing service.</label></td>
+                                                                <td className="air-inputform-field-cell"><select 
+                                                                    name="communityRisksNewOrExistingService" 
+                                                                    className="air-inputform-select"
+                                                                    value={selectedValues.communityRisksNewOrExistingService || ""}
+                                                                    onChange={handleSelectChange}
+                                                                >
+                                                                    <option value="">Select...</option>
+                                                                    <option value="new">N/A</option>
+                                                                    <option value="existing">Low Risk</option>
+                                                                    <option value="unclear">Mid-range Risk</option>
+                                                                    <option value="high">High Risk</option>
+                                                                    <option value="very-high">Very High Risk</option>
+                                                                </select></td>
+                                                                <td><textarea name="communityRisksNewOrExistingServiceDetails" value={form.communityRisksNewOrExistingServiceDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The potential to cause discrimination from unintended bias.</label></td>
+                                                                <td className="air-inputform-field-cell"><select 
+                                                                    name="communityRisksDiscriminationUnintendedBias" 
+                                                                    className="air-inputform-select"
+                                                                    value={selectedValues.communityRisksDiscriminationUnintendedBias || ""}
+                                                                    onChange={handleSelectChange}
+                                                                >
+                                                                    <option value="">Select...</option>
+                                                                    <option value="new">N/A</option>
+                                                                    <option value="existing">Low Risk</option>
+                                                                    <option value="unclear">Mid-range Risk</option>
+                                                                    <option value="high">High Risk</option>
+                                                                    <option value="very-high">Very High Risk</option>
+                                                                </select></td>
+                                                                <td><textarea name="communityRisksDiscriminationUnintendedBiasDetails" value={form.communityRisksDiscriminationUnintendedBiasDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Whether the linkage between operating the AI system and the policy outcome is unclear.</label></td>
+                                                                <td className="air-inputform-field-cell"><select 
+                                                                    name="communityRisksLinkageUnclear" 
+                                                                    className="air-inputform-select"
+                                                                    value={selectedValues.communityRisksLinkageUnclear || ""}
+                                                                    onChange={handleSelectChange}
+                                                                >
+                                                                    <option value="">Select...</option>
+                                                                    <option value="new">N/A</option>
+                                                                    <option value="existing">Low Risk</option>
+                                                                    <option value="unclear">Mid-range Risk</option>
+                                                                    <option value="high">High Risk</option>
+                                                                    <option value="very-high">Very High Risk</option>
+                                                                </select></td>
+                                                                <td><textarea name="communityRisksLinkageUnclearDetails" value={form.communityRisksLinkageUnclearDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                            </tr>
+                                                        </>
+                                                    )}
                                                     <tr>
-                                                        <td colSpan={3} className={getGuidanceRiskClass('communityRisksNonAISystems', selectedValues.communityRisksNonAISystems)}>
-                                                            📋 <strong>Guidance:</strong> {getGuidanceText('communityRisksNonAISystems', selectedValues.communityRisksNonAISystems)}
-                                                        </td>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Is the AI system a single point of failure for your service or policy.</label></td>
+                                                        <td className="air-inputform-field-cell"><select 
+                                                            name="communityRisksSinglePointOfFailure" 
+                                                            className="air-inputform-select"
+                                                            value={selectedValues.communityRisksSinglePointOfFailure || ""}
+                                                            onChange={handleSelectChange}
+                                                        >
+                                                            <option value="">Select...</option>
+                                                            <option value="new">N/A</option>
+                                                            <option value="existing">Low Risk</option>
+                                                            <option value="unclear">Mid-range Risk</option>
+                                                            <option value="high">High Risk</option>
+                                                            <option value="very-high">Very High Risk</option>
+                                                        </select></td>
+                                                        <td><textarea name="communityRisksSinglePointOfFailureDetails" value={form.communityRisksSinglePointOfFailureDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                                     </tr>
-                                                )}
-                                                <tr>
-                                                    <td colSpan={3}><em>More information: You must always comply with privacy and information access laws, including when you are developing and using AI Systems.</em></td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Does this system and the use of data align with relevant legislation?</label></td>
-                                                    <td className="air-inputform-field-cell"><select 
-                                                        name="communityRisksInformationCompliance" 
-                                                        className="air-inputform-select"
-                                                        value={selectedValues.communityRisksInformationCompliance || ""}
-                                                        onChange={handleSelectChange}
-                                                    >
-                                                        <option value="">Select...</option>
-                                                        <option value="yes">Yes</option>
-                                                        <option value="unclear">Unclear</option>
-                                                        <option value="no">No</option>
-                                                    </select></td>
-                                                    <td><textarea name="communityRisksInformationComplianceDetails" value={form.communityRisksInformationComplianceDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                                </tr>
-                                                {selectedValues.communityRisksInformationCompliance && (
                                                     <tr>
-                                                        <td colSpan={3} className={getGuidanceRiskClass('communityRisksInformationCompliance', selectedValues.communityRisksInformationCompliance)}>
-                                                            📋 <strong>Guidance:</strong> {getGuidanceText('communityRisksInformationCompliance', selectedValues.communityRisksInformationCompliance)}
-                                                        </td>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Is there sufficient experienced human oversight of the AI system.</label></td>
+                                                        <td className="air-inputform-field-cell"><select 
+                                                            name="communityRisksHumanOversight" 
+                                                            className="air-inputform-select"
+                                                            value={selectedValues.communityRisksHumanOversight || ""}
+                                                            onChange={handleSelectChange}
+                                                        >
+                                                            <option value="">Select...</option>
+                                                            <option value="new">N/A</option>
+                                                            <option value="existing">Low Risk</option>
+                                                            <option value="unclear">Mid-range Risk</option>
+                                                            <option value="high">High Risk</option>
+                                                            <option value="very-high">Very High Risk</option>
+                                                        </select></td>
+                                                        <td><textarea name="communityRisksHumanOversightDetails" value={form.communityRisksHumanOversightDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                                     </tr>
-                                                )}
-                                                <tr>
-                                                    <td colSpan={3}><hr /></td>
-                                                </tr>
-                                            </>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Over-reliance on the AI system or ignoring the system due to high rates of false alerts.</label></td>
+                                                        <td className="air-inputform-field-cell"><select 
+                                                            name="communityRisksOverRelianceFalseAlert" 
+                                                            className="air-inputform-select"
+                                                            value={selectedValues.communityRisksOverRelianceFalseAlert || ""}
+                                                            onChange={handleSelectChange}
+                                                        >
+                                                            <option value="">Select...</option>
+                                                            <option value="new">N/A</option>
+                                                            <option value="existing">Low Risk</option>
+                                                            <option value="unclear">Mid-range Risk</option>
+                                                            <option value="high">High Risk</option>
+                                                            <option value="very-high">Very High Risk</option>
+                                                        </select></td>
+                                                        <td><textarea name="communityRisksOverRelianceFalseAlertDetails" value={form.communityRisksOverRelianceFalseAlertDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The system's explainability and transparency regarding generated content and decisions.</label></td>
+                                                        <td className="air-inputform-field-cell"><select 
+                                                            name="communityRisksExplainability" 
+                                                            className="air-inputform-select"
+                                                            value={selectedValues.communityRisksExplainability || ""}
+                                                            onChange={handleSelectChange}
+                                                        >
+                                                            <option value="">Select...</option>
+                                                            <option value="new">N/A</option>
+                                                            <option value="existing">Low Risk</option>
+                                                            <option value="unclear">Mid-range Risk</option>
+                                                            <option value="high">High Risk</option>
+                                                            <option value="very-high">Very High Risk</option>
+                                                        </select></td>
+                                                        <td><textarea name="communityRisksExplainabilityDetails" value={form.communityRisksExplainabilityDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Risk of cost overruns on budget for the AI system implementation and ongoing operations.</label></td>
+                                                        <td className="air-inputform-field-cell"><select 
+                                                            name="communityRisksBudgetOverrun" 
+                                                            className="air-inputform-select"
+                                                            value={selectedValues.communityRisksBudgetOverrun || ""}
+                                                            onChange={handleSelectChange}
+                                                        >
+                                                            <option value="">Select...</option>
+                                                            <option value="new">N/A</option>
+                                                            <option value="existing">Low Risk</option>
+                                                            <option value="unclear">Mid-range Risk</option>
+                                                            <option value="high">High Risk</option>
+                                                            <option value="very-high">Very High Risk</option>
+                                                        </select></td>
+                                                        <td><textarea name="communityRisksBudgetOverrunDetails" value={form.communityRisksBudgetOverrunDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colSpan={3}><hr /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colSpan={3}><em>Alternatives: For an AI system to be viable, AI must be the most appropriate system for your service delivery or policy problem.  AI systems can come with more risk and cost than traditional tools. You should use an AI system when it the best system to maximise the benefit for the customer and for government.</em></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Were other non-AI systems considered?</label></td>
+                                                        <td className="air-inputform-field-cell"><select 
+                                                            name="communityRisksNonAISystems" 
+                                                            className="air-inputform-select"
+                                                            value={selectedValues.communityRisksNonAISystems || ""}
+                                                            onChange={handleSelectChange}
+                                                        >
+                                                            <option value="">Select...</option>
+                                                            <option value="yes">Yes</option>
+                                                            <option value="informally">Informally</option>
+                                                            <option value="no">No</option>
+                                                            <option value="na">N/A</option>
+                                                        </select></td>
+                                                        <td><textarea name="communityRisksNonAISystemsDetails" value={form.communityRisksNonAISystemsDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.communityRisksNonAISystems && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('communityRisksNonAISystems', selectedValues.communityRisksNonAISystems)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('communityRisksNonAISystems', selectedValues.communityRisksNonAISystems)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td colSpan={3}><em>More information: You must always comply with privacy and information access laws, including when you are developing and using AI Systems.</em></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Does this system and the use of data align with relevant legislation?</label></td>
+                                                        <td className="air-inputform-field-cell"><select 
+                                                            name="communityRisksInformationCompliance" 
+                                                            className="air-inputform-select"
+                                                            value={selectedValues.communityRisksInformationCompliance || ""}
+                                                            onChange={handleSelectChange}
+                                                        >
+                                                            <option value="">Select...</option>
+                                                            <option value="yes">Yes</option>
+                                                            <option value="unclear">Unclear</option>
+                                                            <option value="no">No</option>
+                                                        </select></td>
+                                                        <td><textarea name="communityRisksInformationComplianceDetails" value={form.communityRisksInformationComplianceDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.communityRisksInformationCompliance && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('communityRisksInformationCompliance', selectedValues.communityRisksInformationCompliance)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('communityRisksInformationCompliance', selectedValues.communityRisksInformationCompliance)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td colSpan={3}><hr /></td>
+                                                    </tr>
+                                                </>
                                             )}
                                             <tr>
                                                 <td colSpan={3} className="air-inputform-status-row">
@@ -3103,42 +3130,42 @@ const AIRiskInputForm = ({
                                                                 <th className="air-risks-cell-header-very_high air-ai-risk-level-table-header">Very High</th>
                                                             </tr>
                                                         </thead>
-                                                    <tbody>
-                                                        {[
-                                                        { field: 'communityRisksNewOrExistingService', label: 'New/Existing Service', indicator: getRisksIndicator },
-                                                        { field: 'communityRisksDiscriminationUnintendedBias', label: 'Discrimination/Bias', indicator: getRisksIndicator },
-                                                        { field: 'communityRisksSinglePointOfFailure', label: 'Single Point of Failure', indicator: getRisksIndicator },
-                                                        { field: 'communityRisksHumanOversight', label: 'Human Oversight', indicator: getRisksIndicator },
-                                                        { field: 'communityRisksOverRelianceFalseAlert', label: 'Over-reliance/False Alerts', indicator: getRisksIndicator },
-                                                        { field: 'communityRisksLinkageUnclear', label: 'Unclear Linkage', indicator: getRisksIndicator },
-                                                        { field: 'communityRisksExplainability', label: 'Explainability/Transparency', indicator: getRisksIndicator },
-                                                        { field: 'communityRisksBudgetOverrun', label: 'Budget/Cost Overrun', indicator: getRisksIndicator },
-                                                        { field: 'communityRisksNonAISystems', label: 'Non-AI Alternatives', indicator: getRisksIndicatorSpecial },
-                                                        { field: 'communityRisksInformationCompliance', label: 'Privacy/Legal Compliance', indicator: getRisksIndicatorSpecial },
-                                                        ].map(({ field, label, indicator }) => (
-                                                        selectedValues[field] && (
-                                                            <tr key={field}>
-                                                                <td className="air-ai-risk-level-table-cell"><strong>{label}</strong></td>
-                                                                <td className={`air-ai-risk-level-table-cell ${indicator(field, 'very_low_na').cellClass}`}>
-                                                                    {indicator(field, 'very_low_na').indicator}
-                                                                </td>
-                                                                <td className={`air-ai-risk-level-table-cell ${indicator(field, 'low').cellClass}`}>
-                                                                    {indicator(field, 'low').indicator}
-                                                                </td>
-                                                                <td className={`air-ai-risk-level-table-cell ${indicator(field, 'mid_range').cellClass}`}>
-                                                                    {indicator(field, 'mid_range').indicator}
-                                                                </td>
-                                                                <td className={`air-ai-risk-level-table-cell ${indicator(field, 'high').cellClass}`}>
-                                                                    {indicator(field, 'high').indicator}
-                                                                </td>
-                                                                <td className={`air-ai-risk-level-table-cell ${indicator(field, 'very_high').cellClass}`}>
-                                                                    {indicator(field, 'very_high').indicator}
-                                                                </td>
-                                                            </tr>
-                                                        )
-                                                        ))}
-                                                    </tbody>
-                                                </table>
+                                                        <tbody>
+                                                            {[
+                                                            { field: 'communityRisksNewOrExistingService', label: 'New/Existing Service', indicator: getRisksIndicator },
+                                                            { field: 'communityRisksDiscriminationUnintendedBias', label: 'Discrimination/Bias', indicator: getRisksIndicator },
+                                                            { field: 'communityRisksSinglePointOfFailure', label: 'Single Point of Failure', indicator: getRisksIndicator },
+                                                            { field: 'communityRisksHumanOversight', label: 'Human Oversight', indicator: getRisksIndicator },
+                                                            { field: 'communityRisksOverRelianceFalseAlert', label: 'Over-reliance/False Alerts', indicator: getRisksIndicator },
+                                                            { field: 'communityRisksLinkageUnclear', label: 'Unclear Linkage', indicator: getRisksIndicator },
+                                                            { field: 'communityRisksExplainability', label: 'Explainability/Transparency', indicator: getRisksIndicator },
+                                                            { field: 'communityRisksBudgetOverrun', label: 'Budget/Cost Overrun', indicator: getRisksIndicator },
+                                                            { field: 'communityRisksNonAISystems', label: 'Non-AI Alternatives', indicator: getRisksIndicatorSpecial },
+                                                            { field: 'communityRisksInformationCompliance', label: 'Privacy/Legal Compliance', indicator: getRisksIndicatorSpecial },
+                                                            ].map(({ field, label, indicator }) => (
+                                                            selectedValues[field] && (
+                                                                <tr key={field}>
+                                                                    <td className="air-ai-risk-level-table-cell"><strong>{label}</strong></td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${indicator(field, 'very_low_na').cellClass}`}>
+                                                                        {indicator(field, 'very_low_na').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${indicator(field, 'low').cellClass}`}>
+                                                                        {indicator(field, 'low').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${indicator(field, 'mid_range').cellClass}`}>
+                                                                        {indicator(field, 'mid_range').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${indicator(field, 'high').cellClass}`}>
+                                                                        {indicator(field, 'high').indicator}
+                                                                    </td>
+                                                                    <td className={`air-ai-risk-level-table-cell ${indicator(field, 'very_high').cellClass}`}>
+                                                                        {indicator(field, 'very_high').indicator}
+                                                                    </td>
+                                                                </tr>
+                                                            )
+                                                            ))}
+                                                        </tbody>
+                                                    </table>
                                                 </td>
                                             </tr>
                                             )}
@@ -3156,144 +3183,148 @@ const AIRiskInputForm = ({
                                     <tbody>
                                         {viewMode !== 'summary' && (
                                             <>
-                                            <tr>
-                                                <td colSpan={3}><strong>Principle Statement - Fairness:</strong> Use of AI will be fair, ensuring not to perpetuate bias and inequality by leveraging diverse representative datasets, monitoring performance, and using rigorous data governance.</td>
-                                            </tr>                                                
-                                            <tr>
-                                                <td colSpan={3}><em>Consider these as risk events and the consequences being the harms listed under Community / organisational Harms</em></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Using incomplete or inaccurate data</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessRisksIncompleteData" className="air-inputform-select"
-                                                    value={selectedValues.fairnessRisksIncompleteData || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">Very Low or N/A Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid-range">Mid-Range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very-high">Very High Risk</option>
-                                                </select></td>
-                                                <td><textarea name="fairnessRisksIncompleteDataDetails" value={form.fairnessRisksIncompleteDataDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Having poorly defined descriptions and indicators of “Fairness”</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessRisksPoorlyDefined" className="air-inputform-select"
-                                                    value={selectedValues.fairnessRisksPoorlyDefined || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">Very Low or N/A Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid-range">Mid-Range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very-high">Very High Risk</option>
-                                                </select></td>
-                                                <td><textarea name="fairnessRisksPoorlyDefinedDetails" value={form.fairnessRisksPoorlyDefinedDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Not ensuring ongoing monitoring of “Fairness indicators”</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessRisksNoMonitoring" className="air-inputform-select"
-                                                    value={selectedValues.fairnessRisksNoMonitoring || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">Very Low or N/A Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid-range">Mid-Range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very-high">Very High Risk</option>
-                                                </select></td>
-                                                <td><textarea name="fairnessRisksNoMonitoringDetails" value={form.fairnessRisksNoMonitoringDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Decisions to exclude outlier data</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessRisksOutlierData" className="air-inputform-select"
-                                                    value={selectedValues.fairnessRisksOutlierData || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">Very Low or N/A Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid-range">Mid-Range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very-high">Very High Risk</option>
-                                                </select></td>
-                                                <td><textarea name="fairnessRisksOutlierDataDetails" value={form.fairnessRisksOutlierDataDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Informal or inconsistent data cleansing and repair protocols and processes</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessRisksDataCleansing" className="air-inputform-select"
-                                                    value={selectedValues.fairnessRisksDataCleansing || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">Very Low or N/A Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid-range">Mid-Range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very-high">Very High Risk</option>
-                                                </select></td>
-                                                <td><textarea name="fairnessRisksDataCleansingDetails" value={form.fairnessRisksDataCleansingDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Using informal bias detection methods (best practice includes automated testing)</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessRisksBiasDetection" className="air-inputform-select"
-                                                    value={selectedValues.fairnessRisksBiasDetection || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">Very Low or N/A Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid-range">Mid-Range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very-high">Very High Risk</option>
-                                                </select></td>
-                                                <td><textarea name="fairnessRisksBiasDetectionDetails" value={form.fairnessRisksBiasDetectionDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The likelihood that re-running scenarios could produce different results (reproducibility)</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessRisksReproducibility" className="air-inputform-select"
-                                                    value={selectedValues.fairnessRisksReproducibility || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">Very Low or N/A Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid-range">Mid-Range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very-high">Very High Risk</option>
-                                                </select></td>
-                                                <td><textarea name="fairnessRisksReproducibilityDetails" value={form.fairnessRisksReproducibilityDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Inadvertently creating new associations when linking data and/or metadata</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessRisksDataLinking" className="air-inputform-select"
-                                                    value={selectedValues.fairnessRisksDataLinking || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">Very Low or N/A Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid-range">Mid-Range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very-high">Very High Risk</option>
-                                                </select></td>
-                                                <td><textarea name="fairnessRisksDataLinkingDetails" value={form.fairnessRisksDataLinkingDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Differences in the data used for training compared to the data for intended use</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessRisksTrainingData" className="air-inputform-select"
-                                                    value={selectedValues.fairnessRisksTrainingData || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">Very Low or N/A Risk</option>
-                                                    <option value="low">Low Risk</option>
-                                                    <option value="mid-range">Mid-Range Risk</option>
-                                                    <option value="high">High Risk</option>
-                                                    <option value="very-high">Very High Risk</option>
-                                                </select></td>
-                                                <td><textarea name="fairnessRisksTrainingDataDetails" value={form.fairnessRisksTrainingDataDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={3}><hr /></td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={3}><em>Data relevance and permission: Your AI system may draw on multiple datasets from different sources to find new patterns and insights. You need to determine if you can and should use the data for the AI system. This can be challenging for historical data that may have been collected for a different purpose</em></td>
-                                            </tr>
+                                                {viewMode !== 'minimal' && (
+                                                    <>
+                                                        <tr>
+                                                            <td colSpan={3}><strong>Principle Statement - Fairness:</strong> Use of AI will be fair, ensuring not to perpetuate bias and inequality by leveraging diverse representative datasets, monitoring performance, and using rigorous data governance.</td>
+                                                        </tr>                                                
+                                                        <tr>
+                                                            <td colSpan={3}><em>Consider these as risk events and the consequences being the harms listed under Community / Organisational Harms</em></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Using incomplete or inaccurate data</label></td>
+                                                            <td className="air-inputform-field-cell"><select name="fairnessRisksIncompleteData" className="air-inputform-select"
+                                                                value={selectedValues.fairnessRisksIncompleteData || ''}
+                                                                onChange={handleSelectChange}>
+                                                                <option value="">Select...</option>
+                                                                <option value="na">Very Low or N/A Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid-range">Mid-Range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very-high">Very High Risk</option>
+                                                            </select></td>
+                                                            <td><textarea name="fairnessRisksIncompleteDataDetails" value={form.fairnessRisksIncompleteDataDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Having poorly defined descriptions and indicators of “Fairness”</label></td>
+                                                            <td className="air-inputform-field-cell"><select name="fairnessRisksPoorlyDefined" className="air-inputform-select"
+                                                                value={selectedValues.fairnessRisksPoorlyDefined || ''}
+                                                                onChange={handleSelectChange}>
+                                                                <option value="">Select...</option>
+                                                                <option value="na">Very Low or N/A Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid-range">Mid-Range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very-high">Very High Risk</option>
+                                                            </select></td>
+                                                            <td><textarea name="fairnessRisksPoorlyDefinedDetails" value={form.fairnessRisksPoorlyDefinedDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Not ensuring ongoing monitoring of “Fairness indicators”</label></td>
+                                                            <td className="air-inputform-field-cell"><select name="fairnessRisksNoMonitoring" className="air-inputform-select"
+                                                                value={selectedValues.fairnessRisksNoMonitoring || ''}
+                                                                onChange={handleSelectChange}>
+                                                                <option value="">Select...</option>
+                                                                <option value="na">Very Low or N/A Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid-range">Mid-Range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very-high">Very High Risk</option>
+                                                            </select></td>
+                                                            <td><textarea name="fairnessRisksNoMonitoringDetails" value={form.fairnessRisksNoMonitoringDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Decisions to exclude outlier data</label></td>
+                                                            <td className="air-inputform-field-cell"><select name="fairnessRisksOutlierData" className="air-inputform-select"
+                                                                value={selectedValues.fairnessRisksOutlierData || ''}
+                                                                onChange={handleSelectChange}>
+                                                                <option value="">Select...</option>
+                                                                <option value="na">Very Low or N/A Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid-range">Mid-Range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very-high">Very High Risk</option>
+                                                            </select></td>
+                                                            <td><textarea name="fairnessRisksOutlierDataDetails" value={form.fairnessRisksOutlierDataDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Informal or inconsistent data cleansing and repair protocols and processes</label></td>
+                                                            <td className="air-inputform-field-cell"><select name="fairnessRisksDataCleansing" className="air-inputform-select"
+                                                                value={selectedValues.fairnessRisksDataCleansing || ''}
+                                                                onChange={handleSelectChange}>
+                                                                <option value="">Select...</option>
+                                                                <option value="na">Very Low or N/A Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid-range">Mid-Range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very-high">Very High Risk</option>
+                                                            </select></td>
+                                                            <td><textarea name="fairnessRisksDataCleansingDetails" value={form.fairnessRisksDataCleansingDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Using informal bias detection methods (best practice includes automated testing)</label></td>
+                                                            <td className="air-inputform-field-cell"><select name="fairnessRisksBiasDetection" className="air-inputform-select"
+                                                                value={selectedValues.fairnessRisksBiasDetection || ''}
+                                                                onChange={handleSelectChange}>
+                                                                <option value="">Select...</option>
+                                                                <option value="na">Very Low or N/A Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid-range">Mid-Range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very-high">Very High Risk</option>
+                                                            </select></td>
+                                                            <td><textarea name="fairnessRisksBiasDetectionDetails" value={form.fairnessRisksBiasDetectionDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The likelihood that re-running scenarios could produce different results (reproducibility)</label></td>
+                                                            <td className="air-inputform-field-cell"><select name="fairnessRisksReproducibility" className="air-inputform-select"
+                                                                value={selectedValues.fairnessRisksReproducibility || ''}
+                                                                onChange={handleSelectChange}>
+                                                                <option value="">Select...</option>
+                                                                <option value="na">Very Low or N/A Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid-range">Mid-Range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very-high">Very High Risk</option>
+                                                            </select></td>
+                                                            <td><textarea name="fairnessRisksReproducibilityDetails" value={form.fairnessRisksReproducibilityDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Inadvertently creating new associations when linking data and/or metadata</label></td>
+                                                            <td className="air-inputform-field-cell"><select name="fairnessRisksDataLinking" className="air-inputform-select"
+                                                                value={selectedValues.fairnessRisksDataLinking || ''}
+                                                                onChange={handleSelectChange}>
+                                                                <option value="">Select...</option>
+                                                                <option value="na">Very Low or N/A Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid-range">Mid-Range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very-high">Very High Risk</option>
+                                                            </select></td>
+                                                            <td><textarea name="fairnessRisksDataLinkingDetails" value={form.fairnessRisksDataLinkingDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Differences in the data used for training compared to the data for intended use</label></td>
+                                                            <td className="air-inputform-field-cell"><select name="fairnessRisksTrainingData" className="air-inputform-select"
+                                                                value={selectedValues.fairnessRisksTrainingData || ''}
+                                                                onChange={handleSelectChange}>
+                                                                <option value="">Select...</option>
+                                                                <option value="na">Very Low or N/A Risk</option>
+                                                                <option value="low">Low Risk</option>
+                                                                <option value="mid-range">Mid-Range Risk</option>
+                                                                <option value="high">High Risk</option>
+                                                                <option value="very-high">Very High Risk</option>
+                                                            </select></td>
+                                                            <td><textarea name="fairnessRisksTrainingDataDetails" value={form.fairnessRisksTrainingDataDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colSpan={3}><hr /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colSpan={3}><em>Data relevance and permission: Your AI system may draw on multiple datasets from different sources to find new patterns and insights. You need to determine if you can and should use the data for the AI system. This can be challenging for historical data that may have been collected for a different purpose</em></td>
+                                                        </tr>
+                                                    </>
+                                                )}
                                             <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Can you explain why you selected the data you're using in your system?</label></td>
                                                 <td className="air-inputform-field-cell"><select name="fairnessControlsDataSelection" className="air-inputform-select"
@@ -3357,60 +3388,64 @@ const AIRiskInputForm = ({
                                                     </td>
                                                 </tr>
                                             )}
-                                            <tr>
-                                                <td colSpan={3}><em>Diversity and inclusion, and the impact on minorities: AI often overlooks minority nuances, leading to biased outcomes. Considering cultural sensitivities and underrepresentation, it's vital to test AI outputs for fairness across all demographics, ensuring accurate representation and unbiased decisions. Think deeply about everyone who may be impacted.</em></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Have you considered how your AI system will address issues of diversity and inclusion (including geographic diversity)?</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessControlsDiversityInclusion" className="air-inputform-select"
-                                                    value={selectedValues.fairnessControlsDiversityInclusion || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}
-                                                    <option value="partially-but-better">Partially, it's better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
-                                                    <option value="no-or-unclear">No or unclear</option> {/* Very High Risk - Pause the project and review with the responsible officers on how to resolve. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
-                                                    <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to the next question. */}
-                                                </select></td>
-                                                <td><textarea name="fairnessControlsDiversityInclusionDetails" value={form.fairnessControlsDiversityInclusionDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.fairnessControlsDiversityInclusion && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('fairnessControlsDiversityInclusion', selectedValues.fairnessControlsDiversityInclusion)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('fairnessControlsDiversityInclusion', selectedValues.fairnessControlsDiversityInclusion)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td colSpan={3}><em>Minority groups may include:
-                                                    <ul>
-                                                        <li>Those with a disability</li>
-                                                        <li>LGBTQIA+ and gender fluid communities</li>
-                                                        <li>People from culturally and linguistically diverse backgrounds</li>
-                                                        <li>Aboriginal and Torres Strait Islanders</li>
-                                                        <li>Children and young people</li>
-                                                        <li>People from varying socio-economic backgrounds</li>
-                                                    </ul></em>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Have you considered the impact with regard to gender and on minority groups including how the system might impact different individuals in minority groups when developing this AI system?</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessControlsGenderMinority" className="air-inputform-select"
-                                                    value={selectedValues.fairnessControlsGenderMinority || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}
-                                                    <option value="partially-but-better">Partially, it's better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
-                                                    <option value="no-or-unclear">No or unclear</option> {/* Very High Risk - Pause the project and review with the responsible officers on how to resolve. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
-                                                    <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to the next question. */}
-                                                </select></td>
-                                                <td><textarea name="fairnessControlsGenderMinorityDetails" value={form.fairnessControlsGenderMinorityDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.fairnessControlsGenderMinority && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('fairnessControlsGenderMinority', selectedValues.fairnessControlsGenderMinority)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('fairnessControlsGenderMinority', selectedValues.fairnessControlsGenderMinority)}
-                                                    </td>
-                                                </tr>
+                                            {viewMode !== 'minimal' && (
+                                                <>
+                                                    <tr>
+                                                        <td colSpan={3}><em>Diversity and inclusion, and the impact on minorities: AI often overlooks minority nuances, leading to biased outcomes. Considering cultural sensitivities and underrepresentation, it's vital to test AI outputs for fairness across all demographics, ensuring accurate representation and unbiased decisions. Think deeply about everyone who may be impacted.</em></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Have you considered how your AI system will address issues of diversity and inclusion (including geographic diversity)?</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="fairnessControlsDiversityInclusion" className="air-inputform-select"
+                                                            value={selectedValues.fairnessControlsDiversityInclusion || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}
+                                                            <option value="partially-but-better">Partially, it's better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                            <option value="no-or-unclear">No or unclear</option> {/* Very High Risk - Pause the project and review with the responsible officers on how to resolve. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                            <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to the next question. */}
+                                                        </select></td>
+                                                        <td><textarea name="fairnessControlsDiversityInclusionDetails" value={form.fairnessControlsDiversityInclusionDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.fairnessControlsDiversityInclusion && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('fairnessControlsDiversityInclusion', selectedValues.fairnessControlsDiversityInclusion)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('fairnessControlsDiversityInclusion', selectedValues.fairnessControlsDiversityInclusion)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td colSpan={3}><em>Minority groups may include:
+                                                            <ul>
+                                                                <li>Those with a disability</li>
+                                                                <li>LGBTQIA+ and gender fluid communities</li>
+                                                                <li>People from culturally and linguistically diverse backgrounds</li>
+                                                                <li>Aboriginal and Torres Strait Islanders</li>
+                                                                <li>Children and young people</li>
+                                                                <li>People from varying socio-economic backgrounds</li>
+                                                            </ul></em>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Have you considered the impact with regard to gender and on minority groups including how the system might impact different individuals in minority groups when developing this AI system?</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="fairnessControlsGenderMinority" className="air-inputform-select"
+                                                            value={selectedValues.fairnessControlsGenderMinority || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}
+                                                            <option value="partially-but-better">Partially, it's better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                            <option value="no-or-unclear">No or unclear</option> {/* Very High Risk - Pause the project and review with the responsible officers on how to resolve. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                            <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to the next question. */}
+                                                        </select></td>
+                                                        <td><textarea name="fairnessControlsGenderMinorityDetails" value={form.fairnessControlsGenderMinorityDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.fairnessControlsGenderMinority && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('fairnessControlsGenderMinority', selectedValues.fairnessControlsGenderMinority)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('fairnessControlsGenderMinority', selectedValues.fairnessControlsGenderMinority)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                </>
                                             )}
                                             <tr>
                                                 <td colSpan={3}><em>Measuring AI system performance: At the scoping stage, you will need to make important choices about what you measure. You should measure: <br/>
@@ -3424,25 +3459,29 @@ const AIRiskInputForm = ({
                                                 Aspects of accuracy and precision are readily quantifiable for most systems which predict or classify outcomes. This performance can be absolute, or relative to existing systems.
                                                 </em></td>
                                             </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Do you have appropriate performance measures and targets (including fairness ones) for your AI system, given the potential harms? How would you characterise “Fairness” such as equity, respect, justice, in outcomes from an AI system? Which of these relate to, or are impacted by the use of AI?</label></td>
-                                                <td className="air-inputform-field-cell"><select name="fairnessControlsPerformanceMeasures" className="air-inputform-select"
-                                                    value={selectedValues.fairnessControlsPerformanceMeasures || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}s
-                                                    <option value="no-elevated">No or unclear and elevated risk use</option> {/* Very High Risk - For elevated risk uses of AI, pause the project until you have established performance measures and targets. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
-                                                    <option value="no-nonelevated">No or unclear and non-elevated risk use</option> {/* Mid-range Risk - For non-elevated risk projects or systems, results should be treated as indicative and not relied on. Document your reasons. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
-                                                    <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to the next question. */}
-                                                </select></td>
-                                                <td><textarea name="fairnessControlsPerformanceMeasuresDetails" value={form.fairnessControlsPerformanceMeasuresDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.fairnessControlsPerformanceMeasures && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('fairnessControlsPerformanceMeasures', selectedValues.fairnessControlsPerformanceMeasures)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('fairnessControlsPerformanceMeasures', selectedValues.fairnessControlsPerformanceMeasures)}
-                                                    </td>
-                                                </tr>
+                                            {viewMode !== 'minimal' && (
+                                                <>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Do you have appropriate performance measures and targets (including fairness ones) for your AI system, given the potential harms? How would you characterise “Fairness” such as equity, respect, justice, in outcomes from an AI system? Which of these relate to, or are impacted by the use of AI?</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="fairnessControlsPerformanceMeasures" className="air-inputform-select"
+                                                            value={selectedValues.fairnessControlsPerformanceMeasures || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}s
+                                                            <option value="no-elevated">No or unclear and elevated risk use</option> {/* Very High Risk - For elevated risk uses of AI, pause the project until you have established performance measures and targets. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                            <option value="no-nonelevated">No or unclear and non-elevated risk use</option> {/* Mid-range Risk - For non-elevated risk projects or systems, results should be treated as indicative and not relied on. Document your reasons. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                            <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to the next question. */}
+                                                        </select></td>
+                                                        <td><textarea name="fairnessControlsPerformanceMeasuresDetails" value={form.fairnessControlsPerformanceMeasuresDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.fairnessControlsPerformanceMeasures && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('fairnessControlsPerformanceMeasures', selectedValues.fairnessControlsPerformanceMeasures)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('fairnessControlsPerformanceMeasures', selectedValues.fairnessControlsPerformanceMeasures)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                </>
                                             )}
                                             <tr>
                                                 <td colSpan={3}><em>Measuring AI system performance: Elevated risk uses of AI should have clear performance monitoring and calibration schedules. <br/>
@@ -3559,228 +3598,233 @@ const AIRiskInputForm = ({
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-privacy">
                                 <legend className="air-inputform-legend air-inputform-legend-privacy">Privacy and Security</legend>
                                 <table className="air-inputform-field-table">
-                                    <tbody>{viewMode !== 'summary' && (
+                                    <tbody>
+                                        {viewMode !== 'summary' && (
                                         <>
-                                            <tr>
-                                                <td colSpan={3}><strong>Principle Statement - Privacy:</strong> Ensure secure, transparent, and compliant data use to preserve public trust.</td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={3}><p><em>Consider these as risk events and the consequences being the harms listed under Community / organisational Harms</em></p>
-                                                <p><em>It is critical to assess potential use of sensitive data. When the size of an identifiable cohort within the model training dataset is smaller, the likelihood of identification or re-identification increases, hence the higher risk</em></p></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Children:</label></td>
-                                                <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveChildren" className="air-inputform-select"
-                                                    value={selectedValues.privacyControlsSensitiveChildren || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
-                                                    <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
-                                                    <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
-                                                    <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
-                                                    <option value="very-high">&lt; 5</option> {/* Very High Risk */}
-                                                </select></td>
-                                                <td><textarea name="privacyControlsSensitiveChildrenDetails" value={form.privacyControlsSensitiveChildrenDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.privacyControlsSensitiveChildren && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveChildren', selectedValues.privacyControlsSensitiveChildren)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveChildren', selectedValues.privacyControlsSensitiveChildren)}
-                                                    </td>
-                                                </tr>
+                                            {viewMode !== 'minimal' && (
+                                                <>
+                                                    <tr>
+                                                        <td colSpan={3}><strong>Principle Statement - Privacy:</strong> Ensure secure, transparent, and compliant data use to preserve public trust.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colSpan={3}><p><em>Consider these as risk events and the consequences being the harms listed under Community / Organisational Harms</em></p>
+                                                        <p><em>It is critical to assess potential use of sensitive data. When the size of an identifiable cohort within the model training dataset is smaller, the likelihood of identification or re-identification increases, hence the higher risk</em></p></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Children:</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveChildren" className="air-inputform-select"
+                                                            value={selectedValues.privacyControlsSensitiveChildren || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
+                                                            <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
+                                                            <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
+                                                            <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
+                                                            <option value="very-high">&lt; 5</option> {/* Very High Risk */}
+                                                        </select></td>
+                                                        <td><textarea name="privacyControlsSensitiveChildrenDetails" value={form.privacyControlsSensitiveChildrenDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.privacyControlsSensitiveChildren && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveChildren', selectedValues.privacyControlsSensitiveChildren)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveChildren', selectedValues.privacyControlsSensitiveChildren)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Religious individuals:</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveReligious" className="air-inputform-select"
+                                                            value={selectedValues.privacyControlsSensitiveReligious || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
+                                                            <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
+                                                            <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
+                                                            <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
+                                                            <option value="very-high">&lt; 5</option> {/* Very High Risk */}
+                                                        </select></td>
+                                                        <td><textarea name="privacyControlsSensitiveReligiousDetails" value={form.privacyControlsSensitiveReligiousDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.privacyControlsSensitiveReligious && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveReligious', selectedValues.privacyControlsSensitiveReligious)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveReligious', selectedValues.privacyControlsSensitiveReligious)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Racially or ethnically diverse individuals:</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveRacial" className="air-inputform-select"
+                                                            value={selectedValues.privacyControlsSensitiveRacial || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
+                                                            <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
+                                                            <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
+                                                            <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
+                                                            <option value="very-high">&lt; 5</option> {/* Very High Risk */}
+                                                        </select></td>
+                                                        <td><textarea name="privacyControlsSensitiveRacialDetails" value={form.privacyControlsSensitiveRacialDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.privacyControlsSensitiveRacial && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveRacial', selectedValues.privacyControlsSensitiveRacial)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveRacial', selectedValues.privacyControlsSensitiveRacial)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with political opinions or associations:</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="privacyControlsSensitivePolitical" className="air-inputform-select"
+                                                            value={selectedValues.privacyControlsSensitivePolitical || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
+                                                            <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
+                                                            <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
+                                                            <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
+                                                            <option value="very-high">&lt; 5</option> {/* Very High Risk */}
+                                                        </select></td>
+                                                        <td><textarea name="privacyControlsSensitivePoliticalDetails" value={form.privacyControlsSensitivePoliticalDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.privacyControlsSensitivePolitical && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitivePolitical', selectedValues.privacyControlsSensitivePolitical)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitivePolitical', selectedValues.privacyControlsSensitivePolitical)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with trade union membership or associations:</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveUnion" className="air-inputform-select"
+                                                            value={selectedValues.privacyControlsSensitiveUnion || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
+                                                            <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
+                                                            <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
+                                                            <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
+                                                            <option value="very-high">&lt; 5</option> {/* Very High Risk */}
+                                                        </select></td>
+                                                        <td><textarea name="privacyControlsSensitiveUnionDetails" value={form.privacyControlsSensitiveUnionDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.privacyControlsSensitiveUnion && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveUnion', selectedValues.privacyControlsSensitiveUnion)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveUnion', selectedValues.privacyControlsSensitiveUnion)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with gender and/or sexual diversity:</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveGender" className="air-inputform-select"
+                                                            value={selectedValues.privacyControlsSensitiveGender || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
+                                                            <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
+                                                            <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
+                                                            <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
+                                                            <option value="very-high">&lt; 5</option> {/* Very High Risk */}
+                                                        </select></td>
+                                                        <td><textarea name="privacyControlsSensitiveGenderDetails" value={form.privacyControlsSensitiveGenderDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.privacyControlsSensitiveGender && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveGender', selectedValues.privacyControlsSensitiveGender)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveGender', selectedValues.privacyControlsSensitiveGender)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with a criminal record:</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveCriminalRecord" className="air-inputform-select"
+                                                            value={selectedValues.privacyControlsSensitiveCriminalRecord || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
+                                                            <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
+                                                            <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
+                                                            <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
+                                                            <option value="very-high">&lt; 5</option> {/* Very High Risk */}
+                                                        </select></td>
+                                                        <td><textarea name="privacyControlsSensitiveCriminalRecordDetails" value={form.privacyControlsSensitiveCriminalRecordDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.privacyControlsSensitiveCriminalRecord && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveCriminalRecord', selectedValues.privacyControlsSensitiveCriminalRecord)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveCriminalRecord', selectedValues.privacyControlsSensitiveCriminalRecord)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Specific health or genetic information:</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveHealth" className="air-inputform-select"
+                                                            value={selectedValues.privacyControlsSensitiveHealth || ''}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
+                                                            <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
+                                                            <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
+                                                            <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
+                                                            <option value="very-high">&lt; 5</option> {/* Very High Risk */}
+                                                        </select></td>
+                                                        <td><textarea name="privacyControlsSensitiveHealthDetails" value={form.privacyControlsSensitiveHealthDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.privacyControlsSensitiveHealth && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveHealth', selectedValues.privacyControlsSensitiveHealth)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveHealth', selectedValues.privacyControlsSensitiveHealth)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Personal biometric information:</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveBiometric" className="air-inputform-select" 
+                                                            value={selectedValues.privacyControlsSensitiveBiometric || ""} 
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
+                                                            <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
+                                                            <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
+                                                            <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
+                                                            <option value="very-high">&lt; 5</option> {/* Very High Risk */}
+                                                        </select></td>
+                                                        <td><textarea name="privacyControlsSensitiveBiometricDetails" value={form.privacyControlsSensitiveBiometricDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.privacyControlsSensitiveBiometric && (
+                                                        <tr>
+                                                            <td colSpan={3}  className={getGuidanceRiskClass('privacyControlsSensitiveBiometric', selectedValues.privacyControlsSensitiveBiometric)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveBiometric', selectedValues.privacyControlsSensitiveBiometric)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Other sensitive person-centered data:</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveOtherData" className="air-inputform-select" 
+                                                            value={selectedValues.privacyControlsSensitiveOtherData || ""} 
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
+                                                            <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
+                                                            <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
+                                                            <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
+                                                            <option value="very-high">&lt; 5</option> {/* Very High Risk */}
+                                                        </select></td>
+                                                        <td><textarea name="privacyControlsSensitiveOtherDataDetails" value={form.privacyControlsSensitiveOtherDataDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.privacyControlsSensitiveOtherData && (
+                                                        <tr>
+                                                            <td colSpan={3}  className={getGuidanceRiskClass('privacyControlsSensitiveOtherData', selectedValues.privacyControlsSensitiveOtherData)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveOtherData', selectedValues.privacyControlsSensitiveOtherData)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td colSpan={3}><hr /></td>
+                                                    </tr>
+                                                </>
                                             )}
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Religious individuals:</label></td>
-                                                <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveReligious" className="air-inputform-select"
-                                                    value={selectedValues.privacyControlsSensitiveReligious || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
-                                                    <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
-                                                    <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
-                                                    <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
-                                                    <option value="very-high">&lt; 5</option> {/* Very High Risk */}
-                                                </select></td>
-                                                <td><textarea name="privacyControlsSensitiveReligiousDetails" value={form.privacyControlsSensitiveReligiousDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.privacyControlsSensitiveReligious && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveReligious', selectedValues.privacyControlsSensitiveReligious)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveReligious', selectedValues.privacyControlsSensitiveReligious)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Racially or ethnically diverse individuals:</label></td>
-                                                <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveRacial" className="air-inputform-select"
-                                                    value={selectedValues.privacyControlsSensitiveRacial || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
-                                                    <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
-                                                    <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
-                                                    <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
-                                                    <option value="very-high">&lt; 5</option> {/* Very High Risk */}
-                                                </select></td>
-                                                <td><textarea name="privacyControlsSensitiveRacialDetails" value={form.privacyControlsSensitiveRacialDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.privacyControlsSensitiveRacial && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveRacial', selectedValues.privacyControlsSensitiveRacial)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveRacial', selectedValues.privacyControlsSensitiveRacial)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with political opinions or associations:</label></td>
-                                                <td className="air-inputform-field-cell"><select name="privacyControlsSensitivePolitical" className="air-inputform-select"
-                                                    value={selectedValues.privacyControlsSensitivePolitical || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
-                                                    <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
-                                                    <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
-                                                    <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
-                                                    <option value="very-high">&lt; 5</option> {/* Very High Risk */}
-                                                </select></td>
-                                                <td><textarea name="privacyControlsSensitivePoliticalDetails" value={form.privacyControlsSensitivePoliticalDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.privacyControlsSensitivePolitical && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitivePolitical', selectedValues.privacyControlsSensitivePolitical)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitivePolitical', selectedValues.privacyControlsSensitivePolitical)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with trade union membership or associations:</label></td>
-                                                <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveUnion" className="air-inputform-select"
-                                                    value={selectedValues.privacyControlsSensitiveUnion || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
-                                                    <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
-                                                    <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
-                                                    <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
-                                                    <option value="very-high">&lt; 5</option> {/* Very High Risk */}
-                                                </select></td>
-                                                <td><textarea name="privacyControlsSensitiveUnionDetails" value={form.privacyControlsSensitiveUnionDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.privacyControlsSensitiveUnion && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveUnion', selectedValues.privacyControlsSensitiveUnion)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveUnion', selectedValues.privacyControlsSensitiveUnion)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with gender and/or sexual diversity:</label></td>
-                                                <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveGender" className="air-inputform-select"
-                                                    value={selectedValues.privacyControlsSensitiveGender || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
-                                                    <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
-                                                    <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
-                                                    <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
-                                                    <option value="very-high">&lt; 5</option> {/* Very High Risk */}
-                                                </select></td>
-                                                <td><textarea name="privacyControlsSensitiveGenderDetails" value={form.privacyControlsSensitiveGenderDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.privacyControlsSensitiveGender && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveGender', selectedValues.privacyControlsSensitiveGender)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveGender', selectedValues.privacyControlsSensitiveGender)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Individuals with a criminal record:</label></td>
-                                                <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveCriminalRecord" className="air-inputform-select"
-                                                    value={selectedValues.privacyControlsSensitiveCriminalRecord || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
-                                                    <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
-                                                    <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
-                                                    <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
-                                                    <option value="very-high">&lt; 5</option> {/* Very High Risk */}
-                                                </select></td>
-                                                <td><textarea name="privacyControlsSensitiveCriminalRecordDetails" value={form.privacyControlsSensitiveCriminalRecordDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.privacyControlsSensitiveCriminalRecord && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveCriminalRecord', selectedValues.privacyControlsSensitiveCriminalRecord)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveCriminalRecord', selectedValues.privacyControlsSensitiveCriminalRecord)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Specific health or genetic information:</label></td>
-                                                <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveHealth" className="air-inputform-select"
-                                                    value={selectedValues.privacyControlsSensitiveHealth || ''}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
-                                                    <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
-                                                    <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
-                                                    <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
-                                                    <option value="very-high">&lt; 5</option> {/* Very High Risk */}
-                                                </select></td>
-                                                <td><textarea name="privacyControlsSensitiveHealthDetails" value={form.privacyControlsSensitiveHealthDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.privacyControlsSensitiveHealth && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('privacyControlsSensitiveHealth', selectedValues.privacyControlsSensitiveHealth)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveHealth', selectedValues.privacyControlsSensitiveHealth)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Personal biometric information:</label></td>
-                                                <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveBiometric" className="air-inputform-select" 
-                                                    value={selectedValues.privacyControlsSensitiveBiometric || ""} 
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
-                                                    <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
-                                                    <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
-                                                    <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
-                                                    <option value="very-high">&lt; 5</option> {/* Very High Risk */}
-                                                </select></td>
-                                                <td><textarea name="privacyControlsSensitiveBiometricDetails" value={form.privacyControlsSensitiveBiometricDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.privacyControlsSensitiveBiometric && (
-                                                <tr>
-                                                    <td colSpan={3}  className={getGuidanceRiskClass('privacyControlsSensitiveBiometric', selectedValues.privacyControlsSensitiveBiometric)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveBiometric', selectedValues.privacyControlsSensitiveBiometric)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Other sensitive person-centered data:</label></td>
-                                                <td className="air-inputform-field-cell"><select name="privacyControlsSensitiveOtherData" className="air-inputform-select" 
-                                                    value={selectedValues.privacyControlsSensitiveOtherData || ""} 
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">&gt; 50 or N/A</option> {/* Very Low Risk or N/A */}
-                                                    <option value="low">&gt; 20 and &lt; 50</option> {/* Low Risk */}
-                                                    <option value="mid-range">&gt; 10 and &lt; 20</option> {/* Mid-range Risk */}
-                                                    <option value="high">&gt; 5 and &lt; 10</option> {/* High Risk */}
-                                                    <option value="very-high">&lt; 5</option> {/* Very High Risk */}
-                                                </select></td>
-                                                <td><textarea name="privacyControlsSensitiveOtherDataDetails" value={form.privacyControlsSensitiveOtherDataDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.privacyControlsSensitiveOtherData && (
-                                                <tr>
-                                                    <td colSpan={3}  className={getGuidanceRiskClass('privacyControlsSensitiveOtherData', selectedValues.privacyControlsSensitiveOtherData)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('privacyControlsSensitiveOtherData', selectedValues.privacyControlsSensitiveOtherData)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td colSpan={3}><hr /></td>
-                                            </tr>
                                             <tr>
                                                 <td colSpan={3}><em>Privacy by design, security by design: Even small AI projects or systems may have privacy or security vulnerabilities. For example, an analytics system which stores commercially sensitive data in a non-secure environment unbeknown to the user</em></td>
                                             </tr>
@@ -3827,7 +3871,7 @@ const AIRiskInputForm = ({
                                                 </tr>
                                             )}
                                             <tr>
-                                                <td colSpan={3}><em>Exceptions: You can ask the Privacy Commissioner to make a Public Interest Direction (PID) to waive the requirement to comply with an Information Protection Principle. These are only granted in circumstances where there are compelling public interests. For AI systems intended to operate under legislation which allows use of Personally Identifiable Information, the public benefits must be clear before proceeding to pilot phase.<br />
+                                                <td colSpan={3}><em>Exceptions: You need to obtain an exemption to waive the requirement to comply with an Information Protection Principle. These are only granted in circumstances where there are compelling reasons. For AI systems intended to operate under legislation which allows use of Personally Identifiable Information, the public benefits must be clear before proceeding to pilot phase.<br />
                                                 Governing use of Personally Identifiable Information: You must apply higher governance standards if you are managing Personally Identifiable Information.
                                                 </em></td>
                                             </tr>
@@ -3984,12 +4028,16 @@ const AIRiskInputForm = ({
                                     <tbody>
                                         {viewMode !== 'summary' && (
                                             <>
-                                            <tr>
-                                                <td colSpan={3}><strong>Principle Statement - Transparency:</strong> The use of AI will be transparent to the people it could impact, providing review mechanisms that allow concerns to be raised and addressed, privacy preserving, cyber secure and ethical.</td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={3}><em>Consider these as risk events and the consequences being the harms listed under Community / organisational Harms</em></td>
-                                            </tr>
+                                                {viewMode !== 'minimal' && (
+                                                    <>
+                                                        <tr>
+                                                            <td colSpan={3}><strong>Principle Statement - Transparency:</strong> The use of AI will be transparent to the people it could impact, providing review mechanisms that allow concerns to be raised and addressed, privacy preserving, cyber secure and ethical.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colSpan={3}><em>Consider these as risk events and the consequences being the harms listed under Community / Organisational Harms</em></td>
+                                                        </tr>
+                                                    </>
+                                                )}
                                             <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Incomplete documentation of AI system design, or implementation, or operation</label></td>
                                                 <td className="air-inputform-field-cell"><select name="transparencyPurpose" className="air-inputform-select"
@@ -4032,34 +4080,38 @@ const AIRiskInputForm = ({
                                                 </select></td>
                                                 <td><textarea name="transparencyDataUsageDetails" value={form.transparencyDataUsageDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                             </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">A member of the public being unaware that they are interacting with an AI system</label></td>
-                                                <td className="air-inputform-field-cell"><select name="transparencyPublicAwareness" className="air-inputform-select"
-                                                    value={selectedValues.transparencyPublicAwareness || ""}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="mid-range">Mid-range</option>
-                                                    <option value="high">High</option>
-                                                    <option value="very-high">Very High</option>
-                                                </select></td>
-                                                <td><textarea name="transparencyPublicAwarenessDetails" value={form.transparencyPublicAwarenessDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">No or low ability to incorporate user feedback into an AI system or model</label></td>
-                                                <td className="air-inputform-field-cell"><select name="transparencyUserFeedback" className="air-inputform-select"
-                                                    value={selectedValues.transparencyUserFeedback || ""}
-                                                    onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="na">N/A</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="mid-range">Mid-range</option>
-                                                    <option value="high">High</option>
-                                                    <option value="very-high">Very High</option>
-                                                </select></td>
-                                                <td><textarea name="transparencyUserFeedbackDetails" value={form.transparencyUserFeedbackDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
+                                            {viewMode !== 'minimal' && (
+                                                <>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">A member of the public being unaware that they are interacting with an AI system</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="transparencyPublicAwareness" className="air-inputform-select"
+                                                            value={selectedValues.transparencyPublicAwareness || ""}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">N/A</option>
+                                                            <option value="low">Low</option>
+                                                            <option value="mid-range">Mid-range</option>
+                                                            <option value="high">High</option>
+                                                            <option value="very-high">Very High</option>
+                                                        </select></td>
+                                                        <td><textarea name="transparencyPublicAwarenessDetails" value={form.transparencyPublicAwarenessDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">No or low ability to incorporate user feedback into an AI system or model</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="transparencyUserFeedback" className="air-inputform-select"
+                                                            value={selectedValues.transparencyUserFeedback || ""}
+                                                            onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="na">N/A</option>
+                                                            <option value="low">Low</option>
+                                                            <option value="mid-range">Mid-range</option>
+                                                            <option value="high">High</option>
+                                                            <option value="very-high">Very High</option>
+                                                        </select></td>
+                                                        <td><textarea name="transparencyUserFeedbackDetails" value={form.transparencyUserFeedbackDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                </>
+                                            )}
                                             <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The inability to audit past decisions, where input from AI systems was used.</label></td>
                                                 <td className="air-inputform-field-cell"><select name="transparencyAuditability" className="air-inputform-select"
@@ -4074,91 +4126,95 @@ const AIRiskInputForm = ({
                                                 </select></td>
                                                 <td><textarea name="transparencyAuditabilityDetails" value={form.transparencyAuditabilityDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                             </tr>
-                                            <tr>
-                                                <td colSpan={3}><hr /></td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={3}><em>Consultation: You must consult with the relevant community when you design your system. This is particularly important for Elevated risk uses of AI. Communities have the right to influence government decision-making where those decisions, and the data on which they are based, will have an impact on them. For AI intended to operate under legislation which allows use without community consultation, the public benefits must be clear before proceeding.</em></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Have you consulted with the relevant community that will benefit from (or be impacted by) the system?</label></td>
-                                                <td className="air-inputform-field-cell"><select name="transparencyConsultation" className="air-inputform-select" value={selectedValues.transparencyConsultation || ""} onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option> {/* Low Risk - Explain your answer, then go to next question */}
-                                                    <option value="authorised-use">Authorised Use</option> {/* Mid-range Risk - For AI systems intended to operate under legislation which allows use without community consultation, do not proceed unless you receive clear legal advice that allows you to proceed. The system should be always monitored for harms. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
-                                                    <option value="partially">Partially, it's better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document here how you have consulted with all relevant stakeholders before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
-                                                    <option value="no">No</option> {/* Very High Risk - Pause the project, develop a Community Engagement Plan and consult with the relevant community. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
-                                                    <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to next question */}
-                                                </select></td>
-                                                <td><textarea name="transparencyConsultationDetails" value={form.transparencyConsultationDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.transparencyConsultation && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('transparencyConsultation', selectedValues.transparencyConsultation)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('transparencyConsultation', selectedValues.transparencyConsultation)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td colSpan={3}><em>Sharing project goals: It is important to encourage public trust in AI, by ensuring AI implementation is transparent and accountable, and that AI delivers positive outcomes to citizens.</em></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Are the scope and goals of the project publicly available, and have you communicated how safeguards have been put in place to mitigate any potential harms? Explore diverse approaches to instil confidence within communities regarding your AI utilisation. This may entail targeted communication strategies or maintaining public registers. Offer concise and straightforward explanations of your AI usage to those potentially affected, especially for elevated risk. Ensure these explanations foster trust without generating confusion.</label></td>
-                                                <td className="air-inputform-field-cell"><select name="transparencyScopeGoals" className="air-inputform-select" value={selectedValues.transparencyScopeGoals || ""} onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option> {/* Low Risk - Explain your answer, then go to next question */}
-                                                    <option value="no">No</option> {/* Very High Risk - Make sure you communicate to relevant stakeholders and the community who are impacted before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
-                                                    <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to next question */}
-                                                </select></td>
-                                                <td><textarea name="transparencyScopeGoalsDetails" value={form.transparencyScopeGoalsDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.transparencyScopeGoals && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('transparencyScopeGoals', selectedValues.transparencyScopeGoals)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('transparencyScopeGoals', selectedValues.transparencyScopeGoals)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td colSpan={3}><em>Right to appeal: No person should ever lose a right, privilege or entitlement without right of appeal. A basic requirement of Transparency is for an individual affected by a relevant decision to understand the basis of the decision, and to be able to effectively challenge it on the merits and/or if the decision was unlawful. When planning your project/system, you must make sure no person could lose a right, privilege or entitlement without access to a review process or an effective way to challenge an AI generated or informed decision.</em></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Is there an easy and cost-effective way for people to appeal a decision that has been informed by your system? Individuals have the right to raise concerns or appeal decisions. Ensure the use of simple and easily understandable language to facilitate this process.</label></td>
-                                                <td className="air-inputform-field-cell"><select name="transparencyRightToAppeal" className="air-inputform-select" value={selectedValues.transparencyRightToAppeal || ""} onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option> {/* Low Risk - Explain your answer, then go to next question */}
-                                                    <option value="no">No</option> {/* Very High Risk - Pause your project, consult with relevant stakeholders and establish an appeals process. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
-                                                    <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to next question */}
-                                                </select></td>
-                                                <td><textarea name="transparencyRightToAppealDetails" value={form.transparencyRightToAppealDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.transparencyRightToAppeal && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('transparencyRightToAppeal', selectedValues.transparencyRightToAppeal)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('transparencyRightToAppeal', selectedValues.transparencyRightToAppeal)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td colSpan={3}><em>Clear explanations: As far as possible, you must have a way to clearly explain how a decision or outcome has been informed by AI. If the system is a “black box” due to lack of access to the inner workings or is too complex to reasonably explain the factors leading to the insight generation, it is essential to consider the role of human judgement in intervening before an AI generated insight is acted on. It is important to formalise and document this human oversight process. In low (or very low) risk environments, it may be sufficient to identify and document mechanisms to readily reverse any action arising from such an insight (for example, a person overriding an automated barrier).</em></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Does the AI system allow for transparent explanation of the factors leading to a decision or insight?</label></td>
-                                                <td className="air-inputform-field-cell"><select name="transparencyClearExplanations" className="air-inputform-select" value={selectedValues.transparencyClearExplanations || ""} onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="yes">Yes</option> {/* Low Risk - Explain your answer, then go to next question */}
-                                                    <option value="no-but-person-decision">No, but a person makes the final decision</option> {/* High Risk - Consult with relevant stakeholders and establish a process to readily reverse any decision or action made by the AI system. Actively monitor for potential harms. */}
-                                                    <option value="no">No</option> {/* Very High Risk - Pause your project, consult with relevant stakeholders and establish an appeals process. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
-                                                    <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to next question */}
-                                                </select></td>
-                                                <td><textarea name="transparencyClearExplanationsDetails" value={form.transparencyClearExplanationsDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.transparencyClearExplanations && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('transparencyClearExplanations', selectedValues.transparencyClearExplanations)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('transparencyClearExplanations', selectedValues.transparencyClearExplanations)}
-                                                    </td>
-                                                </tr>
+                                            {viewMode !== 'minimal' && (
+                                                <>
+                                                    <tr>
+                                                        <td colSpan={3}><hr /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colSpan={3}><em>Consultation: You must consult with the relevant community when you design your system. This is particularly important for Elevated risk uses of AI. Communities have the right to influence government decision-making where those decisions, and the data on which they are based, will have an impact on them. For AI intended to operate under legislation which allows use without community consultation, the public benefits must be clear before proceeding.</em></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Have you consulted with the relevant community that will benefit from (or be impacted by) the system?</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="transparencyConsultation" className="air-inputform-select" value={selectedValues.transparencyConsultation || ""} onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="yes">Yes</option> {/* Low Risk - Explain your answer, then go to next question */}
+                                                            <option value="authorised-use">Authorised Use</option> {/* Mid-range Risk - For AI systems intended to operate under legislation which allows use without community consultation, do not proceed unless you receive clear legal advice that allows you to proceed. The system should be always monitored for harms. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                            <option value="partially">Partially, it's better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document here how you have consulted with all relevant stakeholders before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                            <option value="no">No</option> {/* Very High Risk - Pause the project, develop a Community Engagement Plan and consult with the relevant community. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                            <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to next question */}
+                                                        </select></td>
+                                                        <td><textarea name="transparencyConsultationDetails" value={form.transparencyConsultationDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.transparencyConsultation && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('transparencyConsultation', selectedValues.transparencyConsultation)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('transparencyConsultation', selectedValues.transparencyConsultation)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td colSpan={3}><em>Sharing project goals: It is important to encourage public trust in AI, by ensuring AI implementation is transparent and accountable, and that AI delivers positive outcomes to citizens.</em></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Are the scope and goals of the project publicly available, and have you communicated how safeguards have been put in place to mitigate any potential harms? Explore diverse approaches to instil confidence within communities regarding your AI utilisation. This may entail targeted communication strategies or maintaining public registers. Offer concise and straightforward explanations of your AI usage to those potentially affected, especially for elevated risk. Ensure these explanations foster trust without generating confusion.</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="transparencyScopeGoals" className="air-inputform-select" value={selectedValues.transparencyScopeGoals || ""} onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="yes">Yes</option> {/* Low Risk - Explain your answer, then go to next question */}
+                                                            <option value="no">No</option> {/* Very High Risk - Make sure you communicate to relevant stakeholders and the community who are impacted before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                            <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to next question */}
+                                                        </select></td>
+                                                        <td><textarea name="transparencyScopeGoalsDetails" value={form.transparencyScopeGoalsDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.transparencyScopeGoals && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('transparencyScopeGoals', selectedValues.transparencyScopeGoals)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('transparencyScopeGoals', selectedValues.transparencyScopeGoals)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td colSpan={3}><em>Right to appeal: No person should ever lose a right, privilege or entitlement without right of appeal. A basic requirement of Transparency is for an individual affected by a relevant decision to understand the basis of the decision, and to be able to effectively challenge it on the merits and/or if the decision was unlawful. When planning your project/system, you must make sure no person could lose a right, privilege or entitlement without access to a review process or an effective way to challenge an AI generated or informed decision.</em></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Is there an easy and cost-effective way for people to appeal a decision that has been informed by your system? Individuals have the right to raise concerns or appeal decisions. Ensure the use of simple and easily understandable language to facilitate this process.</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="transparencyRightToAppeal" className="air-inputform-select" value={selectedValues.transparencyRightToAppeal || ""} onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="yes">Yes</option> {/* Low Risk - Explain your answer, then go to next question */}
+                                                            <option value="no">No</option> {/* Very High Risk - Pause your project, consult with relevant stakeholders and establish an appeals process. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                            <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to next question */}
+                                                        </select></td>
+                                                        <td><textarea name="transparencyRightToAppealDetails" value={form.transparencyRightToAppealDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.transparencyRightToAppeal && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('transparencyRightToAppeal', selectedValues.transparencyRightToAppeal)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('transparencyRightToAppeal', selectedValues.transparencyRightToAppeal)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td colSpan={3}><em>Clear explanations: As far as possible, you must have a way to clearly explain how a decision or outcome has been informed by AI. If the system is a “black box” due to lack of access to the inner workings or is too complex to reasonably explain the factors leading to the insight generation, it is essential to consider the role of human judgement in intervening before an AI generated insight is acted on. It is important to formalise and document this human oversight process. In low (or very low) risk environments, it may be sufficient to identify and document mechanisms to readily reverse any action arising from such an insight (for example, a person overriding an automated barrier).</em></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Does the AI system allow for transparent explanation of the factors leading to a decision or insight?</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="transparencyClearExplanations" className="air-inputform-select" value={selectedValues.transparencyClearExplanations || ""} onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="yes">Yes</option> {/* Low Risk - Explain your answer, then go to next question */}
+                                                            <option value="no-but-person-decision">No, but a person makes the final decision</option> {/* High Risk - Consult with relevant stakeholders and establish a process to readily reverse any decision or action made by the AI system. Actively monitor for potential harms. */}
+                                                            <option value="no">No</option> {/* Very High Risk - Pause your project, consult with relevant stakeholders and establish an appeals process. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                            <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to next question */}
+                                                        </select></td>
+                                                        <td><textarea name="transparencyClearExplanationsDetails" value={form.transparencyClearExplanationsDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.transparencyClearExplanations && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('transparencyClearExplanations', selectedValues.transparencyClearExplanations)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('transparencyClearExplanations', selectedValues.transparencyClearExplanations)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                </>
                                             )}
                                             <tr>
                                                 <td colSpan={3}><hr /></td>
@@ -4245,13 +4301,17 @@ const AIRiskInputForm = ({
                                     <tbody>
                                         {viewMode !== 'summary' && (
                                             <>
-                                            <tr>
-                                                <td colSpan={3}><strong>Principle Statement - Accountability:</strong> Decision-making remains the responsibility of organisations and individuals. <em>Despite AI's autonomy, humans hold ultimate decision responsibility necessitating skilled operators with clear accountabilities.</em></td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={3}><em><p>The skill and training for AI system operators is crucial. Automated systems pose the risk of over-reliance. Operators, including those exercising judgement over insights or alerts, must be well-trained. This includes the ability to critically evaluate insights and understand system limitations. Users must have confidence in their ability to identify, report, and resolve ethical concerns arising from AI-generated insights or decisions, or empower Responsible Officers to make decisions. Ensure consideration is given to training staff delivering customer-facing services on how respond to inquiries from customers when AI is utilised, including guidance on who to direct such inquiries to.</p>
-                                                <p>Consider these as risk events and the consequences being the harms listed under Community / organisational Harms</p></em></td>
-                                            </tr>
+                                            {viewMode !== 'minimal' && (
+                                                <>
+                                                    <tr>
+                                                        <td colSpan={3}><strong>Principle Statement - Accountability:</strong> Decision-making remains the responsibility of organisations and individuals. <em>Despite AI's autonomy, humans hold ultimate decision responsibility necessitating skilled operators with clear accountabilities.</em></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colSpan={3}><em><p>The skill and training for AI system operators is crucial. Automated systems pose the risk of over-reliance. Operators, including those exercising judgement over insights or alerts, must be well-trained. This includes the ability to critically evaluate insights and understand system limitations. Users must have confidence in their ability to identify, report, and resolve ethical concerns arising from AI-generated insights or decisions, or empower Responsible Officers to make decisions. Ensure consideration is given to training staff delivering customer-facing services on how respond to inquiries from customers when AI is utilised, including guidance on who to direct such inquiries to.</p>
+                                                        <p>Consider these as risk events and the consequences being the harms listed under Community / Organisational Harms</p></em></td>
+                                                    </tr>
+                                                </>
+                                            )}
                                             <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Insufficient training of AI system operators</label></td>
                                                 <td className="air-inputform-field-cell"><select name="accountabilityTraining" className="air-inputform-select"
@@ -4325,43 +4385,51 @@ const AIRiskInputForm = ({
                                             <tr>
                                                 <td colSpan={3}><hr /></td>                                        
                                             </tr>
-                                            <tr>
-                                                <td colSpan={3}><em>Responsible Officers: This assessment is to be completed by or, the result confirmed with, the Responsible Officers. The Responsible Officer should be appropriately senior, skilled and qualified for the role.</em></td>
-                                            </tr>
+                                            {viewMode !== 'minimal' && (
+                                                <>
+                                                    <tr>
+                                                        <td colSpan={3}><em>Responsible Officers: This assessment is to be completed by or, the result confirmed with, the Responsible Officers. The Responsible Officer should be appropriately senior, skilled and qualified for the role.</em></td>
+                                                    </tr>
+                                                </>
+                                            )}
                                             <tr>
                                                 <td colSpan={3}>Have you established who is responsible for:</td>
                                             </tr>
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Use of the AI outputs, insights and decisions?</label></td>
-                                                <td className="air-inputform-field-cell"><select name="accountabilityResponsibleUse" className="air-inputform-select" value={selectedValues.accountabilityResponsibleUse || ""} onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="low">Yes</option> {/* Low Risk - Document who is responsible to each point within the question */}
-                                                    <option value="very-high">No or unclear</option> {/* Very High Risk - Pause the project while you identify who is responsible and make sure they are aware and capable of undertaking their responsibilities. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
-                                                </select></td>
-                                                <td><textarea name="accountabilityResponsibleUseDetails" value={form.accountabilityResponsibleUseDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.accountabilityResponsibleUse && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse)}
-                                                    </td>
-                                                </tr>
-                                            )}
-                                            <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Policy/outcomes associated with the AI system?</label></td>
-                                                <td className="air-inputform-field-cell"><select name="accountabilityResponsiblePolicy" className="air-inputform-select" value={selectedValues.accountabilityResponsiblePolicy || ""} onChange={handleSelectChange}>
-                                                    <option value="">Select...</option>
-                                                    <option value="low">Yes</option> {/* Low Risk - Document who is responsible to each point within the question */}
-                                                    <option value="very-high">No or unclear</option> {/* Very High Risk - Pause the project while you identify who is responsible and make sure they are aware and capable of undertaking their responsibilities. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
-                                                </select></td>
-                                                <td><textarea name="accountabilityResponsiblePolicyDetails" value={form.accountabilityResponsiblePolicyDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
-                                            </tr>
-                                            {selectedValues.accountabilityResponsiblePolicy && (
-                                                <tr>
-                                                    <td colSpan={3} className={getGuidanceRiskClass('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy)}>
-                                                        📋 <strong>Guidance:</strong> {getGuidanceText('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy)}
-                                                    </td>
-                                                </tr>
+                                            {viewMode !== 'minimal' && (
+                                                <>
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Use of the AI outputs, insights and decisions?</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="accountabilityResponsibleUse" className="air-inputform-select" value={selectedValues.accountabilityResponsibleUse || ""} onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="low">Yes</option> {/* Low Risk - Document who is responsible to each point within the question */}
+                                                            <option value="very-high">No or unclear</option> {/* Very High Risk - Pause the project while you identify who is responsible and make sure they are aware and capable of undertaking their responsibilities. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                        </select></td>
+                                                        <td><textarea name="accountabilityResponsibleUseDetails" value={form.accountabilityResponsibleUseDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.accountabilityResponsibleUse && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('accountabilityResponsibleUse', selectedValues.accountabilityResponsibleUse)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    <tr>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Policy/outcomes associated with the AI system?</label></td>
+                                                        <td className="air-inputform-field-cell"><select name="accountabilityResponsiblePolicy" className="air-inputform-select" value={selectedValues.accountabilityResponsiblePolicy || ""} onChange={handleSelectChange}>
+                                                            <option value="">Select...</option>
+                                                            <option value="low">Yes</option> {/* Low Risk - Document who is responsible to each point within the question */}
+                                                            <option value="very-high">No or unclear</option> {/* Very High Risk - Pause the project while you identify who is responsible and make sure they are aware and capable of undertaking their responsibilities. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                        </select></td>
+                                                        <td><textarea name="accountabilityResponsiblePolicyDetails" value={form.accountabilityResponsiblePolicyDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
+                                                    </tr>
+                                                    {selectedValues.accountabilityResponsiblePolicy && (
+                                                        <tr>
+                                                            <td colSpan={3} className={getGuidanceRiskClass('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy)}>
+                                                                📋 <strong>Guidance:</strong> {getGuidanceText('accountabilityResponsiblePolicy', selectedValues.accountabilityResponsiblePolicy)}
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                </>
                                             )}
                                             <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Monitoring the performance of the AI system?</label></td>
@@ -4791,7 +4859,6 @@ const AIRiskInputForm = ({
                     {/* Risk Mitigation */}
                     {viewMode === 'extended' && (     
                     <>
-                    <tr><td colSpan={3}><BackToTopButton /></td></tr>
                     <tr>
                         <td colSpan={3}>
                             <fieldset className="air-inputform-fieldset air-inputform-fieldset-mitigation">
@@ -5142,9 +5209,6 @@ const AIRiskInputForm = ({
                         </td>
                     </tr>
                     )}   
-                    <>
-                    <tr><td colSpan={3}><BackToTopButton /></td></tr>
-                    </>
                     {/* Overall Risk Summary Table */}
                     <tr>
                         <td colSpan={3}>
@@ -5277,6 +5341,9 @@ const AIRiskInputForm = ({
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <BackToTopButton />
+            </div>
             <div className="air-button-container">
                 <div className="air-button-group">
                     <button

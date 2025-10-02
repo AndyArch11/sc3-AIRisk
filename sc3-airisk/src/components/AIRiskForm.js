@@ -5,7 +5,7 @@ import AIRiskInputForm from "./AIRiskInputForm";
 import AIRiskTable from "./AIRiskTable";
 import AIRiskReport from "./AIRiskReport";
 
-const VERSION = "v0.1.3"; // Update as needed
+const VERSION = "v0.1.4"; // Update as needed
 
 // ========== CENTRALIZED RISK LEVEL MAPPING UTILITY ==========
 export const RiskLevelUtils = {

@@ -51,7 +51,7 @@ export const exportAIRisksToExcel = (entries) => {
         // Generate timestamp for filename
         const now = new Date();
         const timestamp = now.toISOString().replace(/[:.]/g, '-').slice(0, -5); // Format: YYYY-MM-DDTHH-MM-SS
-        const filename = `AI_Risk_Assessment_Export_${timestamp}.xlsx`;
+        const filename = `SC3_AI_Risk_Assessment_Export_${timestamp}.xlsx`;
 
         // Write and download the file
         XLSX.writeFile(workbook, filename);
@@ -146,7 +146,11 @@ const createGuidanceWorksheet = () => {
         ['Export Time', new Date().toLocaleTimeString()],
         
         ['', ''],
-        ['Disclaimer', 'The information provided is for general informational purposes only and will require adaptation for specific businesses and maturity capabilities. It is not intended as legal advice. Please consult with a qualified legal professional for specific legal advice tailored to your situation.']
+        ['Disclaimer', 'The information provided is for general informational purposes only and will require adaptation for specific businesses and maturity capabilities. It is not intended as legal advice. Please consult with a qualified legal professional for specific legal advice tailored to your situation.'],
+        [""],
+        [
+        `AI Risk Assessment Form - Generated on ${new Date().toLocaleDateString()}`
+        ]
     ];
 };
 
