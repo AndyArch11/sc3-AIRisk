@@ -102,7 +102,26 @@ const AIRiskIntro = () => {
                 </ul>
                 <p><em>Note:</em> Risk management should be continuous, timely, and performed throughout the AI system lifecycle dimensions. AI RMF Core functions should be carried out in a way that reflects diverse and multidisciplinary perspectives, potentially including the views of AI actors outside the organisation.</p>
 
-                <h4>🇦🇺 Australia's AI Ethics Principles</h4>
+                {/* ISO/IEC controls summary */}
+                <h4>🧩 ISO/IEC AI Controls (summary)</h4>
+                <ul>
+                    <li><strong>Governance & leadership:</strong> AI policy, scope, roles, accountability, competence (ISO/IEC 42001, 38507).</li>
+                    <li><strong>Risk management process:</strong> identify, analyse, evaluate, treat, accept, and communicate AI risks (ISO/IEC 23894, 31000).</li>
+                    <li><strong>Lifecycle processes:</strong> plan, design, develop, verify/validate, deploy, operate, maintain, retire (ISO/IEC 5338).</li>
+                    <li><strong>Impact assessment:</strong> conduct/document AI impact assessments and stakeholder engagement (ISO/IEC 42005).</li>
+                    <li><strong>Data governance:</strong> data quality, lineage, provenance, access, retention/deletion, PII handling (ISO/IEC 42001, 23894).</li>
+                    <li><strong>Model development & TEVV:</strong> requirements, datasets, testing, bias checks, performance criteria, reproducibility (ISO/IEC 23894, 5338).</li>
+                    <li><strong>Security & resilience:</strong> threat modelling, controls, monitoring, incident response, supply chain (ISO/IEC 23894; align with 27001).</li>
+                    <li><strong>Privacy-by-design:</strong> minimisation, consent, DPIA alignment, de-identification safeguards (ISO/IEC 23894, 42001).</li>
+                    <li><strong>Fairness & bias:</strong> metrics, mitigation strategies, and ongoing monitoring (ISO/IEC 23894).</li>
+                    <li><strong>Transparency & documentation:</strong> intended use, limitations, user guidance, logs, change history (ISO/IEC 42001, 23894).</li>
+                    <li><strong>Human oversight:</strong> roles, approval gates, intervention/rollback procedures (ISO/IEC 42001, 23894).</li>
+                    <li><strong>Operations & monitoring:</strong> KPIs, drift detection, logging, incident/problem management, continual improvement (ISO/IEC 42001).</li>
+                    <li><strong>Third parties:</strong> supplier due diligence, contracts/SLAs, monitoring of provided models/data (ISO/IEC 42001, 23894).</li>
+                    <li><strong>Compliance & audit:</strong> internal audits, nonconformity handling, corrective actions, management review (ISO/IEC 42001).</li>
+                </ul>
++
+                 <h4>🇦🇺 Australia's AI Ethics Principles</h4>
                 <ul>
                     <li><strong>Human, social and environmental wellbeing:</strong> AI systems should benefit individuals, society and the environment.</li>
                     <li><strong>Human-centred values:</strong> AI systems should respect human rights, diversity, and the autonomy of individuals.</li>
@@ -126,6 +145,18 @@ const AIRiskIntro = () => {
                 <p>The questions in the AI Risk Input form are based on the NSW AIAF with minor modifications to make it less government orientated</p>
                 
                 <p>Multiple Australian jurisdictions advise undertaking a Privacy Impact Assessment (PIA) when developing or deploying AI systems to identify and mitigate potential privacy risks.</p>
+                <h5>Privacy Impact Assessments (PIA)</h5>
+                <ul>
+                    <li><em>GDPR:</em> <a href="https://gdpr.eu/data-protection-impact-assessment-template/" target="_blank" rel="noopener noreferrer">🇪🇺 Data Protection Impact Assessment (DPIA)</a></li>
+                    <li><em>Australian Privacy Foundation:</em> <a href="https://privacy.org.au/policies/pia/" target="_blank" rel="noopener noreferrer">Privacy Impact Assessments</a></li>
+                    <li><em>Office of the Australian Information Commissioner (OAIC):</em> <a href="https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/privacy-impact-assessments" target="_blank" rel="noopener noreferrer">🇦🇺 Privacy impact assessments</a></li>
+                    <li><em>New Zealand Privacy Commissioner:</em> <a href="https://www.privacy.org.nz/responsibilities/privacy-impact-assessments/" target="_blank" rel="noopener noreferrer">🇳🇿 Privacy Impact Assessments</a></li>
+                    <li><em>Office of the Victorian Information Commissioner (OVIC):</em> <a href="https://ovic.vic.gov.au/privacy/resources-for-organisations/privacy-impact-assessment/" target="_blank" rel="noopener noreferrer">VIC - Privacy Impact Assessment Guide</a></li>
+                    <li><em>Office of the Information Commissioner Queensland:</em> <a href="https://www.oic.qld.gov.au/guidelines/for-government/guidelines-privacy-principles/privacy-impact-assessments/overview-privacy-impact-assessment-process" target="_blank" rel="noopener noreferrer"> QLD - Privacy Impact Assessments</a></li>
+                    <li><em>Information and Privacy Commission NSW:</em> <a href="https://www.ipc.nsw.gov.au/resources/guide-guide-privacy-impact-assessments-nsw" target="_blank" rel="noopener noreferrer">NSW - Guide to Privacy Impact Assessments</a></li>
+                    <li><em>Government of South Australia:</em> <a href="https://www.archives.sa.gov.au/managing-information/privacy-in-south-australia/privacy-impact-assessment-guideline" target="_blank" rel="noopener noreferrer">SA - Privacy Impact Assessment Guideline</a></li>
+                    <li><em>Information Commissioner Northern Territory:</em> <a href="https://infocomm.nt.gov.au/resources/guidelines/5.-privacy-protection/Privacy-Privacy-Impact-Assessment.pdf" target="_blank" rel="noopener noreferrer">NT - Privacy Impact Assessment Guidelines</a></li>
+                </ul>
 
                 <h4>🇪🇺 EU AI Act</h4>
                 <p>Key features:</p>
@@ -150,6 +181,9 @@ const AIRiskIntro = () => {
                             <thead>
                                 <tr>
                                     <th className="air-ai-risk-level-table-header">NIST AI RMF Characteristics</th>
+                                    <th className="air-ai-risk-level-table-header">ISO/IEC 23894:2023<br/>(AI Risk Management)</th>
+                                    <th className="air-ai-risk-level-table-header">ISO/IEC 42001:2023<br/>(AI Management System)</th>
+                                    <th className="air-ai-risk-level-table-header">ISO/IEC 42005:2025<br/>(AI Impact Assessment)</th>
                                     <th className="air-ai-risk-level-table-header">EU AI Act Categories</th>
                                     <th className="air-ai-risk-level-table-header">Australia's AI Ethics Principles</th>
                                     <th className="air-ai-risk-level-table-header">NSW Ethical Principles</th>
@@ -158,60 +192,88 @@ const AIRiskIntro = () => {
                             <tbody>
                                 <tr>
                                     <td className="air-ai-risk-level-table-cell"><strong>Valid and Reliable</strong><br/>Performance as intended with minimal failure</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Risk Identification</strong><br/>Identify AI-specific risks throughout lifecycle</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Performance Monitoring</strong><br/>Monitor AI system performance and effectiveness</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Impact Evaluation</strong><br/>Assess impacts on stakeholders and systems</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>High Risk Requirements</strong><br/>Technical documentation, audits, registration</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Reliability and Safety</strong><br/>Operate in accordance with intended purpose</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Community Benefit</strong><br/>Prioritise community outcomes, minimise harm</td>
                                 </tr>
                                 <tr>
                                     <td className="air-ai-risk-level-table-cell"><strong>Safe</strong><br/>Operate without causing unintentional harm</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Risk Treatment</strong><br/>Implement controls to mitigate AI risks</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Risk Management</strong><br/>Systematic approach to managing AI risks</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Safety Assessment</strong><br/>Evaluate potential harms and safety measures</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Prohibited Practices</strong><br/>Unacceptable risk AI systems banned</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Human, Social and Environmental Wellbeing</strong><br/>Benefit individuals, society and environment</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Community Benefit</strong><br/>Ensure alignment with laws, maximise benefit</td>
                                 </tr>
                                 <tr>
                                     <td className="air-ai-risk-level-table-cell"><strong>Secure and Resilient</strong><br/>Robust against adversarial threats</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Security Controls</strong><br/>Protect AI systems from threats and attacks</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Information Security</strong><br/>Ensure confidentiality, integrity, availability</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Security Impact</strong><br/>Assess cybersecurity and resilience risks</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Risk Management</strong><br/>Security measures for high-risk systems</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Privacy Protection and Security</strong><br/>Uphold privacy rights and data protection</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Privacy and Security</strong><br/>Secure, transparent, compliant data use</td>
                                 </tr>
                                 <tr>
                                     <td className="air-ai-risk-level-table-cell"><strong>Explainable and Interpretable</strong><br/>Users can interpret AI outputs and rationale</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Transparency</strong><br/>Document AI decision-making processes</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Transparency and Documentation</strong><br/>Maintain records of AI system design and operation</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Explainability Assessment</strong><br/>Evaluate interpretability for stakeholders</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Transparency Obligations</strong><br/>Disclosure requirements for AI interaction</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Transparency and Explainability</strong><br/>Understand when significantly impacted by AI</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Transparency</strong><br/>Allow concerns to be raised and addressed</td>
                                 </tr>
                                 <tr>
                                     <td className="air-ai-risk-level-table-cell"><strong>Privacy Enhanced</strong><br/>Respect data privacy throughout lifecycle</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Privacy Risk Management</strong><br/>Address privacy risks in AI systems</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Data Governance</strong><br/>Manage data quality, privacy, and protection</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Privacy Impact</strong><br/>Assess data handling and privacy risks</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Data Governance</strong><br/>Requirements for data quality and management</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Privacy Protection and Security</strong><br/>Ensure security of data</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Privacy and Security</strong><br/>Adhere to the NSW PPIP Act, preserve public trust</td>
                                 </tr>
                                 <tr>
                                     <td className="air-ai-risk-level-table-cell"><strong>Fair with Harmful Bias Managed</strong><br/>Avoid discriminatory outcomes</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Fairness and Bias</strong><br/>Identify and mitigate bias risks</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Fairness Controls</strong><br/>Prevent discriminatory outcomes</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Fairness Impact</strong><br/>Assess potential for bias and discrimination</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Non-discrimination</strong><br/>Prevent biased outcomes in high-risk systems</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Fairness</strong><br/>Inclusive, accessible, no unfair discrimination</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Fairness</strong><br/>Prevent bias and inequality through diverse datasets</td>
                                 </tr>
                                 <tr>
                                     <td className="air-ai-risk-level-table-cell"><strong>Accountable and Transparent</strong><br/>Understand decision-making, audit design</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Accountability Framework</strong><br/>Define roles and responsibilities for AI risks</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Accountability and Governance</strong><br/>Establish clear roles and oversight</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Accountability Assessment</strong><br/>Evaluate governance and responsibility structures</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Human Oversight</strong><br/>Required for high-risk AI systems</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Accountability</strong><br/>Identifiable responsibility for AI outcomes</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Accountability</strong><br/>Decision-making remains organisational responsibility</td>
                                 </tr>
                                 <tr>
                                     <td className="air-ai-risk-level-table-cell"><strong>Govern Function</strong><br/>Culture of risk management</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Risk Governance</strong><br/>Integrate AI risk into organizational governance</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Management System</strong><br/>Systematic governance framework for AI</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Governance Impact</strong><br/>Assess organizational governance structures</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>European AI Board</strong><br/>Governance and enforcement structure</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Human-centred Values</strong><br/>Respect human rights and autonomy</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Transparency</strong><br/>NSW GIPA Act compliant, cyber secure and ethical</td>
                                 </tr>
                                 <tr>
                                     <td className="air-ai-risk-level-table-cell"><strong>Map, Measure, Manage</strong><br/>Identify, assess, and act on risks</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Risk Process</strong><br/>Continuous risk identification, analysis, evaluation</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Continuous Improvement</strong><br/>Monitor, measure, and improve AI systems</td>
+                                    <td className="air-ai-risk-level-table-cell"><strong>Impact Assessment Process</strong><br/>Systematic evaluation of AI system impacts</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Risk Assessment</strong><br/>Mandatory for high-risk systems</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Contestability</strong><br/>Process to challenge AI use or outcomes</td>
                                     <td className="air-ai-risk-level-table-cell"><strong>Community Benefit</strong><br/>Monitor performance and governance</td>
                                 </tr>
                             </tbody>
                         </table>
+                        <p></p>
                     </div>
                 </div>
                 <p><em>Note:</em> While these frameworks use different terminology and approaches, they share common objectives around ensuring AI systems are safe, fair, transparent, accountable, and beneficial to society. Organizations should consider how these frameworks complement each other when developing AI governance strategies.</p>
@@ -565,7 +627,7 @@ const AIRiskIntro = () => {
                         <table className="air-ai-risk-level-table">
                             <thead>
                                 <tr>
-                                    <th className="air-ai-risk-level-table-header" rowSpan="2"></th>
+                                    <th className="air-ai-risk-level-table-header" rowSpan="2">&nbsp;</th>
                                     <th style={{backgroundColor: '#747474', color: 'white'}} className="air-ai-risk-level-table-header">None</th>
                                     <th style={{backgroundColor: '#00B050', color: 'white'}} className="air-ai-risk-level-table-header">Low Risk</th>
                                     <th style={{backgroundColor: '#C88B04', color: 'white'}} className="air-ai-risk-level-table-header">Mid-range Risk</th>
