@@ -120,7 +120,7 @@ const AIRiskIntro = () => {
                     <li><strong>Third parties:</strong> supplier due diligence, contracts/SLAs, monitoring of provided models/data (ISO/IEC 42001, 23894).</li>
                     <li><strong>Compliance & audit:</strong> internal audits, nonconformity handling, corrective actions, management review (ISO/IEC 42001).</li>
                 </ul>
-+
+
                  <h4>🇦🇺 Australia's AI Ethics Principles</h4>
                 <ul>
                     <li><strong>Human, social and environmental wellbeing:</strong> AI systems should benefit individuals, society and the environment.</li>
