@@ -1,67 +1,93 @@
-import * as XLSX from 'xlsx';
+import * as ExcelJS from 'exceljs';
 
 // Function to create a timestamped Excel file with AI Risk Assessment data
-export const exportAIRisksToExcel = (entries) => {
+export const exportAIRisksToExcel = async (entries) => {
     try {
         // Create a new workbook
-        const workbook = XLSX.utils.book_new();
+        const workbook = new ExcelJS.Workbook();
+        workbook.creator = 'SC3 AI Risk Assessment Tool';
+        workbook.lastModifiedBy = 'SC3 AI Risk Assessment Tool';
+        workbook.created = new Date();
+        workbook.modified = new Date();
 
         // Create the AI Risk Assessment Guidance worksheet
         const guidanceData = createGuidanceWorksheet();
-        const guidanceWS = XLSX.utils.aoa_to_sheet(guidanceData);
-        
-        // Add some styling to the guidance worksheet
-        const guidanceRange = XLSX.utils.decode_range(guidanceWS['!ref']);
-        for (let R = guidanceRange.s.r; R <= guidanceRange.e.r; ++R) {
-            for (let C = guidanceRange.s.c; C <= guidanceRange.e.c; ++C) {
-                const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
-                if (!guidanceWS[cellAddress]) continue;
-                
-                // Style headers (first row and section headers)
-                if (R === 0 || (guidanceWS[cellAddress].v && typeof guidanceWS[cellAddress].v === 'string' && 
-                    (guidanceWS[cellAddress].v.includes('===') || guidanceWS[cellAddress].v.includes('Framework') || 
-                    guidanceWS[cellAddress].v.includes('NIST') || guidanceWS[cellAddress].v.includes('Australia') || 
-                    guidanceWS[cellAddress].v.includes('EU AI Act')))) {
-                    guidanceWS[cellAddress].s = {
-                        font: { bold: true, color: { rgb: "000000" } },
-                        fill: { fgColor: { rgb: "E6F3FF" } }
-                    };
-                }
-            }
-        }
-
-        // Set column widths for guidance worksheet
-        guidanceWS['!cols'] = [
-            { width: 46 }, // Topic
-            { width: 200 }  // Content
-        ];
-
-        XLSX.utils.book_append_sheet(workbook, guidanceWS, "AI Risk Assessment Guidance");
+        const guidanceWorksheet = workbook.addWorksheet('AI Risk Assessment Guidance');
+        guidanceWorksheet.addRows(guidanceData);
+        guidanceWorksheet.getColumn(1).width = 46;
+        guidanceWorksheet.getColumn(2).width = 50;
+        styleGuidanceWorksheet(guidanceWorksheet);
 
         // Create the AI Risk Assessment Entries worksheet
         const entriesData = createEntriesWorksheet(entries);
-        const entriesWS = XLSX.utils.aoa_to_sheet(entriesData);
-        
-        // Set column widths for entries worksheet - make them wider for better readability
-        const entriesColWidths = Array(entriesData[0]?.length || 0).fill({ width: 30 });
-        entriesWS['!cols'] = entriesColWidths;
-
-        XLSX.utils.book_append_sheet(workbook, entriesWS, "AI Risk Assessment Entries");
+        const entriesWorksheet = workbook.addWorksheet('AI Risk Assessment Entries');
+        entriesWorksheet.addRows(entriesData);
+        autoSizeWorksheetColumns(entriesWorksheet, entriesData);
+        styleEntriesWorksheetHeader(entriesWorksheet);
 
         // Generate timestamp for filename
         const now = new Date();
         const timestamp = now.toISOString().replace(/[:.]/g, '-').slice(0, -5); // Format: YYYY-MM-DDTHH-MM-SS
         const filename = `SC3_AI_Risk_Assessment_Export_${timestamp}.xlsx`;
 
-        // Write and download the file
-        XLSX.writeFile(workbook, filename);
-        
-        console.log(`Excel file "${filename}" has been generated and downloaded successfully.`);
+        // Generate and download the file
+        const buffer = await workbook.xlsx.writeBuffer();
+        const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
         
     } catch (error) {
         console.error('Error creating Excel export:', error);
         alert('An error occurred while creating the Excel file. Please try again.');
     }
+};
+
+const styleGuidanceWorksheet = (worksheet) => {
+    if (worksheet.getRow(1).cellCount > 0) {
+        const headerCell = worksheet.getRow(1).getCell(1);
+        headerCell.font = { bold: true, size: 16, color: { rgb: 'FFFFFF' } };
+        headerCell.fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: { rgb: '2F5233' }
+        };
+        headerCell.alignment = { horizontal: 'center' };
+    }
+};
+
+const autoSizeWorksheetColumns = (worksheet, worksheetData) => {
+    if (worksheetData.length > 0 && worksheetData[0]) {
+        const maxWidth = worksheetData[0].length;
+        for (let i = 1; i <= maxWidth; i++) {
+            let maxLength = 10;
+            worksheetData.forEach(row => {
+                if (row[i - 1] && row[i - 1].toString().length > maxLength) {
+                    maxLength = row[i - 1].toString().length;
+                }
+            });
+            worksheet.getColumn(i).width = Math.min(Math.max(maxLength + 2, 10), 50);
+        }
+    }
+};
+
+const styleEntriesWorksheetHeader = (worksheet) => {
+    [worksheet.getRow(1), worksheet.getRow(2)].forEach((row) => {
+        row.eachCell((cell) => {
+            cell.font = { bold: true, color: { rgb: 'FFFFFF' } };
+            cell.fill = {
+                type: 'pattern',
+                pattern: 'solid',
+                fgColor: { rgb: '2F5233' }
+            };
+            cell.alignment = { horizontal: 'center' };
+        });
+    });
 };
 
 // Function to create the guidance worksheet data

@@ -1,5 +1,4 @@
 import React from "react";
-import { exportAIRisksToExcel } from './ExcelExport';
 import "./AIRisk.css";
 
 const AIRiskTable = ({
@@ -26,8 +25,14 @@ const AIRiskTable = ({
   handleRowClick
 }) => {
 
-  const handleExport = () => {
-    exportAIRisksToExcel(entries);
+  const handleExport = async () => {
+    try {
+      const { exportAIRisksToExcel } = await import('./ExcelExport');
+      exportAIRisksToExcel(entries);
+    } catch (error) {
+      console.error('Failed to load export module:', error);
+      alert('Failed to load export module. Please try again.');
+    }
   };
 
   const handleDragStart = (e, index) => {

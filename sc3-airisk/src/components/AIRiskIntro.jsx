@@ -90,7 +90,7 @@ const AIRiskIntro = () => {
                 </ul>
                 <p>NIST AI RMF characteristics of a trustworthy AI system:</p>
                 <ul>
-                    <li><strong>Valid and Reliable:</strong> The system should perform as intended across a range of conditions, with minimal failure or inconsistency. This includes rigorous testing and validation during development and ongoing monitoring post-deployment.</li>
+                    <li><strong>Valid and Reliable:</strong> The system should perform as intended across a range of conditions, with minimal failure or inconsistency. This includes rigorous testing and validation during development and ongoing monitoring post-deployment.
                     <ul>
                         <li><strong>Safe:</strong> AI systems must operate without causing unintentional harm. This involves anticipating and preventing behaviours that could lead to accidents or system failures.</li>
                         <li><strong>Secure and Resilient:</strong> Systems should be robust against adversarial threats, tampering, and cyberattacks. This includes protections against data poisoning, model inversion, or unauthorized model manipulation.</li>
@@ -98,6 +98,7 @@ const AIRiskIntro = () => {
                         <li><strong>Privacy Enhanced:</strong> AI must respect data privacy throughout its lifecycle, incorporating methods like differential privacy, data minimisation, and secure data handling practices.</li>
                         <li><strong>Fair with Harmful Bias Managed:</strong> The system should avoid discriminatory outcomes by being tested and tuned to reduce bias across data, algorithms, and outputs.</li>
                     </ul>
+                    </li>
                     <li><strong>Accountable and Transparent:</strong> Stakeholders should understand how decisions are made and be able to audit the system's design and outcomes. Transparency fosters accountability across the AI supply chain.</li>
                 </ul>
                 <p><em>Note:</em> Risk management should be continuous, timely, and performed throughout the AI system lifecycle dimensions. AI RMF Core functions should be carried out in a way that reflects diverse and multidisciplinary perspectives, potentially including the views of AI actors outside the organisation.</p>
@@ -161,13 +162,14 @@ const AIRiskIntro = () => {
                 <h4>🇪🇺 EU AI Act</h4>
                 <p>Key features:</p>
                 <ul>
-                    <li>Risk based classification of AI systems:</li>
+                    <li>Risk based classification of AI systems:
                     <ul>
                         <li><strong>Unacceptable Risk:</strong> Prohibited (e.g., cognitive behavioural manipulation, social scoring, real-time biometric surveillance)</li>
                         <li><strong>High Risk:</strong> Extensive compliance requirements such as risk controls, technical documentation, audits, registration (e.g., recruitment AI, credit scoring, medical, law, education, critical infrastructure)</li>
                         <li><strong>Limited Risk:</strong> Minimal compliance requirements such as transparency obligations (e.g., chatbots, content generators, basic deepfakes)</li>
                         <li><strong>Minimal Risk:</strong> Unregulated (e.g., AI-enabled video games, spam filters, basic analytics)</li>
                     </ul>
+                    </li>
                     <li>People interacting with AI systems and AI generated content should be informed about the use of AI and its implications.</li>
                     <li>Prohibition of certain AI practices deemed to pose unacceptable risks - e.g., social scoring by governments, real-time biometric identification in public spaces.</li>
                     <li>Strict requirements for high-risk AI systems, including risk assessments, data governance, transparency, and human oversight.</li>
