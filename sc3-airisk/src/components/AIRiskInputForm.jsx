@@ -2156,7 +2156,7 @@ const AIRiskInputForm = ({
                                             </em></td>
                                         </tr>
                                         <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Will the AI system's outputs, content, recommendations, or results that arise from algorithmic decisions impact on individuals or groups and thus they will need to be informed?</label></td>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Will the AI system&apos;s outputs, content, recommendations, or results that arise from algorithmic decisions impact on individuals or groups and thus they will need to be informed?</label></td>
                                             <td className="air-inputform-field-cell">
                                                 <select name="humanRightsAlgorithmicDecision" className="air-inputform-select" value={selectedValues.humanRightsAlgorithmicDecision || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
@@ -2208,7 +2208,7 @@ const AIRiskInputForm = ({
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Could the AI system inadvertently impact human users' autonomy by influencing and obstructing their decision-making?</label></td>
+                                            <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Could the AI system inadvertently impact human users&apos; autonomy by influencing and obstructing their decision-making?</label></td>
                                             <td className="air-inputform-field-cell">
                                                 <select name="humanRightsAutonomy" className="air-inputform-select" value={selectedValues.humanRightsAutonomy || ""} onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
@@ -2723,7 +2723,7 @@ const AIRiskInputForm = ({
                                                     </>
                                                 )}   
                                                 <tr>
-                                                    <td colSpan={3}><em>Reversible vs Irreversible harms: Irreversible harm refers to a situation where it's impossible to revert to a previous condition before the harm occurred. For example, if an AI system makes an incorrect decision to deny somebody a pension without an option to have that overturned. You should ensure the ability to overturn outcomes if harm is caused or if the AI system makes incorrect decisions</em></td>
+                                                    <td colSpan={3}><em>Reversible vs Irreversible harms: Irreversible harm refers to a situation where it&apos;s impossible to revert to a previous condition before the harm occurred. For example, if an AI system makes an incorrect decision to deny somebody a pension without an option to have that overturned. You should ensure the ability to overturn outcomes if harm is caused or if the AI system makes incorrect decisions</em></td>
                                                 </tr>
                                                 <tr>
                                                     <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Could the AI system cause harms that are reversible?</label></td>
@@ -2762,7 +2762,7 @@ const AIRiskInputForm = ({
                                                     >
                                                         <option value="">Select...</option>
                                                         <option value="no">No</option>
-                                                        <option value="yes-high">Yes, but it's better than existing systems</option>
+                                                        <option value="yes-high">Yes, but it&apos;s better than existing systems</option>
                                                         <option value="yes-veryhigh">Yes</option>
                                                         <option value="unclear-veryhigh">Unclear</option>
                                                     </select>
@@ -3012,7 +3012,7 @@ const AIRiskInputForm = ({
                                                         <td><textarea name="communityRisksOverRelianceFalseAlertDetails" value={form.communityRisksOverRelianceFalseAlertDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The system's explainability and transparency regarding generated content and decisions.</label></td>
+                                                        <td className="air-inputform-field-cell-label"><label className="air-inputform-label">The system&apos;s explainability and transparency regarding generated content and decisions.</label></td>
                                                         <td className="air-inputform-field-cell"><select 
                                                             name="communityRisksExplainability" 
                                                             className="air-inputform-select"
@@ -3326,14 +3326,14 @@ const AIRiskInputForm = ({
                                                     </>
                                                 )}
                                             <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Can you explain why you selected the data you're using in your system?</label></td>
+                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Can you explain why you selected the data you&apos;re using in your system?</label></td>
                                                 <td className="air-inputform-field-cell"><select name="fairnessControlsDataSelection" className="air-inputform-select"
                                                     value={selectedValues.fairnessControlsDataSelection || ''}
                                                     onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
                                                     <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}
                                                     <option value="unclear">Unclear</option> {/* Very High Risk - Consult with relevant stakeholders on data options or implement a data improvement strategy or redesign your project/system */}
-                                                    <option value="no-but-better">No, but it's better than existing systems</option> {/* High Risk - Document your reasons. Clearly demonstrate that you have consulted with all relevant stakeholders before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                    <option value="no-but-better">No, but it&apos;s better than existing systems</option> {/* High Risk - Document your reasons. Clearly demonstrate that you have consulted with all relevant stakeholders before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                     <option value="no">No</option> {/* Very High Risk - Pause the project and review with the responsible officers on how to resolve. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                 </select></td>
                                                 <td><textarea name="fairnessControlsDataSelectionDetails" value={form.fairnessControlsDataSelectionDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -3356,7 +3356,7 @@ const AIRiskInputForm = ({
                                                     <option value="">Select...</option>
                                                     <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}
                                                     <option value="unclear">Unclear</option> {/* Very High Risk - Consult with relevant stakeholders to identify alternative data sources or implement a data improvement strategy or redesign your project/system */}
-                                                    <option value="partially-but-better">Partially, it's better than existing systems</option> {/* High Risk - Document your reasons and details to demonstrate that you have consulted with all relevant stakeholders before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                    <option value="partially-but-better">Partially, it&apos;s better than existing systems</option> {/* High Risk - Document your reasons and details to demonstrate that you have consulted with all relevant stakeholders before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                     <option value="no">No</option> {/* Very High Risk - Pause the project and review with the responsible officers on how to resolve. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                 </select></td>
                                                 <td><textarea name="fairnessControlsDataAvailabilityDetails" value={form.fairnessControlsDataAvailabilityDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
@@ -3375,7 +3375,7 @@ const AIRiskInputForm = ({
                                                     onChange={handleSelectChange}>
                                                     <option value="">Select...</option>
                                                     <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}
-                                                    <option value="partially-but-better">Partially, it's better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                    <option value="partially-but-better">Partially, it&apos;s better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                     <option value="no-or-unclear">No or unclear</option> {/* Very High Risk - Pause the project and review with the responsible officers on how to resolve. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                     <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to the next question. */}
                                                 </select></td>
@@ -3391,7 +3391,7 @@ const AIRiskInputForm = ({
                                             {viewMode !== 'minimal' && (
                                                 <>
                                                     <tr>
-                                                        <td colSpan={3}><em>Diversity and inclusion, and the impact on minorities: AI often overlooks minority nuances, leading to biased outcomes. Considering cultural sensitivities and underrepresentation, it's vital to test AI outputs for fairness across all demographics, ensuring accurate representation and unbiased decisions. Think deeply about everyone who may be impacted.</em></td>
+                                                        <td colSpan={3}><em>Diversity and inclusion, and the impact on minorities: AI often overlooks minority nuances, leading to biased outcomes. Considering cultural sensitivities and underrepresentation, it&apos;s vital to test AI outputs for fairness across all demographics, ensuring accurate representation and unbiased decisions. Think deeply about everyone who may be impacted.</em></td>
                                                     </tr>
                                                     <tr>
                                                         <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Have you considered how your AI system will address issues of diversity and inclusion (including geographic diversity)?</label></td>
@@ -3400,7 +3400,7 @@ const AIRiskInputForm = ({
                                                             onChange={handleSelectChange}>
                                                             <option value="">Select...</option>
                                                             <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}
-                                                            <option value="partially-but-better">Partially, it's better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                            <option value="partially-but-better">Partially, it&apos;s better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                             <option value="no-or-unclear">No or unclear</option> {/* Very High Risk - Pause the project and review with the responsible officers on how to resolve. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                             <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to the next question. */}
                                                         </select></td>
@@ -3432,7 +3432,7 @@ const AIRiskInputForm = ({
                                                             onChange={handleSelectChange}>
                                                             <option value="">Select...</option>
                                                             <option value="yes">Yes</option> {/* Low Risk - Explain your answer */}
-                                                            <option value="partially-but-better">Partially, it's better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                            <option value="partially-but-better">Partially, it&apos;s better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document how you have consulted with all relevant stakeholders before proceeding. Consider a Human Rights Impact Assessment. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                             <option value="no-or-unclear">No or unclear</option> {/* Very High Risk - Pause the project and review with the responsible officers on how to resolve. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                             <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to the next question. */}
                                                         </select></td>
@@ -3454,7 +3454,7 @@ const AIRiskInputForm = ({
                                                     <li>Precision: how specific or detailed an answer is</li>
                                                     <li>Sensitivity: the measure of how many actually positive results are correctly identified as such</li>
                                                     <li>Specificity: the measure of how many actually negative results are correctly identified by the AI system</li>
-                                                    <li>Fairness objectives: whether the system is meeting the fairness objectives defined for the system (which could include for example that there aren't more prediction errors on some cohorts than others)</li>
+                                                    <li>Fairness objectives: whether the system is meeting the fairness objectives defined for the system (which could include for example that there aren&apos;t more prediction errors on some cohorts than others)</li>
                                                 </ul>
                                                 Aspects of accuracy and precision are readily quantifiable for most systems which predict or classify outcomes. This performance can be absolute, or relative to existing systems.
                                                 </em></td>
@@ -3848,8 +3848,8 @@ const AIRiskInputForm = ({
                                                 </tr>
                                             )}
                                             <tr>
-                                                <td colSpan={3}><em>Privacy impact assessment: Even systems not focussed on person-centred data may reveal information about a person, their relationships or preferences. For example, analysis of environmental or spatial data may reveal information about a land-holder's interaction with the local environment.
-                                                    A Privacy Impact Assessment (PIA) can help you to identify and minimise privacy risks. A PIA can help you implement 'privacy by design' and demonstrate compliance with privacy laws.</em></td>
+                                                <td colSpan={3}><em>Privacy impact assessment: Even systems not focussed on person-centred data may reveal information about a person, their relationships or preferences. For example, analysis of environmental or spatial data may reveal information about a land-holder&apos;s interaction with the local environment.
+                                                    A Privacy Impact Assessment (PIA) can help you to identify and minimise privacy risks. A PIA can help you implement &apos;privacy by design&apos; and demonstrate compliance with privacy laws.</em></td>
                                             </tr>
                                             <tr>
                                                 <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Have you completed a privacy impact assessment (either third party or self-assessed)?</label></td>
@@ -3900,7 +3900,7 @@ const AIRiskInputForm = ({
                                                 <td colSpan={3}><em>Cyber security:  AI can pose new cyber security risks, be vigilant.</em></td>
                                             </tr>
                                             <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Does your system adhere to the mandatory requirements in your company's Cyber Security Policy? Have you considered end-to-end Security Principles for your system?</label></td>
+                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Does your system adhere to the mandatory requirements in your company&apos;s Cyber Security Policy? Have you considered end-to-end Security Principles for your system?</label></td>
                                                 <td className="air-inputform-field-cell"><select name="privacyControlsCyberSecurity" className="air-inputform-select"
                                                     value={selectedValues.privacyControlsCyberSecurity || ''}
                                                     onChange={handleSelectChange}>
@@ -4053,7 +4053,7 @@ const AIRiskInputForm = ({
                                                 <td><textarea name="transparencyPurposeDetails" value={form.transparencyPurposeDetails} onChange={handleChange} className="air-inputform-textarea" placeholder="Provide details..."></textarea></td>
                                             </tr>
                                             <tr>
-                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">No or limited access to model's internal workings or source code (“Black Box”)</label></td>
+                                                <td className="air-inputform-field-cell-label"><label className="air-inputform-label">No or limited access to model&apos;s internal workings or source code (“Black Box”)</label></td>
                                                 <td className="air-inputform-field-cell"><select name="transparencyDataSources" className="air-inputform-select"
                                                     value={selectedValues.transparencyDataSources || ""}
                                                     onChange={handleSelectChange}>
@@ -4140,7 +4140,7 @@ const AIRiskInputForm = ({
                                                             <option value="">Select...</option>
                                                             <option value="yes">Yes</option> {/* Low Risk - Explain your answer, then go to next question */}
                                                             <option value="authorised-use">Authorised Use</option> {/* Mid-range Risk - For AI systems intended to operate under legislation which allows use without community consultation, do not proceed unless you receive clear legal advice that allows you to proceed. The system should be always monitored for harms. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
-                                                            <option value="partially">Partially, it's better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document here how you have consulted with all relevant stakeholders before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
+                                                            <option value="partially">Partially, it&apos;s better than existing systems</option> {/* High Risk - Consider seeking advice from an ethics committee. Document here how you have consulted with all relevant stakeholders before proceeding. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
                                                             <option value="no">No</option> {/* Very High Risk - Pause the project, develop a Community Engagement Plan and consult with the relevant community. If your solution is operational - consult responsible officers for an appropriate equivalent action */}
                                                             <option value="na">N/A</option> {/* N/A - Document your reasons as to why this does not apply, then go to next question */}
                                                         </select></td>
@@ -4304,7 +4304,7 @@ const AIRiskInputForm = ({
                                             {viewMode !== 'minimal' && (
                                                 <>
                                                     <tr>
-                                                        <td colSpan={3}><strong>Principle Statement - Accountability:</strong> Decision-making remains the responsibility of organisations and individuals. <em>Despite AI's autonomy, humans hold ultimate decision responsibility necessitating skilled operators with clear accountabilities.</em></td>
+                                                        <td colSpan={3}><strong>Principle Statement - Accountability:</strong> Decision-making remains the responsibility of organisations and individuals. <em>Despite AI&apos;s autonomy, humans hold ultimate decision responsibility necessitating skilled operators with clear accountabilities.</em></td>
                                                     </tr>
                                                     <tr>
                                                         <td colSpan={3}><em><p>The skill and training for AI system operators is crucial. Automated systems pose the risk of over-reliance. Operators, including those exercising judgement over insights or alerts, must be well-trained. This includes the ability to critically evaluate insights and understand system limitations. Users must have confidence in their ability to identify, report, and resolve ethical concerns arising from AI-generated insights or decisions, or empower Responsible Officers to make decisions. Ensure consideration is given to training staff delivering customer-facing services on how respond to inquiries from customers when AI is utilised, including guidance on who to direct such inquiries to.</p>
@@ -4499,7 +4499,7 @@ const AIRiskInputForm = ({
                                                 <td colSpan={3}><hr /></td>
                                             </tr>
                                             <tr>
-                                                <td colSpan={3}><em>Human intervention and accountability: For elevated-risk applications, it's crucial to ensure human accountability and intervention capabilities. Consider updating your business continuity plans accordingly to reflect this. This principle may also be relevant for non-elevated risk uses of AI. Doing so will help build public confidence and control in your AI system.</em></td>
+                                                <td colSpan={3}><em>Human intervention and accountability: For elevated-risk applications, it&apos;s crucial to ensure human accountability and intervention capabilities. Consider updating your business continuity plans accordingly to reflect this. This principle may also be relevant for non-elevated risk uses of AI. Doing so will help build public confidence and control in your AI system.</em></td>
                                             </tr>
                                             <tr>
                                                 <td colSpan={3}>Have you established a clear process to:</td>
@@ -4867,7 +4867,7 @@ const AIRiskInputForm = ({
                                     <tbody>
                                         <tr>
                                             <td colSpan={3}>
-                                                <em>Monitoring ongoing performance: For elevated-risk applications of AI, continuous performance monitoring is crucial. All AI systems should undergo ongoing evaluation, even those considered low-risk, as they could rapidly deviate from normal parameters of operation. Before scaling beyond the pilot phase, it's essential to identify mechanisms for monitoring and calibrating system performance. These mechanisms may include red teaming, conformity assessments, reinforcement from human feedback, monitoring for model drift, and metrics-based performance testing.<br />
+                                                <em>Monitoring ongoing performance: For elevated-risk applications of AI, continuous performance monitoring is crucial. All AI systems should undergo ongoing evaluation, even those considered low-risk, as they could rapidly deviate from normal parameters of operation. Before scaling beyond the pilot phase, it&apos;s essential to identify mechanisms for monitoring and calibrating system performance. These mechanisms may include red teaming, conformity assessments, reinforcement from human feedback, monitoring for model drift, and metrics-based performance testing.<br />
                                                 Monitoring ongoing risks: Operational AI systems which progress with High and Very High risks must plan for regular external independent risk audits to cover among other things:
                                                 <ul>
                                                     <li>The examination and documentation of the effectiveness of risk responses in dealing with identified risk and their root causes,</li>
@@ -4886,8 +4886,8 @@ const AIRiskInputForm = ({
                                             <td className="air-inputform-field-cell-label"><label className="air-inputform-label">Is your project / system an elevated risk? If, after considering all mitigations provided within the self-assessment, Mid-range or higher residual risk(s) persist, this constitutes an Elevated risk use of AI. Use of a non-transparent, non-auditable algorithms or training data will likely be an elevated risk use of AI. They require protections limiting scope of use, or additional risk mitigations.</label></td>
                                             <td className="air-inputform-field-cell"><select name="elevatedRisk" className="air-inputform-select" value={selectedValues.elevatedRisk || ""} onChange={handleSelectChange}>
                                                 <option value="">Select...</option>
-                                                <option value="yes-high">Yes, I have a high or very high risk residual risk</option> {/* Very High Risk - Don't proceed without legal advice. If the pilot proceeds, pilot first with ongoing controls and monitoring. A formal review should be conducted after pilot phase. Conduct an independent risk audit, and your self-assessment needs to be reviewed by the company's AI Review Committee. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
-                                                <option value="yes-mid">Yes, I have mid-range residual risks</option> {/* Mid-range Risk - Don't proceed without legal advice. If the project proceeds, pilot first with ongoing controls and monitoring, consider a review by the company's AI Review Committee and conduct an independent risk audit. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                <option value="yes-high">Yes, I have a high or very high risk residual risk</option> {/* Very High Risk - Don't proceed without legal advice. If the pilot proceeds, pilot first with ongoing controls and monitoring. A formal review should be conducted after pilot phase. Conduct an independent risk audit, and your self-assessment needs to be reviewed by the company&apos;s AI Review Committee. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
+                                                <option value="yes-mid">Yes, I have mid-range residual risks</option> {/* Mid-range Risk - Don't proceed without legal advice. If the project proceeds, pilot first with ongoing controls and monitoring, consider a review by the company&apos;s AI Review Committee and conduct an independent risk audit. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                 <option value="no-low">No, I have low residual risks</option> {/* Low Risk - If the project proceeds, pilot first with ongoing controls and monitoring. If your solution is operational - consult responsible officers for an appropriate equivalent action. */}
                                                 <option value="no-very-low">No, I have very low or N/A residual risk</option> {/* Very Low Risk - Proceed with appropriate controls and monitoring. */}
                                             </select></td>

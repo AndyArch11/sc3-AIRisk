@@ -32,14 +32,14 @@ sc3-airisk
 │   ├── App.css            # Styles for App wrapper
 │   ├── App.test.jsx       # App-level rendering tests
 │   ├── setupTests.js      # Vitest and Testing Library test configuration/polyfills
-│   ├── components
-│   │   ├── AIR.css         # Stylesheets
-│   │   ├── AIRForm.jsx     # AI risk SPA form
-│   │   ├── AIRInputForm.jsx# Captures AI risk details
-│   │   ├── AIRIntro.jsx    # Guidance on performing an AI Risk Assessment
-│   │   ├── AIRReport.jsx   # AI risk report
-│   │   ├── AIRTable.jsx    # AI risk table
-│   │   └── ExcelExport.js  # Excel workbook generator using ExcelJS (lazy-loaded)
+│   └── components
+│       ├── AIRisk.css         # Stylesheets
+│       ├── AIRiskForm.jsx     # AI risk SPA form
+│       ├── AIRiskInputForm.jsx# Captures AI risk details
+│       ├── AIRiskIntro.jsx    # Guidance on performing an AI Risk Assessment
+│       ├── AIRiskReport.jsx   # AI risk report
+│       ├── AIRiskTable.jsx    # AI risk table
+│       └── ExcelExport.js  # Excel workbook generator using ExcelJS (lazy-loaded)
 │
 ├── index.html             # Vite root entry HTML template
 ├── vite.config.mjs        # Vite & Vitest configuration
@@ -101,7 +101,7 @@ Builds the app for production to the `dist` folder using Vite.\
 It correctly bundles React in production mode and optimises the build for the best performance.
 The build process bundles the deployment package into separate chunks for faster downloads. The Excel bundle is lazy loaded at the time of requesting an Excel extract.
 
-When making updates to the code, ensure that you update the `Version` number in `AIRForm.jsx`.
+When making updates to the code, ensure that you update the `Version` number in `AIRiskForm.jsx`.
 
 The build is minified and the filenames include hashes for cache busting.\
 Your app is ready to be deployed!
@@ -110,13 +110,13 @@ If launching as an embedded SPA, configure the following entry points in the hos
 
 ``` html
 <!-- 1. Include CSS -->
-<link rel="stylesheet" href="./assets/index-Dw_vEnho.css">
+<link rel="stylesheet" href="./assets/index-xxxx.css">
 
 <!-- 2. Target container -->
 <div id="root"></div>
 
 <!-- 3. Entrypoint script (loads all other modules automatically) -->
-<script type="module" src="./assets/index-tBs8NxRc.js"></script>
+<script type="module" src="./assets/index-xxxx.js"></script>
 ```
 
 Or embedded as an `<iframe>` for CSS/JS isolation
