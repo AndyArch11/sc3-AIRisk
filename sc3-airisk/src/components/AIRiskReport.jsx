@@ -822,11 +822,11 @@ const AIRiskReport = ({ entries = [] }) => {
                               <ul className="air-report-hria-list">
                                 <li className="air-report-hria-required">
                                   <span className="air-report-hria-icon">🔴</span>
-                                  <span><strong>{hriaStats.entriesRequiringHRIA}</strong> {hriaStats.entriesRequiringHRIA === 1 ? 'assessment requires' : 'assessments require'} HRIA (any "Yes" answers)</span>
+                                  <span><strong>{hriaStats.entriesRequiringHRIA}</strong> {hriaStats.entriesRequiringHRIA === 1 ? 'assessment requires' : 'assessments require'} HRIA (any &quot;Yes&quot; answers)</span>
                                 </li>
                                 <li className="air-report-hria-not-required">
                                   <span className="air-report-hria-icon">🟢</span>
-                                  <span><strong>{hriaStats.entriesNotRequiringHRIA}</strong> {hriaStats.entriesNotRequiringHRIA === 1 ? 'assessment does' : 'assessments do'} not require HRIA (all "No" answers)</span>
+                                  <span><strong>{hriaStats.entriesNotRequiringHRIA}</strong> {hriaStats.entriesNotRequiringHRIA === 1 ? 'assessment does' : 'assessments do'} not require HRIA (all &quot;No&quot; answers)</span>
                                 </li>
                                 {hriaStats.entriesIncomplete > 0 && (
                                   <li className="air-report-hria-incomplete">
@@ -1077,7 +1077,7 @@ const AIRiskReport = ({ entries = [] }) => {
                                 Overall: {overallCompletion}%
                               </span>
                               {entry.projectName && (
-                                <span className="air-report-entry-name">"{entry.projectName}"</span>
+                                <span className="air-report-entry-name">&quot;{entry.projectName}&quot;</span>
                               )}
                               {entry.projectPhase && (
                                 <span className="air-report-entry-phase">Phase: {entry.projectPhase}</span>

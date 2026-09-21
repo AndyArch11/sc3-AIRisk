@@ -1,5 +1,4 @@
 import React from "react";
-import { exportAIRisksToExcel } from './ExcelExport';
 import "./AIRisk.css";
 
 const AIRiskTable = ({
@@ -26,8 +25,14 @@ const AIRiskTable = ({
   handleRowClick
 }) => {
 
-  const handleExport = () => {
-    exportAIRisksToExcel(entries);
+  const handleExport = async () => {
+    try {
+      const { exportAIRisksToExcel } = await import('./ExcelExport');
+      exportAIRisksToExcel(entries);
+    } catch (error) {
+      console.error('Failed to load export module:', error);
+      alert('Failed to load export module. Please try again.');
+    }
   };
 
   const handleDragStart = (e, index) => {
@@ -199,10 +204,10 @@ const AIRiskTable = ({
                   <th className="air-th-community-risks">Legislation Alignment Details</th>
                   <th className="air-th-fairness">Inaccurate Data</th>
                   <th className="air-th-fairness">Inaccurate Data Details</th>
-                  <th className="air-th-fairness">Undefined "Fairness"</th>
-                  <th className="air-th-fairness">Undefined "Fairness" Details</th>
-                  <th className="air-th-fairness">Unmonitored "Fairness"</th>
-                  <th className="air-th-fairness">Unmonitored "Fairness" Details</th>
+                  <th className="air-th-fairness">Undefined &quot;Fairness&quot;</th>
+                  <th className="air-th-fairness">Undefined &quot;Fairness&quot; Details</th>
+                  <th className="air-th-fairness">Unmonitored &quot;Fairness&quot;</th>
+                  <th className="air-th-fairness">Unmonitored &quot;Fairness&quot; Details</th>
                   <th className="air-th-fairness">Excluding Outlier Data</th>
                   <th className="air-th-fairness">Excluding Outlier Data Details</th>
                   <th className="air-th-fairness">Inconsistent Data Cleansing</th>
@@ -283,8 +288,8 @@ const AIRiskTable = ({
                   <th className="air-th-accountability">Training Details</th>
                   <th className="air-th-accountability">Limitation Awareness</th>
                   <th className="air-th-accountability">Limitation Awareness Details</th>
-                  <th className="air-th-accountability">"Fairness" Documentation</th>
-                  <th className="air-th-accountability">"Fairness" Documentation Details</th>
+                  <th className="air-th-accountability">&quot;Fairness&quot; Documentation</th>
+                  <th className="air-th-accountability">&quot;Fairness&quot; Documentation Details</th>
                   <th className="air-th-accountability">AI Decision History</th>
                   <th className="air-th-accountability">AI Decision History Details</th>
                   <th className="air-th-accountability">Audit AI Decisions</th>
